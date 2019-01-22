@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
+<fullyQualifiedTypeName name="org.blackoutburst.tools.Camera"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="org.blackoutburst.utils.Loader"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.Color"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.Image"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
+<fullyQualifiedTypeName name="org.blackoutburst.graphics.LightManager"/>
+<fullyQualifiedTypeName name="org.blackoutburst.graphics.Light"/>
+<fullyQualifiedTypeName name="org.lwjgl.util.vector.Vector2f"/>
+<fullyQualifiedTypeName name="org.blackoutburst.utils.Vector2f"/>
+</qualifiedTypeNameHistroy>
