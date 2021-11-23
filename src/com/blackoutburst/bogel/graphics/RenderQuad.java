@@ -6,25 +6,13 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL15.glBindBuffer;
 import static org.lwjgl.opengl.GL15.glBufferData;
 import static org.lwjgl.opengl.GL15.glGenBuffers;
-import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
-import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
-import static org.lwjgl.opengl.GL20.glAttachShader;
-import static org.lwjgl.opengl.GL20.glCompileShader;
-import static org.lwjgl.opengl.GL20.glCreateProgram;
-import static org.lwjgl.opengl.GL20.glCreateShader;
-import static org.lwjgl.opengl.GL20.glDeleteShader;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glLinkProgram;
-import static org.lwjgl.opengl.GL20.glShaderSource;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
@@ -36,7 +24,7 @@ import com.blackoutburst.bogel.maths.Matrix;
 
 public class RenderQuad {
 
-	private static int vertexShader, fragmentShader, shaderProgram, vaoID, vboVertID;
+	private static int vaoID, vboVertID;
 	public static Matrix model;
 	
 	private static float[] vertices = new float[]
@@ -50,51 +38,6 @@ public class RenderQuad {
 	};
 	
 	public static void initRenderer() {
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		
-		StringBuilder vertexShaderSource = new StringBuilder();
-		try{
-			BufferedReader reader = new BufferedReader(new FileReader("shaders/quad.vert"));
-			String line;
-			while((line = reader.readLine())!=null){
-				vertexShaderSource.append(line).append("//\n");
-			}
-			reader.close();
-		}catch(IOException e){
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		
-		glShaderSource(vertexShader, vertexShaderSource);
-		glCompileShader(vertexShader);
-		
-		
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		
-		StringBuilder fragmentShaderSource = new StringBuilder();
-		try{
-			BufferedReader reader = new BufferedReader(new FileReader("shaders/quad.frag"));
-			String line;
-			while((line = reader.readLine())!=null){
-				fragmentShaderSource.append(line).append("//\n");
-			}
-			reader.close();
-		}catch(IOException e){
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		
-		glShaderSource(fragmentShader, fragmentShaderSource);
-		glCompileShader(fragmentShader);
-		
-		shaderProgram = glCreateProgram();
-		
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragmentShader);
-		glLinkProgram(shaderProgram);
-		
-		glUseProgram(shaderProgram);
-		
 		vaoID = glGenVertexArrays();
 		glBindVertexArray(vaoID);
 		
@@ -112,23 +55,23 @@ public class RenderQuad {
 		model = new Matrix();
 	}
 	
-	public static void renderQuad(Quad quad) {
+	public static void draw(Quad quad) {
 		Matrix.setIdentity(model);
 		Matrix.translate(quad.position, model);
 		Matrix.scale(quad.size, model);
 		
-		glUseProgram(shaderProgram);
+		glUseProgram(quad.shaderProgram);
 		glBindVertexArray(vaoID);
 		glDrawArrays(GL11.GL_TRIANGLES, 0, 6);
 		
-		int model_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "model");
-		GL41.glProgramUniformMatrix4fv(shaderProgram, model_loc, false, Matrix.getValues(model));
+		int model_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "model");
+		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, model_loc, false, Matrix.getValues(model));
 		
-		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
-		GL41.glProgramUniformMatrix4fv(shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
+		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
+		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
 		
-		int color_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "color");
-		GL41.glProgramUniform3f(shaderProgram, color_loc, quad.color.r, quad.color.g, quad.color.b);
+		int color_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "color");
+		GL41.glProgramUniform3f(quad.shaderProgram, color_loc, quad.color.r, quad.color.g, quad.color.b);
 		
 		glBindVertexArray(0);
 		glUseProgram(0);
@@ -138,7 +81,5 @@ public class RenderQuad {
 		glDisableVertexAttribArray(0);
 		glBindVertexArray(0);
 		glUseProgram(0);
-		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);  
 	}
 }

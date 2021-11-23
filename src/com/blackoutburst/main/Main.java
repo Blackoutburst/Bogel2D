@@ -1,25 +1,35 @@
 package com.blackoutburst.main;
 
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL20;
 
+import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Quad;
 import com.blackoutburst.bogel.graphics.RenderQuad;
-import com.blackoutburst.bogel.maths.Vector2f;
 
 public class Main {
+	
 	public static void main(String[] args) {
 		Display display = new Display();
 		
 		display.create();
 		
-		Quad quad = new Quad();
-		quad.setPosition(new Vector2f(100, 200)).setSize(new Vector2f(50)).setColor(Color.LIGHT_BLUE);
+		Shader shader = Shader.loadShader(GL20.GL_FRAGMENT_SHADER, "shaders/test.frag");
+		
+		Quad quadShader = new Quad();
+		quadShader.setPosition(600, 400).setSize(200).setColor(Color.LIGHT_BLUE).setShader(shader);
+		
+		Quad quadSimple = new Quad(300, 100, 200, 100, Color.ORANGE);
+		
 		
 		while (!GLFW.glfwWindowShouldClose(display.getWindow())) {
 			display.clear();
-			RenderQuad.renderQuad(quad);
+			
+			RenderQuad.draw(quadShader);
+			RenderQuad.draw(quadSimple);
+			
 			display.update();
 		}
 		display.destroy();
