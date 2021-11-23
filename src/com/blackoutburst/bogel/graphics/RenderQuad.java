@@ -33,7 +33,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL41;
 
 import com.blackoutburst.bogel.maths.Matrix;
-import com.blackoutburst.bogel.maths.Vector2f;
 
 public class RenderQuad {
 
@@ -55,7 +54,7 @@ public class RenderQuad {
 		
 		StringBuilder vertexShaderSource = new StringBuilder();
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader("shaders/shader.vert"));
+			BufferedReader reader = new BufferedReader(new FileReader("shaders/quad.vert"));
 			String line;
 			while((line = reader.readLine())!=null){
 				vertexShaderSource.append(line).append("//\n");
@@ -74,7 +73,7 @@ public class RenderQuad {
 		
 		StringBuilder fragmentShaderSource = new StringBuilder();
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader("shaders/shader.frag"));
+			BufferedReader reader = new BufferedReader(new FileReader("shaders/quad.frag"));
 			String line;
 			while((line = reader.readLine())!=null){
 				fragmentShaderSource.append(line).append("//\n");
@@ -113,12 +112,10 @@ public class RenderQuad {
 		model = new Matrix();
 	}
 	
-	public static void renderQuad(Vector2f position, Vector2f size) {
-		
+	public static void renderQuad(Quad quad) {
 		Matrix.setIdentity(model);
-		
-		Matrix.translate(position, model);
-		Matrix.scale(size, model);
+		Matrix.translate(quad.position, model);
+		Matrix.scale(quad.size, model);
 		
 		glUseProgram(shaderProgram);
 		glBindVertexArray(vaoID);
@@ -129,6 +126,9 @@ public class RenderQuad {
 		
 		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
 		GL41.glProgramUniformMatrix4fv(shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
+		
+		int color_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "color");
+		GL41.glProgramUniform3f(shaderProgram, color_loc, quad.color.r, quad.color.g, quad.color.b);
 		
 		glBindVertexArray(0);
 		glUseProgram(0);
