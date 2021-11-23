@@ -17,6 +17,7 @@ import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
 import com.blackoutburst.bogel.graphics.Color;
+import com.blackoutburst.bogel.graphics.RenderQuad;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector2i;
 
@@ -69,6 +70,8 @@ public class Display {
 		glfwShowWindow(window);
 		GL.createCapabilities();
 		setFullScreen();
+		
+		RenderQuad.initRenderer();
 		return (this);
 	}
 	
@@ -78,8 +81,8 @@ public class Display {
 	}
 	
 	public void update() {
-		glfwSwapBuffers(window);
 		glfwPollEvents();
+		glfwSwapBuffers(window);
 	}
 	
 	public Display setFullscreenMode(boolean full) {
@@ -95,6 +98,7 @@ public class Display {
 	}
 	
 	public void destroy() {
+		RenderQuad.clear();
 		glfwFreeCallbacks(window);
 		glfwDestroyWindow(window);
 		glfwTerminate();
