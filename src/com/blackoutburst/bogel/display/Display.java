@@ -26,7 +26,7 @@ public class Display {
 	protected int width = 1280;
 	protected int height = 720;
 	protected String title = "Bogel2D Window";
-	protected Color clearColor = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+	protected Color clearColor = new Color(0.1f);
 	protected boolean fullscreen = false;
 	
 	public Display() {
@@ -48,7 +48,7 @@ public class Display {
 		}
 	}
 	
-	public void create() {
+	public Display create() {
 		
 		glfwWindowHint(GLFW_SAMPLES, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -69,6 +69,7 @@ public class Display {
 		glfwShowWindow(window);
 		GL.createCapabilities();
 		setFullScreen();
+		return (this);
 	}
 	
 	public void clear() {
@@ -110,7 +111,11 @@ public class Display {
 	}
 	
 	public Display setVSync(boolean enabled) {
-		glfwSwapInterval(enabled ? GLFW_TRUE : GLFW_FALSE);
+		if (window != NULL) {
+			glfwSwapInterval(enabled ? GLFW_TRUE : GLFW_FALSE);
+		} else {
+			System.err.println("Warning Vsync must be set after creating the window!");
+		}
 		return (this);
 	}
 	
