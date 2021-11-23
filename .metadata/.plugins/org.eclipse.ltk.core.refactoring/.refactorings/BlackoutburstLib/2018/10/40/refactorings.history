@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;BlackoutburstLib&apos;&#x0A;- Original project: &apos;BlackoutburstLib&apos;&#x0A;- Original element: &apos;natices&apos;" description="Delete element" element1="libs/natices" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="1" stamp="1538730911333" subPackages="false" version="1.0"/>
-</session>
