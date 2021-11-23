@@ -10,6 +10,18 @@ public class Matrix {
 		setIdentity(this);
 	}
 	
+	/**
+	 * Returns a string representation of this matrix
+	 */
+	public String toString() {
+		StringBuilder buf = new StringBuilder();
+		buf.append('[').append(m00).append(' ').append(m10).append(' ').append(m20).append(' ').append(m30).append(']').append('\n');
+		buf.append('[').append(m01).append(' ').append(m11).append(' ').append(m21).append(' ').append(m31).append(']').append('\n');
+		buf.append('[').append(m02).append(' ').append(m12).append(' ').append(m22).append(' ').append(m32).append(']').append('\n');
+		buf.append('[').append(m03).append(' ').append(m13).append(' ').append(m23).append(' ').append(m33).append(']').append('\n');
+		return buf.toString();
+	}
+	
 	public static float[] getValues(Matrix m) {
 		return(new float[] {m.m00, m.m01, m.m02, m.m03, 
 							m.m10, m.m11, m.m12, m.m13, 
@@ -17,7 +29,7 @@ public class Matrix {
 							m.m30, m.m31, m.m32, m.m33});
 	}
 	
-	private static void setIdentity(Matrix m) {
+	public static void setIdentity(Matrix m) {
 		m.m00 = 1.0f;
 		m.m01 = 0.0f;
 		m.m02 = 0.0f;
@@ -37,30 +49,30 @@ public class Matrix {
 	}
 	
 	public static void ortho2D(Matrix m, float left, float right, float bottom, float top, float near, float far) {
-		float x_orth = 2 / (right - left);
-		float y_orth = 2 / (top - bottom);
-		float z_orth = -2 / (far - near);
+		float x_orth = 2.0f / (right - left);
+		float y_orth = 2.0f / (top - bottom);
+		float z_orth = -2.0f / (far - near);
 
 		float tx = -(right + left) / (right - left);
 		float ty = -(top + bottom) / (top - bottom);
 		float tz = -(far + near) / (far - near);
 
-		m.m00 = x_orth;
-		m.m10 = 0;
-		m.m20 = 0;
-		m.m30 = 0;
-		m.m01 = 0;
-		m.m11 = y_orth;
-		m.m21 = 0;
-		m.m31 = 0;
-		m.m02 = 0;
-		m.m12 = 0;
-		m.m22 = z_orth;
-		m.m32 = 0;
-		m.m03 = tx;
-		m.m13 = ty;
-		m.m23 = tz;
-		m.m33 = 1;
+        m.m00 = x_orth;
+        m.m10 = 0;
+        m.m20 = 0;
+        m.m30 = tx;
+        m.m01 = 0;
+        m.m11 = y_orth;
+        m.m21 = 0;
+        m.m31 = ty;
+        m.m02 = 0;
+        m.m12 = 0;
+        m.m22 = z_orth;
+        m.m32 = tz;
+        m.m03 = 0;
+        m.m13 = 0;
+        m.m23 = 0;
+        m.m33 = 1;
 	}
 	
 	/**

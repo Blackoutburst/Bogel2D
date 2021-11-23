@@ -10,8 +10,8 @@ public class RenderManager {
 	public static Matrix projection = new Matrix();
 
 	public static void init(Display display) {
-		GL11.glViewport(0, 0, display.getWidth(), display.getHeight());
-		Matrix.ortho2D(projection, 0, display.getWidth(), display.getHeight(), 0, -1.0f, 1.0f);
+		Matrix.ortho2D(projection, 0, display.getWidth(), 0, display.getHeight(), -1, 1);
+		
 		RenderQuad.initRenderer();
 		enableCulling(true);
 	}

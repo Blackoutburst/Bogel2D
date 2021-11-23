@@ -32,7 +32,6 @@ import org.lwjgl.opengl.ARBProgramInterfaceQuery;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL41;
 
-import com.blackoutburst.bogel.core.Time;
 import com.blackoutburst.bogel.maths.Matrix;
 import com.blackoutburst.bogel.maths.Vector2f;
 
@@ -112,12 +111,15 @@ public class RenderQuad {
 		glBindVertexArray(0);
 		
 		model = new Matrix();
-		Matrix.scale(new Vector2f(500f), model);
 	}
 	
-	public static void renderQuad() {
-		model = new Matrix();
-		Matrix.translate(new Vector2f((float) Math.sin(Time.getRuntime()) / 2.0f), model);
+	public static void renderQuad(Vector2f position, Vector2f size) {
+		
+		Matrix.setIdentity(model);
+		
+		Matrix.translate(position, model);
+		Matrix.scale(size, model);
+		
 		glUseProgram(shaderProgram);
 		glBindVertexArray(vaoID);
 		glDrawArrays(GL11.GL_TRIANGLES, 0, 6);
@@ -125,8 +127,8 @@ public class RenderQuad {
 		int model_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "model");
 		GL41.glProgramUniformMatrix4fv(shaderProgram, model_loc, false, Matrix.getValues(model));
 		
-		int resolution_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
-		GL41.glProgramUniformMatrix4fv(shaderProgram, resolution_loc, false, Matrix.getValues(RenderManager.projection));
+		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
+		GL41.glProgramUniformMatrix4fv(shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
 		
 		glBindVertexArray(0);
 		glUseProgram(0);
