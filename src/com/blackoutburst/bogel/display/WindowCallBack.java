@@ -8,7 +8,7 @@ public class WindowCallBack implements GLFWWindowSizeCallbackI {
 
 	@Override
 	public void invoke(long window, int width, int height) {
-		Display.setSize(width, height);
+		Display.callBackSetSize(width, height);
 		RenderManager.setOrtho(width, height);
 	}
 

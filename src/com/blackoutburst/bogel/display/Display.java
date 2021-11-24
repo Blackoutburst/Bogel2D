@@ -47,12 +47,18 @@ import com.blackoutburst.bogel.maths.Vector2i;
 
 public class Display {
 	
+	public static enum FullScreenMode{
+		NONE,
+		FULL,
+		BORDERLESS
+	}
+	
 	protected static long window;
 	protected static int width = 1280;
 	protected static int height = 720;
 	protected String title = "Bogel2D Window";
 	protected Color clearColor = new Color(0.1f);
-	protected boolean fullscreen = false;
+	protected FullScreenMode fullScreen = FullScreenMode.NONE;
 	
 	public Display() {
 		GLFWErrorCallback.createPrint(System.err).set();
@@ -66,10 +72,16 @@ public class Display {
 		GLFWVidMode videoMode = GLFW.glfwGetVideoMode(monitor);
 		Vector2i center = new Vector2i(videoMode.width() / 2 - width / 2, videoMode.height() / 2 - height / 2);
 
-		if (fullscreen) {
-			GLFW.glfwSetWindowMonitor(window, monitor, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
-		} else {
-			GLFW.glfwSetWindowMonitor(window, NULL, center.x, center.y, width, height, videoMode.refreshRate());	
+		switch(fullScreen) {
+			case BORDERLESS:
+				GLFW.glfwSetWindowMonitor(window, NULL, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
+			break;
+			case FULL:
+				GLFW.glfwSetWindowMonitor(window, monitor, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
+			break;
+			case NONE:
+				GLFW.glfwSetWindowMonitor(window, NULL, center.x, center.y, width, height, videoMode.refreshRate());	
+			break;
 		}
 	}
 	
@@ -110,12 +122,17 @@ public class Display {
 		glfwSwapBuffers(window);
 	}
 	
-	public Display setFullscreen(boolean full) {
-		fullscreen = full;
+	public Display setFullscreenMode(FullScreenMode full) {
+		if (full != FullScreenMode.NONE)
+			this.setDecoration(false);
+		
+		fullScreen = full;
 		if (window != NULL)
 			setFullScreen();
 		return (this);
 	}
+	
+	
 	
 	public Display setClearColor(Color c) {
 		clearColor = c;
@@ -147,8 +164,15 @@ public class Display {
 		}
 		return (this);
 	}
+
+	public void setSize(int w, int h) {
+		width = w;
+		height = h;
+		if (window != NULL)
+			GLFW.glfwSetWindowSize(window, width, height);
+	}
 	
-	public static void setSize(int w, int h) {
+	public static void callBackSetSize(int w, int h) {
 		width = w;
 		height = h;
 		if (window != NULL)
