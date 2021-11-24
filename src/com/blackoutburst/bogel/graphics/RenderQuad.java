@@ -29,6 +29,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
+import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.maths.Matrix;
 
 public class RenderQuad {
@@ -88,6 +89,7 @@ public class RenderQuad {
 	private static void setMatricesUniform(Quad quad) {
 		quad.shader.setUniformMat4("projection", RenderManager.projection);
 		quad.shader.setUniformMat4("model", model);
+		quad.shader.setUniformMat4("view", Camera.getMatrix());
 	}
 	
 	private static void setTransformation(Quad quad) {
@@ -111,7 +113,9 @@ public class RenderQuad {
 		if (!quad.textureless)
 			glBindTexture(GL_TEXTURE_2D, quad.getTextureID());
 		
-		setTextureParrameter(quad);
+		if (quad.texture != null)
+			setTextureParrameter(quad);
+		
 		setTransformation(quad);
 		setMatricesUniform(quad);
 		

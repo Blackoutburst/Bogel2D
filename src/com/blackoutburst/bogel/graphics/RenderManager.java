@@ -24,7 +24,6 @@ import com.blackoutburst.bogel.maths.Matrix;
 public class RenderManager {
 	
 	public static Matrix projection = new Matrix();
-
 	public static void init() {
 		setOrtho(Display.getWidth(), Display.getHeight());
 		glEnable(GL_BLEND);

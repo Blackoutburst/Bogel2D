@@ -549,4 +549,8 @@ public class Quad {
 		return (this.texture.id);
 	}
 	
+	public void draw() {
+		RenderQuad.draw(this);
+	}
+	
 }

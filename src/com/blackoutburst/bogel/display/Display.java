@@ -94,7 +94,6 @@ public class Display {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		
 		
-		
 		window = glfwCreateWindow(width, height, title, NULL, NULL);
 		
 		if (window == NULL)
