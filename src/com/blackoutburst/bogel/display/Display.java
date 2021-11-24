@@ -231,7 +231,10 @@ public class Display {
 		GLFWImage image = GLFWImage.malloc(); 
 		GLFWImage.Buffer imagebf = GLFWImage.malloc(1);
 		try {
-			image.set(128, 128, loadIcons(filePath));
+			Vector2i imageSize = new Vector2i();
+			ByteBuffer byteBuffer = loadIcons(filePath, imageSize);
+			
+			image.set(imageSize.x, imageSize.y, byteBuffer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -240,7 +243,7 @@ public class Display {
 		return (this);
 	}
 	
-	private ByteBuffer loadIcons(String path) throws Exception {
+	private ByteBuffer loadIcons(String path, Vector2i imageSize) throws Exception {
 		ByteBuffer image;
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer comp = stack.mallocInt(1);
@@ -248,6 +251,7 @@ public class Display {
 			IntBuffer h = stack.mallocInt(1);
 
 			image = STBImage.stbi_load(path, w, h, comp, 4);
+			imageSize.set(w.get(), h.get());
 			if (image == null) {
 				throw new Exception("Failed to load icons");
 			}

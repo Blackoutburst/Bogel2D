@@ -12,6 +12,7 @@ import com.blackoutburst.bogel.maths.Vector2f;
 public class Quad {
 	protected Vector2f position;
 	protected Vector2f size;
+	protected float rotation;
 	protected Color color;
 	protected Shader vertexShader;
 	protected Shader fragmentShader;
@@ -20,6 +21,7 @@ public class Quad {
 	public Quad() {
 		this.position = new Vector2f();
 		this.size = new Vector2f();
+		this.rotation = 0;
 		this.color = Color.WHITE;
 		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
 		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
@@ -32,6 +34,7 @@ public class Quad {
 	public Quad(Vector2f position, Vector2f size) {
 		this.position = position;
 		this.size = size;
+		this.rotation = 0;
 		this.color = Color.WHITE;
 		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
 		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
@@ -44,6 +47,33 @@ public class Quad {
 	public Quad(Vector2f position, Vector2f size, Color color) {
 		this.position = position;
 		this.size = size;
+		this.rotation = 0;
+		this.color = color;
+		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
+		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, this.fragmentShader.id);
+		glLinkProgram(this.shaderProgram);
+	}
+	
+	public Quad(Vector2f position, Vector2f size, float rotation) {
+		this.position = position;
+		this.size = size;
+		this.rotation = rotation;
+		this.color = Color.WHITE;
+		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
+		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, this.fragmentShader.id);
+		glLinkProgram(this.shaderProgram);
+	}
+	
+	public Quad(Vector2f position, Vector2f size, Color color, float rotation) {
+		this.position = position;
+		this.size = size;
+		this.rotation = rotation;
 		this.color = color;
 		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
 		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
@@ -58,6 +88,7 @@ public class Quad {
 		this.size = new Vector2f(w, h);
 		this.size.x = w;
 		this.size.y = h;
+		this.rotation = 0;
 		this.color = Color.WHITE;
 		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
 		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
@@ -71,6 +102,35 @@ public class Quad {
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
+		this.rotation = 0;
+		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
+		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, this.fragmentShader.id);
+		glLinkProgram(this.shaderProgram);
+	}
+	
+	public Quad(float x, float y, float w, float h, float rotation) {
+		this.position = new Vector2f(x, y);
+		this.size = new Vector2f(w, h);
+		this.size.x = w;
+		this.size.y = h;
+		this.rotation = rotation;
+		this.color = Color.WHITE;
+		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
+		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, this.fragmentShader.id);
+		glLinkProgram(this.shaderProgram);
+	}
+
+	public Quad(float x, float y, float w, float h, Color color, float rotation) {
+		this.position = new Vector2f(x, y);
+		this.size = new Vector2f(w, h);
+		this.color = color;
+		this.rotation = rotation;
 		this.vertexShader = Shader.loadShader(GL_VERTEX_SHADER, "shaders/quad.vert");
 		this.fragmentShader = Shader.loadShader(GL_FRAGMENT_SHADER, "shaders/quad.frag");
 		this.shaderProgram = glCreateProgram();
@@ -156,4 +216,13 @@ public class Quad {
 	public int getShaderProgram() {
 		return shaderProgram;
 	}
+
+	public float getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(float rotation) {
+		this.rotation = rotation;
+	}
+	
 }

@@ -59,6 +59,7 @@ public class RenderQuad {
 		Matrix.setIdentity(model);
 		Matrix.translate(quad.position, model);
 		Matrix.scale(quad.size, model);
+		Matrix.rotate(quad.rotation, model);
 		
 		glUseProgram(quad.shaderProgram);
 		glBindVertexArray(vaoID);

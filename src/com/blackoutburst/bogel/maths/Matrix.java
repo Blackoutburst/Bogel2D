@@ -407,26 +407,6 @@ public class Matrix {
 		mat.m23 = mat.m23 * 1;
 	}
 
-	/**
-	 * Rotates the matrix around the given axis the specified angle
-	 * @param angle the angle, in radians.
-	 * @param axis The vector representing the rotation axis. Must be normalized.
-	 * @return this
-	 */
-	public Matrix rotate(float angle, Vector2f axis) {
-		return rotate(angle, axis, this);
-	}
-
-	/**
-	 * Rotates the matrix around the given axis the specified angle
-	 * @param angle the angle, in radians.
-	 * @param axis The vector representing the rotation axis. Must be normalized.
-	 * @param dest The matrix to put the result, or null if a new matrix is to be created
-	 * @return The rotated matrix
-	 */
-	public Matrix rotate(float angle, Vector2f axis, Matrix dest) {
-		return rotate(angle, axis, this, dest);
-	}
 
 	/**
 	 * Rotates the source matrix around the given axis the specified angle and
@@ -437,30 +417,33 @@ public class Matrix {
 	 * @param dest The matrix to put the result, or null if a new matrix is to be created
 	 * @return The rotated matrix
 	 */
-	public static Matrix rotate(float angle, Vector2f axis, Matrix src, Matrix dest) {
-		if (dest == null)
-			dest = new Matrix();
+	public static void rotate(float angle, Matrix mat) {
+		if (mat == null)
+			mat = new Matrix();
+		Matrix src = new Matrix();
+		Matrix.load(mat, src);
+		
 		float c = (float) Math.cos(angle);
 		float s = (float) Math.sin(angle);
 		float oneminusc = 1.0f - c;
-		float xy = axis.x*axis.y;
-		float yz = axis.y*1.0f;
-		float xz = axis.x*1.0f;
-		float xs = axis.x*s;
-		float ys = axis.y*s;
-		float zs = 1.0f*s;
+		float xy = 0;
+		float yz = 0;
+		float xz = 0;
+		float xs = 0;
+		float ys = 0;
+		float zs = 1*s;
 
-		float f00 = axis.x*axis.x*oneminusc+c;
+		float f00 = 0*oneminusc+c;
 		float f01 = xy*oneminusc+zs;
 		float f02 = xz*oneminusc-ys;
 		// n[3] not used
 		float f10 = xy*oneminusc-zs;
-		float f11 = axis.y*axis.y*oneminusc+c;
+		float f11 = 0*oneminusc+c;
 		float f12 = yz*oneminusc+xs;
 		// n[7] not used
 		float f20 = xz*oneminusc+ys;
 		float f21 = yz*oneminusc-xs;
-		float f22 = 1.0f*1.0f*oneminusc+c;
+		float f22 = 1*oneminusc+c;
 
 		float t00 = src.m00 * f00 + src.m10 * f01 + src.m20 * f02;
 		float t01 = src.m01 * f00 + src.m11 * f01 + src.m21 * f02;
@@ -470,19 +453,18 @@ public class Matrix {
 		float t11 = src.m01 * f10 + src.m11 * f11 + src.m21 * f12;
 		float t12 = src.m02 * f10 + src.m12 * f11 + src.m22 * f12;
 		float t13 = src.m03 * f10 + src.m13 * f11 + src.m23 * f12;
-		dest.m20 = src.m00 * f20 + src.m10 * f21 + src.m20 * f22;
-		dest.m21 = src.m01 * f20 + src.m11 * f21 + src.m21 * f22;
-		dest.m22 = src.m02 * f20 + src.m12 * f21 + src.m22 * f22;
-		dest.m23 = src.m03 * f20 + src.m13 * f21 + src.m23 * f22;
-		dest.m00 = t00;
-		dest.m01 = t01;
-		dest.m02 = t02;
-		dest.m03 = t03;
-		dest.m10 = t10;
-		dest.m11 = t11;
-		dest.m12 = t12;
-		dest.m13 = t13;
-		return dest;
+		mat.m20 = src.m00 * f20 + src.m10 * f21 + src.m20 * f22;
+		mat.m21 = src.m01 * f20 + src.m11 * f21 + src.m21 * f22;
+		mat.m22 = src.m02 * f20 + src.m12 * f21 + src.m22 * f22;
+		mat.m23 = src.m03 * f20 + src.m13 * f21 + src.m23 * f22;
+		mat.m00 = t00;
+		mat.m01 = t01;
+		mat.m02 = t02;
+		mat.m03 = t03;
+		mat.m10 = t10;
+		mat.m11 = t11;
+		mat.m12 = t12;
+		mat.m13 = t13;
 	}
 
 
