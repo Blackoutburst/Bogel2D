@@ -18,6 +18,7 @@ public class Texture {
 	protected int id;
 	protected IntBuffer width;
 	protected IntBuffer height;
+	protected boolean missing;
 	
 	public Texture(String filePath) {
 		ByteBuffer data = null;
@@ -34,10 +35,34 @@ public class Texture {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(), this.height.get(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+			if (data == null) {
+				System.err.println("Couldn't load ["+filePath+"] using default texture instead");
+				loadMissing();
+			}
+		}
+		if (data != null) {
+			STBImage.stbi_image_free(data);
+			this.missing = false;
+		}
+	}
+	
+	private void loadMissing() {
+		ByteBuffer data = null;
+		try (MemoryStack stack = MemoryStack.stackPush()) {
+			id = glGenTextures();
+			glBindTexture(GL_TEXTURE_2D, id);
+			
+			IntBuffer comp = stack.mallocInt(1);
+			this.width = stack.mallocInt(1);
+			this.height = stack.mallocInt(1);
+
+			data = STBImage.stbi_load("assets/null.png", this.width, this.height, comp, 0);
+			
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(), this.height.get(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		STBImage.stbi_image_free(data);
+		this.missing = true;
 	}
 	
 	public int getWidth() {

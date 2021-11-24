@@ -98,8 +98,13 @@ public class RenderQuad {
 	}
 	
 	private static void setTextureParrameter(Quad quad) {
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
+		if (quad.texture.missing) {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		} else {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
+		}
 	}
 	
 	public static void draw(Quad quad) {
