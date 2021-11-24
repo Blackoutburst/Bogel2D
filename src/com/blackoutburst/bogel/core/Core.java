@@ -31,6 +31,7 @@ public class Core {
 		Mouse.getLeftButton().reset();
 		Mouse.getRightButton().reset();
 		Mouse.getMiddleButton().reset();
+		Mouse.setScroll(0);
 	}
 	
 	public static void clear() {

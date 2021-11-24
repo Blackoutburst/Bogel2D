@@ -12,6 +12,7 @@ public class Camera {
 	public Camera() {
 		position = new Vector3f(0, 0, 1);
 		matrix = new Matrix();
+		update();
 	}
 
 	public Vector3f getPosition() {
@@ -23,9 +24,30 @@ public class Camera {
 		update();
 	}
 	
+	public void setPosition(Vector2f position) {
+		this.position.x = position.x;
+		this.position.y = position.y;
+		update();
+	}
+	
 	public void setPosition(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
+		update();
+	}
+	
+	public void setPositionX(float x) {
+		this.position.x = x;
+		update();
+	}
+	
+	public void setPositionY(float y) {
+		this.position.y = y;
+		update();
+	}
+	
+	public void setPositionZ(float z) {
+		this.position.z = z;
 		update();
 	}
 	
@@ -43,8 +65,10 @@ public class Camera {
 	}
 	
 	private void update() {
+		if (position.z < 0) position.z = 0;
 		Matrix.setIdentity(matrix);
-		Matrix.translate(new Vector2f(-position.x + Display.getWidth() / 2, -position.y + Display.getHeight() / 2), matrix);
+		Matrix.translate(new Vector2f(-position.x, -position.y), matrix);
+		
 		Matrix.scale(new Vector2f(position.z), matrix);
 	}
 	

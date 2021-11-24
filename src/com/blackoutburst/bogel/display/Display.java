@@ -43,6 +43,7 @@ import org.lwjgl.system.MemoryStack;
 import com.blackoutburst.bogel.core.Core;
 import com.blackoutburst.bogel.core.MouseButtonCallBack;
 import com.blackoutburst.bogel.core.MousePositionCallBack;
+import com.blackoutburst.bogel.core.MouseScrollCallBack;
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector2i;
@@ -111,6 +112,7 @@ public class Display {
 		GLFW.glfwSetWindowSizeCallback(window, new WindowCallBack());
 		GLFW.glfwSetCursorPosCallback(window, new MousePositionCallBack());
 		GLFW.glfwSetMouseButtonCallback(window, new MouseButtonCallBack());
+		GLFW.glfwSetScrollCallback(window, new MouseScrollCallBack());
 		
 		Core.init(this);
 		return (this);

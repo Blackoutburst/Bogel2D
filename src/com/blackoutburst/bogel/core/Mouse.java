@@ -5,6 +5,7 @@ import com.blackoutburst.bogel.maths.Vector2f;
 public class Mouse {
 	private static float x;
 	private static float y;
+	private static float scroll;
 	
 	private static Vector2f position = new Vector2f();
 	
@@ -38,6 +39,12 @@ public class Mouse {
 	}
 	public static MouseButton getMiddleButton() {
 		return middleButton;
+	}
+	public static float getScroll() {
+		return scroll;
+	}
+	public static void setScroll(float scroll) {
+		Mouse.scroll = scroll;
 	}
 	
 }
