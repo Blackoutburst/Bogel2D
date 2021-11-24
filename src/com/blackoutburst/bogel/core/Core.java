@@ -23,7 +23,7 @@ public class Core {
 	}
 	
 	public static void init(Display display) {
-		RenderManager.init(display);
+		RenderManager.init();
 		Shader.init();
 	}
 	

@@ -10,6 +10,9 @@ import static org.lwjgl.opengl.GL11.glCullFace;
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import static org.lwjgl.opengl.GL11.GL_BACK;
 import static org.lwjgl.opengl.GL11.glPolygonMode;
+
+import org.lwjgl.opengl.GL11;
+
 import static org.lwjgl.opengl.GL11.GL_FRONT_AND_BACK;
 import static org.lwjgl.opengl.GL11.GL_LINE;
 import static org.lwjgl.opengl.GL11.GL_FILL;
@@ -22,14 +25,18 @@ public class RenderManager {
 	
 	public static Matrix projection = new Matrix();
 
-	public static void init(Display display) {
-		Matrix.ortho2D(projection, 0, display.getWidth(), 0, display.getHeight(), -1, 1);
-		
+	public static void init() {
+		setOrtho(Display.getWidth(), Display.getHeight());
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		RenderQuad.initRenderer();
 		enableCulling();
+	}
+	
+	public static void setOrtho(int width, int height) {
+		GL11.glViewport(0, 0, width, height);
+		Matrix.ortho2D(projection, 0, width, 0, height, -1, 1);
 	}
 	
 	public static void enableCulling() {

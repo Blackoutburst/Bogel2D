@@ -47,9 +47,9 @@ import com.blackoutburst.bogel.maths.Vector2i;
 
 public class Display {
 	
-	protected long window;
-	protected int width = 1280;
-	protected int height = 720;
+	protected static long window;
+	protected static int width = 1280;
+	protected static int height = 720;
 	protected String title = "Bogel2D Window";
 	protected Color clearColor = new Color(0.1f);
 	protected boolean fullscreen = false;
@@ -94,6 +94,7 @@ public class Display {
 		glfwShowWindow(window);
 		GL.createCapabilities();
 		setFullScreen();
+		GLFW.glfwSetWindowSizeCallback(window, new WindowCallBack());
 		
 		Core.init(this);
 		return (this);
@@ -109,7 +110,7 @@ public class Display {
 		glfwSwapBuffers(window);
 	}
 	
-	public Display setFullscreenMode(boolean full) {
+	public Display setFullscreen(boolean full) {
 		fullscreen = full;
 		if (window != NULL)
 			setFullScreen();
@@ -147,12 +148,11 @@ public class Display {
 		return (this);
 	}
 	
-	public Display setSize(int width, int height) {
-		this.width = width;
-		this.height = height;
+	public static void setSize(int w, int h) {
+		width = w;
+		height = h;
 		if (window != NULL)
-			GLFW.glfwSetWindowSize(window, this.width, this.height);
-		return (this);
+			GLFW.glfwSetWindowSize(window, width, height);
 	}
 	
 	public Display setResizable(boolean resizable) {
@@ -170,7 +170,7 @@ public class Display {
 		return (this);
 	}
 	
-	public int getWidth() {
+	public static int getWidth() {
 		int w = 0;
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -184,7 +184,7 @@ public class Display {
 		return (w);
 	}
 	
-	public int getHeight() {
+	public static int getHeight() {
 		int h = 0;
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -198,7 +198,7 @@ public class Display {
 		return (h);
 	}
 	
-	public Vector2i getSize() {
+	public static Vector2i getSize() {
 		Vector2i size = new Vector2i();
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -212,7 +212,7 @@ public class Display {
 		return (size);
 	}
 	
-	public Vector2f getSizeF() {
+	public static Vector2f getSizeF() {
 		Vector2f size = new Vector2f();
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {

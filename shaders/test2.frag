@@ -1,3 +1,5 @@
+precision mediump float;
+
 uniform float time;
 uniform vec2 resolution;
 
@@ -63,7 +65,7 @@ void main( void ) {
 
 	vec2 uv = ( gl_FragCoord.xy/resolution.xy ) -.5;
 	uv.x*=resolution.x/resolution.y;
-	vec3 col = vec3(0.);
+	vec4 col = vec4(1.0, 0.0, 0.0, 0.0);
 	
 	//uv*=5.;
 	float m = 0.;
@@ -80,10 +82,8 @@ void main( void ) {
 		float fade = smoothstep(0.,.6,z)*smoothstep(1.,.8,z);
 		m += layer(uv*size+i*20.)*fade;
 	}
-	vec3 base = sin(t*5.*vec3(.345,.456,.568))*.4+.6;
-	col = m*base;
-	col-=Y*base;
+	col = m * vec4(1.0);//*base;
 	//col = fd.x>0.48||fd.y>0.48?vec3(1,0,0):col;
-	gl_FragColor = vec4( col, 1.0 );
+	gl_FragColor = col;
 
 }
