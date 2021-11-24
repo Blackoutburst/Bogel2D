@@ -1,6 +1,5 @@
 package com.blackoutburst.bogel.core;
 
-import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector3f;
@@ -67,9 +66,10 @@ public class Camera {
 	private void update() {
 		if (position.z < 0) position.z = 0;
 		Matrix.setIdentity(matrix);
+		
 		Matrix.translate(new Vector2f(-position.x, -position.y), matrix);
 		
-		Matrix.scale(new Vector2f(position.z), matrix);
+		//Matrix.scale(new Vector2f(position.z), matrix);
 	}
 	
 }
