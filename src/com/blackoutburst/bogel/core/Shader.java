@@ -86,7 +86,6 @@ public class Shader {
 	public void setUniform2f(String varName, float x, float y) {
 		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
 		glProgramUniform2f(shaderProgram, loc, x, y);
-		
 	}
 	
 	public void setUniform2f(String varName, Vector2f vec) {

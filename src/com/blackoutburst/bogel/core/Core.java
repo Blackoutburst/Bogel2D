@@ -27,6 +27,12 @@ public class Core {
 		Shader.init();
 	}
 	
+	public static void update() {
+		Mouse.getLeftButton().reset();
+		Mouse.getRightButton().reset();
+		Mouse.getMiddleButton().reset();
+	}
+	
 	public static void clear() {
 		RenderQuad.clear();
 	}
