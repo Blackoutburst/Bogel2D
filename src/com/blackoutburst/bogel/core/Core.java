@@ -1,5 +1,9 @@
 package com.blackoutburst.bogel.core;
 
+import com.blackoutburst.bogel.display.Display;
+import com.blackoutburst.bogel.graphics.RenderManager;
+import com.blackoutburst.bogel.graphics.RenderQuad;
+
 public class Core {
 		
 	private static int renderPasses = 0;
@@ -16,6 +20,15 @@ public class Core {
 			previousTime = currentTime;
 		}
 		return (fps);
+	}
+	
+	public static void init(Display display) {
+		RenderManager.init(display);
+		Shader.init();
+	}
+	
+	public static void clear() {
+		RenderQuad.clear();
 	}
 	
 }

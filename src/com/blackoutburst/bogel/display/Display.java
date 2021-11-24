@@ -40,9 +40,8 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
+import com.blackoutburst.bogel.core.Core;
 import com.blackoutburst.bogel.graphics.Color;
-import com.blackoutburst.bogel.graphics.RenderManager;
-import com.blackoutburst.bogel.graphics.RenderQuad;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector2i;
 
@@ -96,7 +95,7 @@ public class Display {
 		GL.createCapabilities();
 		setFullScreen();
 		
-		RenderManager.init(this);
+		Core.init(this);
 		return (this);
 	}
 	
@@ -123,7 +122,7 @@ public class Display {
 	}
 	
 	public void destroy() {
-		RenderQuad.clear();
+		Core.clear();
 		glfwFreeCallbacks(window);
 		glfwDestroyWindow(window);
 		glfwTerminate();
