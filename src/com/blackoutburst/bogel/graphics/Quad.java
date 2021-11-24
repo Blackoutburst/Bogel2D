@@ -17,8 +17,10 @@ public class Quad {
 	protected Shader vertexShader;
 	protected Shader fragmentShader;
 	protected int shaderProgram;
+	public boolean customShader;
 	
 	public Quad() {
+		customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f();
 		this.rotation = 0;
@@ -32,6 +34,7 @@ public class Quad {
 	}
 	
 	public Quad(Vector2f position, Vector2f size) {
+		customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
@@ -45,6 +48,7 @@ public class Quad {
 	}
 	
 	public Quad(Vector2f position, Vector2f size, Color color) {
+		customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
@@ -58,6 +62,7 @@ public class Quad {
 	}
 	
 	public Quad(Vector2f position, Vector2f size, float rotation) {
+		customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
@@ -71,6 +76,7 @@ public class Quad {
 	}
 	
 	public Quad(Vector2f position, Vector2f size, Color color, float rotation) {
+		customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
@@ -84,6 +90,7 @@ public class Quad {
 	}
 	
 	public Quad(float x, float y, float w, float h) {
+		customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.size.x = w;
@@ -99,6 +106,7 @@ public class Quad {
 	}
 
 	public Quad(float x, float y, float w, float h, Color color) {
+		customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
@@ -112,6 +120,7 @@ public class Quad {
 	}
 	
 	public Quad(float x, float y, float w, float h, float rotation) {
+		customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.size.x = w;
@@ -127,6 +136,7 @@ public class Quad {
 	}
 
 	public Quad(float x, float y, float w, float h, Color color, float rotation) {
+		customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
@@ -210,6 +220,8 @@ public class Quad {
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
 		glAttachShader(this.shaderProgram, shader.id);
 		glLinkProgram(this.shaderProgram);
+		shader.setShaderProgram(this.shaderProgram);
+		customShader = true;
 		return (this);
 	}
 

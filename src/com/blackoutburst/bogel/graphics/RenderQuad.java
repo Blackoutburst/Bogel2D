@@ -55,24 +55,32 @@ public class RenderQuad {
 		model = new Matrix();
 	}
 	
+	private static void setDefaultUniform(Quad quad) {
+		int color_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "color");
+		GL41.glProgramUniform4f(quad.shaderProgram, color_loc, quad.color.r, quad.color.g, quad.color.b, quad.color.a);
+	}
+	
+	private static void setMatricesUniform(Quad quad) {
+		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
+		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
+		
+		int model_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "model");
+		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, model_loc, false, Matrix.getValues(model));
+	}
+	
 	public static void draw(Quad quad) {
 		Matrix.setIdentity(model);
 		Matrix.translate(quad.position, model);
 		Matrix.scale(quad.size, model);
 		Matrix.rotate(quad.rotation, model);
 		
+		setMatricesUniform(quad);
+		if (!quad.customShader)
+			setDefaultUniform(quad);
+		
 		glUseProgram(quad.shaderProgram);
 		glBindVertexArray(vaoID);
 		glDrawArrays(GL11.GL_TRIANGLES, 0, 6);
-		
-		int model_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "model");
-		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, model_loc, false, Matrix.getValues(model));
-		
-		int projection_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "projection");
-		GL41.glProgramUniformMatrix4fv(quad.shaderProgram, projection_loc, false, Matrix.getValues(RenderManager.projection));
-		
-		int color_loc = ARBProgramInterfaceQuery.glGetProgramResourceLocation(quad.shaderProgram, ARBProgramInterfaceQuery.GL_UNIFORM, "color");
-		GL41.glProgramUniform3f(quad.shaderProgram, color_loc, quad.color.r, quad.color.g, quad.color.b);
 		
 		glBindVertexArray(0);
 		glUseProgram(0);
