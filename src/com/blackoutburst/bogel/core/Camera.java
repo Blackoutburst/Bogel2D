@@ -67,7 +67,7 @@ public class Camera {
 		if (position.z < 0) position.z = 0;
 		Matrix.setIdentity(matrix);
 		Matrix.translate(new Vector2f(-position.x, -position.y), matrix);
-		Matrix.scale(new Vector2f(position.z), matrix);
+		//Matrix.scale(new Vector2f(position.z), matrix); // Broken zoom do not use
 	}
 	
 }

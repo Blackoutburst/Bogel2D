@@ -155,7 +155,7 @@ public class Display {
 		glfwSetErrorCallback(null).free();
 	}
 	
-	public long getWindow() {
+	public static long getWindow() {
 		return (window);
 	}
 	
