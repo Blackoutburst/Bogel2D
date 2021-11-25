@@ -12,31 +12,23 @@ public class Main {
 	public static void main(String[] args) {
 		Display display = new Display();
 		display.create();
-		display.setVSync(true);
 		
 		Quad q = new Quad();
 		
-		float x = 0;
-		float y = 0;
-		
-		
 		while (!GLFW.glfwWindowShouldClose(Display.getWindow())) {
 			display.clear();
-			
 			q.draw();
-			q.setPosition(x , y);
-			
 			display.update();
 			
 			if (Time.doUpdate()) {
 				if (Keyboard.isKeyDown(Keyboard.W))
-					y += 10;
+					q.setPosition(q.getPosition().x, q.getPosition().y + 10);
 				if (Keyboard.isKeyDown(Keyboard.S))
-					y -= 10;
+					q.setPosition(q.getPosition().x, q.getPosition().y - 10);
 				if (Keyboard.isKeyDown(Keyboard.D))
-					x += 10;
+					q.setPosition(q.getPosition().x + 10, q.getPosition().y);
 				if (Keyboard.isKeyDown(Keyboard.A))
-					x -= 10;
+					q.setPosition(q.getPosition().x - 10, q.getPosition().y);
 			}
 		}
 	}
