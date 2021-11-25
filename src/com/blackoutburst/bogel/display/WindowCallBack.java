@@ -21,5 +21,4 @@ public class WindowCallBack implements GLFWWindowSizeCallbackI {
 		Display.callBackSetSize(width, height);
 		RenderManager.setOrtho(width, height);
 	}
-
 }
