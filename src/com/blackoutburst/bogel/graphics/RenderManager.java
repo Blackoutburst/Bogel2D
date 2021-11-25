@@ -21,9 +21,30 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
 import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
+/**
+ * <h1>RenderManager</h1>
+ * 
+ * <p>
+ * Manger the global OpenGL render pipeline
+ * </p>
+ * 
+ * @since 0.1
+ * @author Blackoutburst
+ */
 public class RenderManager {
 	
+	/**Projection matrix*/
 	public static Matrix projection = new Matrix();
+	
+	/**
+	 * <p>
+	 * Initialize important values<br>
+	 * This is automatically called <b>DO NOT CALL</b>
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void init() {
 		setOrtho(Display.getWidth(), Display.getHeight());
 		glEnable(GL_BLEND);
@@ -33,33 +54,90 @@ public class RenderManager {
 		enableCulling();
 	}
 	
+	/**
+	 * <p>
+	 * Set the projection matrix and viewport<br>
+	 * This is automatically called <b>DO NOT CALL</b>
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void setOrtho(int width, int height) {
 		GL11.glViewport(0, 0, width, height);
 		Matrix.ortho2D(projection, 0, width, 0, height, -1, 1);
 	}
 	
+	/**
+	 * <p>
+	 * Enable backface culling
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void enableCulling() {
 		glEnable(GL_CULL_FACE); 
 		glCullFace(GL_BACK); 
 		glDisable(GL_CULL_FACE); 
 	}
 	
+	/**
+	 * <p>
+	 * Disable backface culling
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void disableCulling() {
 		glDisable(GL_CULL_FACE); 
 	}
 	
+	/**
+	 * <p>
+	 * Enable additive blending
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void enableBlending() {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	}
 	
+	/**
+	 * <p>
+	 * Disable additive blending
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void disableBlending() {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 	
+	/**
+	 * <p>
+	 * Enable wireframe render
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void enableWireFrame() {
 		glPolygonMode(GL_FRONT_AND_BACK , GL_LINE);
 	}
 	
+	/**
+	 * <p>
+	 * Disable wireframe render
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void disableWireFrame() {
 		glPolygonMode(GL_FRONT_AND_BACK , GL_FILL);
 	}
