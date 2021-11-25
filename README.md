@@ -6,7 +6,7 @@
 I really simple abstraction of LWJGL 3, used to create small 2D game and other fast 2D prototype
 
 ## Get started
-Link Bogel2D to your project and Bogel2D dependencies which can be found [here](libs/) and don't forget to link your system [natives](natives/)
+Link [Bogel2D](https://github.com/Blackoutburst/Bogel2D/releases) to your project and Bogel2D dependencies which can be found [here](libs/) and don't forget to link your system [natives](natives/)
 
 Minimal code
 ```java
