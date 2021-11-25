@@ -24,12 +24,14 @@ import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
+import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;
+import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
 public class RenderQuad {
@@ -58,13 +60,13 @@ public class RenderQuad {
 		glBindVertexArray(vaoID);
 		
 		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
-		verticesBuffer.put(vertices).flip();
+		((Buffer) verticesBuffer.put(vertices)).flip();
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
 		
 		IntBuffer indicesBuffer = BufferUtils.createIntBuffer(indices.length);
-		indicesBuffer.put(indices).flip();
+		((Buffer) indicesBuffer.put(indices)).flip();
 		
 		
 		glVertexAttribPointer(0, 2, GL_FLOAT, false, 16, 0);
@@ -109,7 +111,22 @@ public class RenderQuad {
 		}
 	}
 	
+	private static boolean outOfFrame(Quad quad) {
+		if ((quad.position.x + quad.size.x / 2) < (Camera.getPosition().x))
+			return (true);
+		if ((quad.position.x - quad.size.x / 2) > (Display.getWidth() + Camera.getPosition().x))
+			return (true);
+		if ((quad.position.y - quad.size.y / 2) > (Display.getHeight() + Camera.getPosition().y))
+			return (true);
+		if ((quad.position.y + quad.size.y / 2) < (Camera.getPosition().y))
+			return (true);
+		
+		return (false);
+	}
+	
 	public static void draw(Quad quad) {
+		if (outOfFrame(quad)) return;
+		
 		if (!quad.textureless)
 			glBindTexture(GL_TEXTURE_2D, quad.getTextureID());
 		

@@ -45,6 +45,7 @@ import com.blackoutburst.bogel.core.MouseButtonCallBack;
 import com.blackoutburst.bogel.core.MousePositionCallBack;
 import com.blackoutburst.bogel.core.MouseScrollCallBack;
 import com.blackoutburst.bogel.graphics.Color;
+import com.blackoutburst.bogel.graphics.IOUtils;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector2i;
 
@@ -102,7 +103,7 @@ public class Display {
 		if (window == NULL)
 			throw new RuntimeException("Failed to create the GLFW window");
 		
-		setIcons("assets/icon128.png");
+		setIcons("icon128.png");
 		
 		glfwMakeContextCurrent(window);
 		glfwShowWindow(window);
@@ -281,7 +282,7 @@ public class Display {
 			IntBuffer w = stack.mallocInt(1);
 			IntBuffer h = stack.mallocInt(1);
 
-			image = STBImage.stbi_load(path, w, h, comp, 4);
+			image = STBImage.stbi_load_from_memory(IOUtils.ioResourceToByteBuffer(path, 1024), w, h, comp, 4);
 			imageSize.set(w.get(), h.get());
 			if (image == null) {
 				throw new Exception("Failed to load icons");

@@ -1,5 +1,7 @@
 package com.blackoutburst.bogel.core;
 
+import static org.lwjgl.opengl.ARBProgramInterfaceQuery.GL_UNIFORM;
+import static org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocation;
 import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
 import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
 import static org.lwjgl.opengl.GL20.glCompileShader;
@@ -10,12 +12,10 @@ import static org.lwjgl.opengl.GL41.glProgramUniform2f;
 import static org.lwjgl.opengl.GL41.glProgramUniform3f;
 import static org.lwjgl.opengl.GL41.glProgramUniform4f;
 import static org.lwjgl.opengl.GL41.glProgramUniformMatrix4fv;
-import static org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocation;
-import static org.lwjgl.opengl.ARBProgramInterfaceQuery.GL_UNIFORM;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.maths.Matrix;
@@ -47,10 +47,10 @@ public class Shader {
 	}
 	
 	public static void init() {
-		defaultVert = loadShader(VERTEX, "shaders/quad.vert");
-		defaultFrag = loadShader(FRAGMENT, "shaders/quad.frag");
-		defaultVertNoTexture = loadShader(VERTEX, "shaders/quadNoTexture.vert");
-		defaultFragNoTexture = loadShader(FRAGMENT, "shaders/quadNoTexture.frag");
+		defaultVert = loadShader(VERTEX, "quad.vert");
+		defaultFrag = loadShader(FRAGMENT, "quad.frag");
+		defaultVertNoTexture = loadShader(VERTEX, "quadNoTexture.vert");
+		defaultFragNoTexture = loadShader(FRAGMENT, "quadNoTexture.frag");
 	}
 	
 	
@@ -59,7 +59,7 @@ public class Shader {
 		
 		StringBuilder shaderSource = new StringBuilder();
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader(filePath));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(Shader.class.getResourceAsStream("/"+filePath)));
 			String line;
 			while((line = reader.readLine())!=null){
 				shaderSource.append(line).append("//\n");

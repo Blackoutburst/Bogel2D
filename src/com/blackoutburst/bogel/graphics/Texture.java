@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL11.glTexImage2D;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -30,7 +31,11 @@ public class Texture {
 			this.width = stack.mallocInt(1);
 			this.height = stack.mallocInt(1);
 
-			data = STBImage.stbi_load(filePath, this.width, this.height, comp, 0);
+			try {
+				data = STBImage.stbi_load_from_memory(IOUtils.ioResourceToByteBuffer(filePath, 1024), this.width, this.height, comp, 0);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(), this.height.get(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
@@ -56,7 +61,11 @@ public class Texture {
 			this.width = stack.mallocInt(1);
 			this.height = stack.mallocInt(1);
 
-			data = STBImage.stbi_load("assets/null.png", this.width, this.height, comp, 0);
+			try {
+				data = STBImage.stbi_load_from_memory(IOUtils.ioResourceToByteBuffer("null.png", 1024), this.width, this.height, comp, 0);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(), this.height.get(), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);

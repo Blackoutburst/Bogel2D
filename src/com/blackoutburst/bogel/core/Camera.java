@@ -5,7 +5,7 @@ import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector3f;
 
 public class Camera {
-	protected Vector3f position;
+	protected static Vector3f position = new Vector3f();
 	protected static Matrix matrix = new Matrix();
 	
 	public Camera() {
@@ -14,46 +14,46 @@ public class Camera {
 		update();
 	}
 
-	public Vector3f getPosition() {
+	public static Vector3f getPosition() {
 		return position;
 	}
 
-	public void setPosition(Vector3f position) {
-		this.position = position;
+	public void setPosition(Vector3f p) {
+		position = p;
 		update();
 	}
 	
-	public void setPosition(Vector2f position) {
-		this.position.x = position.x;
-		this.position.y = position.y;
+	public void setPosition(Vector2f p) {
+		position.x = p.x;
+		position.y = p.y;
 		update();
 	}
 	
 	public void setPosition(float x, float y) {
-		this.position.x = x;
-		this.position.y = y;
+		position.x = x;
+		position.y = y;
 		update();
 	}
 	
 	public void setPositionX(float x) {
-		this.position.x = x;
+		position.x = x;
 		update();
 	}
 	
 	public void setPositionY(float y) {
-		this.position.y = y;
+		position.y = y;
 		update();
 	}
 	
 	public void setPositionZ(float z) {
-		this.position.z = z;
+		position.z = z;
 		update();
 	}
 	
 	public void setPosition(float x, float y, float z) {
-		this.position.x = x;
-		this.position.y = y;
-		this.position.z = z;
+		position.x = x;
+		position.y = y;
+		position.z = z;
 		update();
 	}
 
@@ -66,10 +66,8 @@ public class Camera {
 	private void update() {
 		if (position.z < 0) position.z = 0;
 		Matrix.setIdentity(matrix);
-		
 		Matrix.translate(new Vector2f(-position.x, -position.y), matrix);
-		
-		//Matrix.scale(new Vector2f(position.z), matrix);
+		Matrix.scale(new Vector2f(position.z), matrix);
 	}
 	
 }
