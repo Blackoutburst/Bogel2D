@@ -4,6 +4,16 @@ import org.lwjgl.glfw.GLFW;
 
 import com.blackoutburst.bogel.display.Display;
 
+/**
+ * <h1>Keyboard</h1>
+ * 
+ * <p>
+ * A simple Keyboard binding
+ * </p>
+ * 
+ * @since 0.1
+ * @author Blackoutburst
+ */
 public class Keyboard {
 	
 	/** The unknown key. */
@@ -136,8 +146,17 @@ public class Keyboard {
 		MENU		  = 348,
 		LAST		  = MENU;
 	
+	/**
+	 * <p>
+	 * Tell the user if a key is pressed or not
+	 * </p>
+	 * 
+	 * @param int key
+	 * @return boolean key is down
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static boolean isKeyDown(int key) {
 		return (GLFW.glfwGetKey(Display.getWindow(), key) == GLFW.GLFW_PRESS);
 	}
-	
 }
