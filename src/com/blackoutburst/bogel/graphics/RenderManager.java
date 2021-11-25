@@ -141,5 +141,4 @@ public class RenderManager {
 	public static void disableWireFrame() {
 		glPolygonMode(GL_FRONT_AND_BACK , GL_FILL);
 	}
-	
 }

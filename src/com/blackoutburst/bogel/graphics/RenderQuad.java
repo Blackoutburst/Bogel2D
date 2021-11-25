@@ -34,9 +34,21 @@ import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
+/**
+ * <h1>RenderQuad</h1>
+ * 
+ * <p>
+ * Manger the quad render process
+ * </p>
+ * 
+ * @since 0.1
+ * @author Blackoutburst
+ */
 public class RenderQuad {
 
 	private static int vaoID;
+	
+	/**Model matrix*/
 	public static Matrix model;
 	
 	private static float[] vertices = new float[]
@@ -52,6 +64,15 @@ public class RenderQuad {
 		1, 2, 3
 	}; 
 	
+	/**
+	 * <p>
+	 * Initialize important values<br>
+	 * This is automatically called <b>DO NOT CALL</b>
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void initRenderer() {
 		vaoID = glGenVertexArrays();
 		int vbo = glGenBuffers();
@@ -84,16 +105,43 @@ public class RenderQuad {
 		model = new Matrix();
 	}
 	
+	/**
+	 * <p>
+	 * Set default shader uniform
+	 * </p>
+	 * 
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private static void setDefaultUniform(Quad quad) {
 		quad.shader.setUniform4f("color", quad.color);
 	}
 	
+	/**
+	 * <p>
+	 * Set default shader matrices
+	 * </p>
+	 * 
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private static void setMatricesUniform(Quad quad) {
 		quad.shader.setUniformMat4("projection", RenderManager.projection);
 		quad.shader.setUniformMat4("model", model);
 		quad.shader.setUniformMat4("view", Camera.getMatrix());
 	}
 	
+	/**
+	 * <p>
+	 * Apply quad transformation
+	 * </p>
+	 * 
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private static void setTransformation(Quad quad) {
 		Matrix.setIdentity(model);
 		Matrix.translate(quad.position, model);
@@ -101,6 +149,15 @@ public class RenderQuad {
 		Matrix.rotate(quad.rotation, model);
 	}
 	
+	/**
+	 * <p>
+	 * Apply quad texture processing
+	 * </p>
+	 * 
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private static void setTextureParrameter(Quad quad) {
 		if (quad.texture.missing) {
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -111,6 +168,15 @@ public class RenderQuad {
 		}
 	}
 	
+	/**
+	 * <p>
+	 * Check if the quad is out of frame
+	 * </p>
+	 * 
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private static boolean outOfFrame(Quad quad) {
 		if ((quad.position.x + quad.size.x / 2) < (Camera.getPosition().x))
 			return (true);
@@ -124,6 +190,17 @@ public class RenderQuad {
 		return (false);
 	}
 	
+	/**
+	 * <p>
+	 * Render the quad on screen
+	 * </p>
+	 * 
+	 * @see com.blackoutburst.bogel.graphics.Quad#draw
+	 * @deprecated
+	 * @param quad
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void draw(Quad quad) {
 		if (outOfFrame(quad)) return;
 		
@@ -147,6 +224,15 @@ public class RenderQuad {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	
+	/**
+	 * <p>
+	 * Clean important values<br>
+	 * Must <b>NOT</b> be called
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public static void clear() {
 		glDisableVertexAttribArray(0);
 		glBindVertexArray(0);
