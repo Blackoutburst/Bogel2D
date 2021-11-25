@@ -15,12 +15,34 @@ import java.nio.IntBuffer;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
+import com.blackoutburst.bogel.maths.Vector2i;
+
+/**
+ * <h1>Texture</h1>
+ * 
+ * <p>
+ * Create and manager textures
+ * </p>
+ * 
+ * @since 0.1
+ * @author Blackoutburst
+ */
 public class Texture {
+	
 	protected int id;
 	protected IntBuffer width;
 	protected IntBuffer height;
 	protected boolean missing;
 	
+	/**
+	 * <p>
+	 * Create a texture from file
+	 * </p>
+	 * 
+	 * @param String filePath
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public Texture(String filePath) {
 		ByteBuffer data = null;
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -51,6 +73,15 @@ public class Texture {
 		}
 	}
 	
+	/**
+	 * <p>
+	 * Load the default missing texture<br>
+	 * Automatically called if texture generation fail
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	private void loadMissing() {
 		ByteBuffer data = null;
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -74,14 +105,54 @@ public class Texture {
 		this.missing = true;
 	}
 	
+	/**
+	 * <p>
+	 * Get texture width
+	 * </p>
+	 * 
+	 * @return int
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public int getWidth() {
 		return (this.width.get());
 	}
 	
+	/**
+	 * <p>
+	 * Get texture height
+	 * </p>
+	 * 
+	 * @return int
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public int getHeight() {
 		return (this.height.get());
 	}
 	
+	/**
+	 * <p>
+	 * Get texture size
+	 * </p>
+	 * 
+	 * @return Vector2i
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
+	public Vector2i getSize() {
+		return (new Vector2i(this.width.get(), this.height.get()));
+	}
+	
+	/**
+	 * <p>
+	 * Get texture id
+	 * </p>
+	 * 
+	 * @return int
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public int getTexture() {
 		return (this.id);
 	}
