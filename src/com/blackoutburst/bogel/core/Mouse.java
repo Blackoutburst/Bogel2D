@@ -14,6 +14,7 @@ import com.blackoutburst.bogel.maths.Vector2f;
  * @author Blackoutburst
  */
 public class Mouse {
+	
 	private static float x;
 	private static float y;
 	private static float scroll;
@@ -39,6 +40,7 @@ public class Mouse {
 	
 	/**
 	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
+	 * 
 	 * <p>
 	 * Set the mouse X position
 	 * </p>
@@ -66,6 +68,7 @@ public class Mouse {
 	
 	/**
 	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
+	 * 
 	 * <p>
 	 * Set the mouse Y position
 	 * </p>
@@ -93,6 +96,7 @@ public class Mouse {
 	
 	/**
 	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
+	 * 
 	 * <p>
 	 * Set the mouse position
 	 * </p>
@@ -159,6 +163,7 @@ public class Mouse {
 	
 	/**
 	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
+	 * 
 	 * <p>
 	 * Set the mouse scroll
 	 * </p>
@@ -170,5 +175,4 @@ public class Mouse {
 	public static void setScroll(float scroll) {
 		Mouse.scroll = scroll;
 	}
-	
 }

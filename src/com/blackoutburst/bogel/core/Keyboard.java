@@ -159,5 +159,4 @@ public class Keyboard {
 	public static boolean isKeyDown(int key) {
 		return (GLFW.glfwGetKey(Display.getWindow(), key) == GLFW.GLFW_PRESS);
 	}
-	
 }

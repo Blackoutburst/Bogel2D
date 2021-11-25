@@ -87,5 +87,4 @@ public class Core {
 	public static void clear() {
 		RenderQuad.clear();
 	}
-	
 }
