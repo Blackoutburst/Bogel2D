@@ -23,6 +23,7 @@ import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
@@ -436,6 +437,37 @@ public class Display {
 		} else {
 			glfwWindowHint(GLFW_DECORATED , decorated ? GLFW_TRUE : GLFW_FALSE);
 		}
+		return (this);
+	}
+	
+	/**
+	 * <p>
+	 * Set the window position<br>
+	 * </p>
+	 * 
+	 * @return Display
+	 * @param Vector2i position
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Display setPosition(Vector2i position) {
+		glfwSetWindowPos(window, position.x, position.y);
+		return (this);
+	}
+	
+	/**
+	 * <p>
+	 * Set the window position<br>
+	 * </p>
+	 * 
+	 * @return Display
+	 * @param int x
+	 * @param int y
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Display setPosition(int x, int y) {
+		glfwSetWindowPos(window, x, y);
 		return (this);
 	}
 	
