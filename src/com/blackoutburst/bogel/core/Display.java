@@ -1,4 +1,4 @@
-package com.blackoutburst.bogel.display;
+package com.blackoutburst.bogel.core;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
@@ -41,10 +41,6 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
-import com.blackoutburst.bogel.core.Core;
-import com.blackoutburst.bogel.core.MouseButtonCallBack;
-import com.blackoutburst.bogel.core.MousePositionCallBack;
-import com.blackoutburst.bogel.core.MouseScrollCallBack;
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.IOUtils;
 import com.blackoutburst.bogel.maths.Vector2f;

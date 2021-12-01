@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL11.GL_LINE;
 import static org.lwjgl.opengl.GL11.GL_FILL;
 import static org.lwjgl.opengl.GL11.GL_ONE;
 
-import com.blackoutburst.bogel.display.Display;
+import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
 /**
@@ -37,9 +37,9 @@ public class RenderManager {
 	public static Matrix projection = new Matrix();
 	
 	/**
+	 * <h1>This is automatically called when creating the window</h1>
 	 * <p>
 	 * Initialize important values<br>
-	 * This is automatically called <b>DO NOT CALL</b>
 	 * </p>
 	 * 
 	 * @since 0.1
@@ -57,7 +57,6 @@ public class RenderManager {
 	/**
 	 * <p>
 	 * Set the projection matrix and viewport<br>
-	 * This is automatically called <b>DO NOT CALL</b>
 	 * </p>
 	 * 
 	 * @since 0.1

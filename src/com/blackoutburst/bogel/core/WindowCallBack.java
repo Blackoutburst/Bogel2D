@@ -1,4 +1,4 @@
-package com.blackoutburst.bogel.display;
+package com.blackoutburst.bogel.core;
 
 import org.lwjgl.glfw.GLFWWindowSizeCallbackI;
 

@@ -58,8 +58,6 @@ public class MouseButton {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set if the button is pressed
 	 * </p>
@@ -68,7 +66,7 @@ public class MouseButton {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void setPressed(boolean press) {
+	protected void setPressed(boolean press) {
 		this.press = press;
 	}
 	
@@ -86,8 +84,6 @@ public class MouseButton {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set if the button is released
 	 * </p>
@@ -96,7 +92,7 @@ public class MouseButton {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void setReleased(boolean release) {
+	protected void setReleased(boolean release) {
 		this.release = release;
 	}
 	
@@ -114,8 +110,6 @@ public class MouseButton {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set if the button is down
 	 * </p>
@@ -124,13 +118,11 @@ public class MouseButton {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void setDown(boolean down) {
+	protected void setDown(boolean down) {
 		this.down = down;
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Reset the MouseButton status
 	 * </p>
@@ -138,7 +130,7 @@ public class MouseButton {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void reset() {
+	protected void reset() {
 		this.release = false;
 		this.press = false;
 	}

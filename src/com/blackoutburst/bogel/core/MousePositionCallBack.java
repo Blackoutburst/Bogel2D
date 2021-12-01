@@ -2,7 +2,6 @@ package com.blackoutburst.bogel.core;
 
 import org.lwjgl.glfw.GLFWCursorPosCallbackI;
 
-import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.maths.Vector2f;
 
 /**

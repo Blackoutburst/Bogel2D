@@ -39,8 +39,6 @@ public class Mouse {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set the mouse X position
 	 * </p>
@@ -49,7 +47,7 @@ public class Mouse {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void setX(float x) {
+	protected static void setX(float x) {
 		Mouse.x = x;
 	}
 	
@@ -67,8 +65,6 @@ public class Mouse {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set the mouse Y position
 	 * </p>
@@ -77,7 +73,7 @@ public class Mouse {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void setY(float y) {
+	protected static void setY(float y) {
 		Mouse.y = y;
 	}
 	
@@ -95,8 +91,6 @@ public class Mouse {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set the mouse position
 	 * </p>
@@ -105,7 +99,7 @@ public class Mouse {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void setPosition(Vector2f position) {
+	protected static void setPosition(Vector2f position) {
 		Mouse.position = position;
 	}
 	
@@ -162,8 +156,6 @@ public class Mouse {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set the mouse scroll
 	 * </p>
@@ -172,7 +164,7 @@ public class Mouse {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void setScroll(float scroll) {
+	protected static void setScroll(float scroll) {
 		Mouse.scroll = scroll;
 	}
 }

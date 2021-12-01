@@ -2,8 +2,6 @@ package com.blackoutburst.bogel.core;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.blackoutburst.bogel.display.Display;
-
 /**
  * <h1>Keyboard</h1>
  * 

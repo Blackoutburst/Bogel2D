@@ -1038,7 +1038,6 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	@SuppressWarnings("deprecation")
 	public void draw() {
 		RenderQuad.draw(this);
 	}

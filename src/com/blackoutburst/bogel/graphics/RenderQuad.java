@@ -31,7 +31,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;
-import com.blackoutburst.bogel.display.Display;
+import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
 /**
@@ -67,13 +67,12 @@ public class RenderQuad {
 	/**
 	 * <p>
 	 * Initialize important values<br>
-	 * This is automatically called <b>DO NOT CALL</b>
 	 * </p>
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void initRenderer() {
+	protected static void initRenderer() {
 		vaoID = glGenVertexArrays();
 		int vbo = glGenBuffers();
 		int ebo = glGenBuffers();
@@ -195,13 +194,11 @@ public class RenderQuad {
 	 * Render the quad on screen
 	 * </p>
 	 * 
-	 * @see com.blackoutburst.bogel.graphics.Quad#draw
-	 * @deprecated
 	 * @param quad
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void draw(Quad quad) {
+	protected static void draw(Quad quad) {
 		if (outOfFrame(quad)) return;
 		
 		if (!quad.textureless)
@@ -225,9 +222,9 @@ public class RenderQuad {
 	}
 	
 	/**
+	 * <h1>This is automatically called after closing the window</h1>
 	 * <p>
 	 * Clean important values<br>
-	 * Must <b>NOT</b> be called
 	 * </p>
 	 * 
 	 * @since 0.1

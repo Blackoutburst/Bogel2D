@@ -87,8 +87,6 @@ public class Shader {
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Load default shaders into memory
 	 * </p>
@@ -96,7 +94,7 @@ public class Shader {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void init() {
+	protected static void init() {
 		defaultVert = loadShader(VERTEX, "quad.vert");
 		defaultFrag = loadShader(FRAGMENT, "quad.frag");
 		defaultVertNoTexture = loadShader(VERTEX, "quadNoTexture.vert");

@@ -1,6 +1,5 @@
 package com.blackoutburst.bogel.core;
 
-import com.blackoutburst.bogel.display.Display;
 import com.blackoutburst.bogel.graphics.RenderManager;
 import com.blackoutburst.bogel.graphics.RenderQuad;
 
@@ -9,7 +8,6 @@ import com.blackoutburst.bogel.graphics.RenderQuad;
  * 
  * <p>
  * Contains vital function for the library<br>
- * Some of them must <b>NOT</b> be called<br>
  * </p>
  *
  * 
@@ -47,14 +45,13 @@ public class Core {
 	/**
 	 * <p>
 	 * Initialize important values<br>
-	 * Must <b>NOT</b> be called
 	 * </p>
 	 * 
 	 * @param Display display
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void init(Display display) {
+	protected static void init(Display display) {
 		RenderManager.init();
 		Shader.init();
 	}
@@ -62,13 +59,12 @@ public class Core {
 	/**
 	 * <p>
 	 * Update important values<br>
-	 * Must <b>NOT</b> be called
 	 * </p>
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void update() {
+	protected static void update() {
 		Mouse.getLeftButton().reset();
 		Mouse.getRightButton().reset();
 		Mouse.getMiddleButton().reset();
@@ -78,13 +74,12 @@ public class Core {
 	/**
 	 * <p>
 	 * Clean important values<br>
-	 * Must <b>NOT</b> be called
 	 * </p>
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void clear() {
+	protected static void clear() {
 		RenderQuad.clear();
 	}
 }
