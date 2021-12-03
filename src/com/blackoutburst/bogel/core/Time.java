@@ -15,6 +15,10 @@ import org.lwjgl.glfw.GLFW;
 public class Time {
 
 	private static long init = System.nanoTime();
+	private static long lastTime = System.nanoTime();
+	
+	private static float deltaTime = 0;
+	
 	private static final double UPDATE = 1000000000.0 / 60.0;
 	
 	/**
@@ -47,6 +51,34 @@ public class Time {
 			return (true);
 		}
 		return (false);
+	}
+
+	/**
+	 * <p>
+	 * Update the delta time
+	 * </p>
+	 * 
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	protected static void updateDelta() {
+	    long time = System.nanoTime();
+	    deltaTime = ((time - lastTime) / 1000000);
+	    lastTime = time;
+	}
+	
+	
+	/**
+	 * <p>
+	 * Get the delta time
+	 * </p>
+	 * 
+	 * @return float deltaTime
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public static float getDelta() {
+	    return (deltaTime);
 	}
 	
 	/**

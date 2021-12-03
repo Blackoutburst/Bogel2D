@@ -65,6 +65,7 @@ public class Core {
 	 * @author Blackoutburst
 	 */
 	protected static void update() {
+		Time.updateDelta();
 		Mouse.getLeftButton().reset();
 		Mouse.getRightButton().reset();
 		Mouse.getMiddleButton().reset();
