@@ -51,6 +51,7 @@ public class RenderManager {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		RenderQuad.initRenderer();
+		RenderTriangle.initRenderer();
 		enableCulling();
 	}
 	

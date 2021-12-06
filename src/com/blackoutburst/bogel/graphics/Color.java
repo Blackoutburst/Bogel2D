@@ -138,6 +138,24 @@ public class Color {
 	 */
 	public static final Color TRANSPARENT = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 	
+	/**
+	 * Purple color RGBA(0.5, 0, 1, 1)
+	 * <div = style="width:30px;height:30px;background-color:rgb(127, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 *
+	 * @author Blackoutburst
+	 * @since 1.0
+	 */
+	public static final Color PURPLE = new Color(0.5f, 0.0f, 1.0f, 1.0f);
+	
+	/**
+	 * Bogel color RGBA(0.25, 0, 0.27, 1)
+	 * <div = style="width:30px;height:30px;background-color:rgb(64, 0, 71);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 *
+	 * @author Blackoutburst
+	 * @since 1.0
+	 */
+	public static final Color BOGEL = new Color(0.25f, 0.0f, 0.27f, 1.0f);
+	
 	/**Red value*/
 	public float r;
 	

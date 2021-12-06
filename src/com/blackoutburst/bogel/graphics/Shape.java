@@ -2,23 +2,25 @@ package com.blackoutburst.bogel.graphics;
 
 import static org.lwjgl.opengl.GL20.glAttachShader;
 import static org.lwjgl.opengl.GL20.glCreateProgram;
-import static org.lwjgl.opengl.GL20.glLinkProgram;
 import static org.lwjgl.opengl.GL20.glDetachShader;
+import static org.lwjgl.opengl.GL20.glLinkProgram;
 
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
 
 /**
- * <h1>Quad</h1>
+ * <h1>Shape</h1>
  * 
  * <p>
- * Create and use manage quads
+ * Create and use manage Shapes
  * </p>
  * 
  * @since 0.1
  * @author Blackoutburst
  */
-public class Quad {
+public class Shape {
+	
+	protected boolean isCircle;
 	
 	protected Texture texture;
 	
@@ -40,10 +42,11 @@ public class Quad {
 	protected boolean textureless;
 	
 	
-	private void initQuad() {
+	private void initShape() {
+		this.isCircle = false;
 		this.smoothTexture = true;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
+		this.vertexShader = this.textureless ? Shader.defaultVertNoTexture : Shader.defaultVert;
+		this.fragmentShader = this.textureless ? Shader.defaultFragNoTexture : Shader.defaultFrag;
 		this.shaderProgram = glCreateProgram();
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
 		glAttachShader(this.shaderProgram, this.fragmentShader.id);
@@ -56,14 +59,14 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture) {
+	public Shape(Texture texture) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -71,12 +74,12 @@ public class Quad {
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -85,7 +88,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, float x, float y) {
+	public Shape(Texture texture, float x, float y) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -93,12 +96,12 @@ public class Quad {
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -106,7 +109,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, Vector2f position) {
+	public Shape(Texture texture, Vector2f position) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -114,12 +117,12 @@ public class Quad {
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -128,7 +131,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, Vector2f position, Vector2f size) {
+	public Shape(Texture texture, Vector2f position, Vector2f size) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -136,12 +139,12 @@ public class Quad {
 		this.size = size;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -151,7 +154,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, Vector2f position, Vector2f size, Color color) {
+	public Shape(Texture texture, Vector2f position, Vector2f size, Color color) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -159,12 +162,12 @@ public class Quad {
 		this.size = size;
 		this.rotation = 0;
 		this.color = color;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -174,7 +177,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, Vector2f position, Vector2f size, float rotation) {
+	public Shape(Texture texture, Vector2f position, Vector2f size, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -182,12 +185,12 @@ public class Quad {
 		this.size = size;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -198,7 +201,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
+	public Shape(Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -206,12 +209,12 @@ public class Quad {
 		this.size = size;
 		this.rotation = rotation;
 		this.color = color;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -222,7 +225,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, float x, float y, float w, float h) {
+	public Shape(Texture texture, float x, float y, float w, float h) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -232,12 +235,12 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -249,7 +252,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, float x, float y, float w, float h, Color color) {
+	public Shape(Texture texture, float x, float y, float w, float h, Color color) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -257,12 +260,12 @@ public class Quad {
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = 0;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -274,7 +277,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, float x, float y, float w, float h, float rotation) {
+	public Shape(Texture texture, float x, float y, float w, float h, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -284,12 +287,12 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -302,7 +305,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Texture texture, float x, float y, float w, float h, Color color, float rotation) {
+	public Shape(Texture texture, float x, float y, float w, float h, Color color, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -310,30 +313,30 @@ public class Quad {
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = rotation;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad() {
+	public Shape() {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param float x
@@ -341,38 +344,38 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(float x, float y) {
+	public Shape(float x, float y) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Vector2f position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Vector2f position) {
+	public Shape(Vector2f position) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Vector2f position
@@ -380,19 +383,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Vector2f position, Vector2f size) {
+	public Shape(Vector2f position, Vector2f size) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Vector2f position
@@ -401,19 +404,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Vector2f position, Vector2f size, Color color) {
+	public Shape(Vector2f position, Vector2f size, Color color) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = color;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Vector2f position
@@ -422,19 +425,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Vector2f position, Vector2f size, float rotation) {
+	public Shape(Vector2f position, Vector2f size, float rotation) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param Vector2f position
@@ -444,19 +447,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(Vector2f position, Vector2f size, Color color, float rotation) {
+	public Shape(Vector2f position, Vector2f size, Color color, float rotation) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = color;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param float x
@@ -466,7 +469,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(float x, float y, float w, float h) {
+	public Shape(float x, float y, float w, float h) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -475,12 +478,12 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param float x
@@ -491,19 +494,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(float x, float y, float w, float h, Color color) {
+	public Shape(float x, float y, float w, float h, Color color) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = 0;
-		initQuad();
+		initShape();
 	}
 	
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param float x
@@ -514,7 +517,7 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(float x, float y, float w, float h, float rotation) {
+	public Shape(float x, float y, float w, float h, float rotation) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -523,12 +526,12 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		initQuad();
+		initShape();
 	}
 
 	/**
 	 * <p>
-	 * Create a new Quad
+	 * Create a new Shape
 	 * </p>
 	 * 
 	 * @param float x
@@ -540,19 +543,19 @@ public class Quad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad(float x, float y, float w, float h, Color color, float rotation) {
+	public Shape(float x, float y, float w, float h, Color color, float rotation) {
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = rotation;
-		initQuad();
+		initShape();
 	}
 
 	/**
 	 * <p>
-	 * Get the quad position
+	 * Get the Shape position
 	 * </p>
 	 * 
 	 * @return Vector2f position
@@ -565,31 +568,31 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad position
+	 * Set the Shape position
 	 * </p>
 	 * 
 	 * @param Vector2f position
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setPosition(Vector2f position) {
+	public Shape setPosition(Vector2f position) {
 		this.position = position;
 		return (this);
 	}
 	
 	/**
 	 * <p>
-	 * Set the quad position (x, y)
+	 * Set the Shape position (x, y)
 	 * </p>
 	 * 
 	 * @param float x
 	 * @param float y
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setPosition(float x, float y) {
+	public Shape setPosition(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
 		return (this);
@@ -597,15 +600,15 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Set the quad position (pos, pos)
+	 * Set the Shape position (pos, pos)
 	 * </p>
 	 * 
 	 * @param float pos
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setPosition(float pos) {
+	public Shape setPosition(float pos) {
 		this.position.x = pos;
 		this.position.y = pos;
 		return (this);
@@ -613,7 +616,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Get the quad size
+	 * Get the Shape size
 	 * </p>
 	 * 
 	 * @return Vector2f
@@ -626,31 +629,31 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad size
+	 * Set the Shape size
 	 * </p>
 	 * 
 	 * @param Vector2f size
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setSize(Vector2f size) {
+	public Shape setSize(Vector2f size) {
 		this.size = size;
 		return (this);
 	}
 	
 	/**
 	 * <p>
-	 * Set the quad size (x, y)
+	 * Set the Shape size (x, y)
 	 * </p>
 	 * 
 	 * @param float x
 	 * @param float y
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setSize(float x, float y) {
+	public Shape setSize(float x, float y) {
 		this.size.x = x;
 		this.size.y = y;
 		return (this);
@@ -658,15 +661,15 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Set the quad size (size, size)
+	 * Set the Shape size (size, size)
 	 * </p>
 	 * 
 	 * @param float size
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setSize(float size) {
+	public Shape setSize(float size) {
 		this.size.x = size;
 		this.size.y = size;
 		return (this);
@@ -674,7 +677,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Get the quad color
+	 * Get the Shape color
 	 * </p>
 	 * 
 	 * @return Color
@@ -687,32 +690,32 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad color
+	 * Set the Shape color
 	 * </p>
 	 * 
 	 * @param Color color
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setColor(Color color) {
+	public Shape setColor(Color color) {
 		this.color = color;
 		return (this);
 	}
 	
 	/**
 	 * <p>
-	 * Set the quad color (r, g, b)
+	 * Set the Shape color (r, g, b)
 	 * </p>
 	 * 
 	 * @param float r
 	 * @param float g
 	 * @param float b
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setColor(float r, float g, float b) {
+	public Shape setColor(float r, float g, float b) {
 		this.color.r = r;
 		this.color.g = g;
 		this.color.b = b;
@@ -721,18 +724,18 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Set the quad color (r, g, b, a)
+	 * Set the Shape color (r, g, b, a)
 	 * </p>
 	 * 
 	 * @param float r
 	 * @param float g
 	 * @param float b
 	 * @param float a
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setColor(float r, float g, float b, float a) {
+	public Shape setColor(float r, float g, float b, float a) {
 		this.color.r = r;
 		this.color.g = g;
 		this.color.b = b;
@@ -742,15 +745,15 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Set the quad shader
+	 * Set the Shape shader
 	 * </p>
 	 * 
 	 * @param Shader shader
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setShader(Shader shader) {
+	public Shape setShader(Shader shader) {
 		this.shader = shader;
 		this.shaderProgram = glCreateProgram();
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
@@ -765,7 +768,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Get the quad shader program
+	 * Get the Shape shader program
 	 * </p>
 	 * 
 	 * @return int
@@ -778,7 +781,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Get the quad rotation
+	 * Get the Shape rotation
 	 * </p>
 	 * 
 	 * @return float
@@ -791,7 +794,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad rotation
+	 * Set the Shape rotation
 	 * </p>
 	 * 
 	 * @param float rotation
@@ -804,7 +807,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Check if the quad texture must be smoothed
+	 * Check if the Shape texture must be smoothed
 	 * </p>
 	 * 
 	 * @return boolean
@@ -817,22 +820,22 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad texture smoothing parrameter
+	 * Set the Shape texture smoothing parrameter
 	 * </p>
 	 * 
 	 * @param booelan smoothTexture
-	 * @return Quad
+	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Quad setSmoothTexture(boolean smoothTexture) {
+	public Shape setSmoothTexture(boolean smoothTexture) {
 		this.smoothTexture = smoothTexture;
 		return (this);
 	}
 	
 	/**
 	 * <p>
-	 * Get the quad texture
+	 * Get the Shape texture
 	 * </p>
 	 * 
 	 * @return Texture
@@ -845,7 +848,7 @@ public class Quad {
 
 	/**
 	 * <p>
-	 * Set the quad texture
+	 * Set the Shape texture
 	 * </p>
 	 * 
 	 * @param Texture texture
@@ -861,7 +864,7 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Get the quad texture id
+	 * Get the Shape texture id
 	 * </p>
 	 * 
 	 * @return int
@@ -874,13 +877,40 @@ public class Quad {
 	
 	/**
 	 * <p>
-	 * Render the quad on screen
+	 * Render the Shape on screen
 	 * </p>
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void draw() {
+	public void drawQuad() {
+		this.isCircle = false;
 		RenderQuad.draw(this);
+	}
+	
+	/**
+	 * <p>
+	 * Render the Shape on screen
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
+	public void drawCircle() {
+		this.isCircle = true;
+		RenderQuad.draw(this);
+	}
+	
+	/**
+	 * <p>
+	 * Render the Shape on screen
+	 * </p>
+	 * 
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
+	public void drawTriangle() {
+		this.isCircle = false;
+		RenderTriangle.draw(this);
 	}
 }
