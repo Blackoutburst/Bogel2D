@@ -360,7 +360,7 @@ public class Quad {
 	public Quad(Vector2f position) {
 		this.textureless = true;
 		this.customShader = false;
-		this.position = new Vector2f();
+		this.position = position;
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
