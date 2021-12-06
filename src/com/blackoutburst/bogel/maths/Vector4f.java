@@ -208,10 +208,12 @@ public class Vector4f {
 	 */
 	public Vector4f normalize() {
 		float mag = (float) Math.sqrt(x * x + y * y + z * z + w * w);
-		x /= mag;
-		y /= mag;
-		z /= mag;
-		w /= mag;
+		if (mag != 0) {
+			x /= mag;
+			y /= mag;
+			z /= mag;
+			w /= mag;
+		}
 		
 		return (this);
 	}
@@ -246,5 +248,24 @@ public class Vector4f {
 	 */
 	public float length() {
 		return ((float) Math.sqrt(x * x + y * y + z * z + w * w));
+	}
+	
+	/**
+	 * <p>
+	 * Create a copy of the Vector
+	 * </p>
+	 * 
+	 * @return Vector4f
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Vector4f copy() {
+		Vector4f newVector = new Vector4f();
+		newVector.x = this.x;
+		newVector.y = this.y;
+		newVector.z = this.z;
+		newVector.w = this.w;
+		
+		return (newVector);
 	}
 }

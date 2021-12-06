@@ -138,8 +138,10 @@ public class Vector2i {
 	 */
 	public Vector2i normalize() {
 		float mag = (float) Math.sqrt(x * x + y * y);
-		x /= mag;
-		y /= mag;
+		if (mag != 0) {
+			x /= mag;
+			y /= mag;
+		}
 		
 		return (this);
 	}
@@ -172,5 +174,22 @@ public class Vector2i {
 	 */
 	public float length() {
 		return ((float) Math.sqrt(x * x + y * y));
+	}
+	
+	/**
+	 * <p>
+	 * Create a copy of the Vector
+	 * </p>
+	 * 
+	 * @return Vector2i
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Vector2i copy() {
+		Vector2i newVector = new Vector2i();
+		newVector.x = this.x;
+		newVector.y = this.y;
+		
+		return (newVector);
 	}
 }

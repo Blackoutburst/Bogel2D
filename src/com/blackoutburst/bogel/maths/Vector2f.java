@@ -137,9 +137,11 @@ public class Vector2f {
 	 * @author Blackoutburst
 	 */
 	public Vector2f normalize() {
-		float mag = (float) Math.sqrt(x * x + y * y);
-		x /= mag;
-		y /= mag;
+		double mag = Math.sqrt(x * x + y * y);
+		if (mag != 0) {
+			x /= mag;
+			y /= mag;
+		}
 		
 		return (this);
 	}
@@ -172,5 +174,22 @@ public class Vector2f {
 	 */
 	public float length() {
 		return ((float) Math.sqrt(x * x + y * y));
+	}
+	
+	/**
+	 * <p>
+	 * Create a copy of the Vector
+	 * </p>
+	 * 
+	 * @return Vector2f
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Vector2f copy() {
+		Vector2f newVector = new Vector2f();
+		newVector.x = this.x;
+		newVector.y = this.y;
+		
+		return (newVector);
 	}
 }

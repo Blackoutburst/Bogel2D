@@ -173,9 +173,11 @@ public class Vector3f {
 	 */
 	public Vector3f normalize() {
 		float mag = (float) Math.sqrt(x * x + y * y + z * z);
-		x /= mag;
-		y /= mag;
-		z /= mag;
+		if (mag != 0) {
+			x /= mag;
+			y /= mag;
+			z /= mag;
+		}
 		
 		return (this);
 	}
@@ -209,5 +211,23 @@ public class Vector3f {
 	 */
 	public float length() {
 		return ((float) Math.sqrt(x * x + y * y + z * z));
+	}
+	
+	/**
+	 * <p>
+	 * Create a copy of the Vector
+	 * </p>
+	 * 
+	 * @return Vector3f
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public Vector3f copy() {
+		Vector3f newVector = new Vector3f();
+		newVector.x = this.x;
+		newVector.y = this.y;
+		newVector.z = this.z;
+		
+		return (newVector);
 	}
 }
