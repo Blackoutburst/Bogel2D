@@ -96,6 +96,7 @@ public class RenderTriangle {
 	 */
 	private static void setDefaultUniform(Shape shape) {
 		shape.shader.setUniform4f("color", shape.color);
+		shape.shader.setUniform1f("radius", 1.0f);
 	}
 	
 	/**
