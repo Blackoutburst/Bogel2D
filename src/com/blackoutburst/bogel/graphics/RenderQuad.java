@@ -38,7 +38,7 @@ import com.blackoutburst.bogel.maths.Matrix;
  * <h1>Rendershape</h1>
  * 
  * <p>
- * Manger the shape render process
+ * Manger the quad render process
  * </p>
  * 
  * @since 0.1

@@ -32,13 +32,13 @@ import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
 /**
- * <h1>RenderQuad</h1>
+ * <h1>RenderTriangle</h1>
  * 
  * <p>
- * Manger the quad render process
+ * Manger the triangle render process
  * </p>
  * 
- * @since 0.1
+ * @since 0.2
  * @author Blackoutburst
  */
 public class RenderTriangle {
@@ -61,7 +61,7 @@ public class RenderTriangle {
 	 * Initialize important values<br>
 	 * </p>
 	 * 
-	 * @since 0.1
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
 	protected static void initRenderer() {
@@ -90,12 +90,12 @@ public class RenderTriangle {
 	 * Set default shader uniform
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	private static void setDefaultUniform(Shape quad) {
-		quad.shader.setUniform4f("color", quad.color);
+	private static void setDefaultUniform(Shape shape) {
+		shape.shader.setUniform4f("color", shape.color);
 	}
 	
 	/**
@@ -103,68 +103,68 @@ public class RenderTriangle {
 	 * Set default shader matrices
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	private static void setMatricesUniform(Shape quad) {
-		quad.shader.setUniformMat4("projection", RenderManager.projection);
-		quad.shader.setUniformMat4("model", model);
-		quad.shader.setUniformMat4("view", Camera.getMatrix());
+	private static void setMatricesUniform(Shape shape) {
+		shape.shader.setUniformMat4("projection", RenderManager.projection);
+		shape.shader.setUniformMat4("model", model);
+		shape.shader.setUniformMat4("view", Camera.getMatrix());
 	}
 	
 	/**
 	 * <p>
-	 * Apply quad transformation
+	 * Apply shape transformation
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	private static void setTransformation(Shape quad) {
+	private static void setTransformation(Shape shape) {
 		Matrix.setIdentity(model);
-		Matrix.translate(quad.position, model);
-		Matrix.scale(quad.size, model);
-		Matrix.rotate(quad.rotation, model);
+		Matrix.translate(shape.position, model);
+		Matrix.scale(shape.size, model);
+		Matrix.rotate(shape.rotation, model);
 	}
 	
 	/**
 	 * <p>
-	 * Apply quad texture processing
+	 * Apply shape texture processing
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	private static void setTextureParrameter(Shape quad) {
-		if (quad.texture.missing) {
+	private static void setTextureParrameter(Shape shape) {
+		if (shape.texture.missing) {
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		} else {
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, quad.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, shape.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, shape.isSmoothTexture() ? GL_LINEAR : GL_NEAREST);
 		}
 	}
 	
 	/**
 	 * <p>
-	 * Check if the quad is out of frame
+	 * Check if the shape is out of frame
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	private static boolean outOfFrame(Shape quad) {
-		if ((quad.position.x + quad.size.x / 2) < (Camera.getPosition().x))
+	private static boolean outOfFrame(Shape shape) {
+		if ((shape.position.x + shape.size.x / 2) < (Camera.getPosition().x))
 			return (true);
-		if ((quad.position.x - quad.size.x / 2) > (Display.getWidth() + Camera.getPosition().x))
+		if ((shape.position.x - shape.size.x / 2) > (Display.getWidth() + Camera.getPosition().x))
 			return (true);
-		if ((quad.position.y - quad.size.y / 2) > (Display.getHeight() + Camera.getPosition().y))
+		if ((shape.position.y - shape.size.y / 2) > (Display.getHeight() + Camera.getPosition().y))
 			return (true);
-		if ((quad.position.y + quad.size.y / 2) < (Camera.getPosition().y))
+		if ((shape.position.y + shape.size.y / 2) < (Camera.getPosition().y))
 			return (true);
 		
 		return (false);
@@ -172,29 +172,29 @@ public class RenderTriangle {
 	
 	/**
 	 * <p>
-	 * Render the quad on screen
+	 * Render the shape on screen
 	 * </p>
 	 * 
-	 * @param quad
-	 * @since 0.1
+	 * @param shape
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	protected static void draw(Shape quad) {
-		if (outOfFrame(quad)) return;
+	protected static void draw(Shape shape) {
+		if (outOfFrame(shape)) return;
 		
-		if (!quad.textureless)
-			glBindTexture(GL_TEXTURE_2D, quad.getTextureID());
+		if (!shape.textureless)
+			glBindTexture(GL_TEXTURE_2D, shape.getTextureID());
 		
-		if (quad.texture != null)
-			setTextureParrameter(quad);
+		if (shape.texture != null)
+			setTextureParrameter(shape);
 		
-		setTransformation(quad);
-		setMatricesUniform(quad);
+		setTransformation(shape);
+		setMatricesUniform(shape);
 		
-		if (!quad.customShader)
-			setDefaultUniform(quad);
+		if (!shape.customShader)
+			setDefaultUniform(shape);
 		
-		glUseProgram(quad.shaderProgram);
+		glUseProgram(shape.shaderProgram);
 		glBindVertexArray(vaoID);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);
@@ -208,7 +208,7 @@ public class RenderTriangle {
 	 * Clean important values<br>
 	 * </p>
 	 * 
-	 * @since 0.1
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
 	public static void clear() {

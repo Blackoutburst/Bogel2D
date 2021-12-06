@@ -17,7 +17,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color WHITE = new Color(1.0f);
 	
@@ -26,7 +26,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color BLACK = new Color(0.0f);
 	
@@ -35,7 +35,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(127, 127, 127);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color GRAY = new Color(0.5f);
 	
@@ -44,7 +44,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(191, 191, 191);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color LIGHT_GRAY = new Color(0.75f);
 	
@@ -53,7 +53,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(63, 63, 63);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color DARK_GRAY = new Color(0.25f);
 	
@@ -62,7 +62,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color RED = new Color(1.0f, 0.0f, 0.0f);
 	
@@ -71,7 +71,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color GREEN = new Color(0.0f, 1.0f, 0.0f);
 	
@@ -80,7 +80,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color BLUE = new Color(0.0f, 0.0f, 1.0f);
 	
@@ -89,7 +89,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color YELLOW = new Color(1.0f, 1.0f, 0.0f);
 	
@@ -98,7 +98,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color MAGENTA = new Color(1.0f, 0.0f, 1.0f);
 	
@@ -107,7 +107,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color CYAN = new Color(0.0f, 1.0f, 1.0f);
 	
@@ -116,7 +116,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 127, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color ORANGE = new Color(1.0f, 0.5f, 0.0f);
 	
@@ -125,7 +125,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 127, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color LIGHT_BLUE = new Color(0.0f, 0.5f, 1.0f);
 	
@@ -134,7 +134,7 @@ public class Color {
 	 * <div = style="border:2px solid white;width:30px;height:30px;border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public static final Color TRANSPARENT = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 	
@@ -143,7 +143,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(127, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.2
 	 */
 	public static final Color PURPLE = new Color(0.5f, 0.0f, 1.0f, 1.0f);
 	
@@ -152,7 +152,7 @@ public class Color {
 	 * <div = style="width:30px;height:30px;background-color:rgb(64, 0, 71);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.2
 	 */
 	public static final Color BOGEL = new Color(0.25f, 0.0f, 0.27f, 1.0f);
 	
@@ -174,7 +174,7 @@ public class Color {
 	 * </p>
 	 * 
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color() {
 		this.r = 0.0f;
@@ -190,7 +190,7 @@ public class Color {
 	 * 
 	 * @param float c
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color(float c) {
 		this.r = c;
@@ -208,7 +208,7 @@ public class Color {
 	 * @param float g
 	 * @param float b
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color(float r, float g, float b) {
 		this.r = r;
@@ -227,7 +227,7 @@ public class Color {
 	 * @param float b
 	 * @param float a
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color(float r, float g, float b, float a) {
 		this.r = r;
@@ -243,7 +243,7 @@ public class Color {
 	 * 
 	 * @return float r
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public float getR() {
 		return r;
@@ -256,7 +256,7 @@ public class Color {
 	 * 
 	 * @param float r
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public void setR(float r) {
 		this.r = r;
@@ -269,7 +269,7 @@ public class Color {
 	 * 
 	 * @return float g
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public float getG() {
 		return g;
@@ -282,7 +282,7 @@ public class Color {
 	 * 
 	 * @param float g
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public void setG(float g) {
 		this.g = g;
@@ -295,7 +295,7 @@ public class Color {
 	 * 
 	 * @return float b
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public float getB() {
 		return b;
@@ -308,7 +308,7 @@ public class Color {
 	 * 
 	 * @param float b
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public void setB(float b) {
 		this.b = b;
@@ -321,7 +321,7 @@ public class Color {
 	 * 
 	 * @return float a
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public float getA() {
 		return a;
@@ -334,7 +334,7 @@ public class Color {
 	 * 
 	 * @param float a
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public void setA(float a) {
 		this.a = a;
@@ -347,7 +347,7 @@ public class Color {
 	 * 
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color darker() {
 		r -= 0.1f;
@@ -368,7 +368,7 @@ public class Color {
 	 * 
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color lighter() {
 		r += 0.1f;
@@ -390,7 +390,7 @@ public class Color {
 	 * @param Color c
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color add(Color c) {
 		r += c.r;
@@ -412,7 +412,7 @@ public class Color {
 	 * @param Color c
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color sub(Color c) {
 		r -= c.r;
@@ -434,7 +434,7 @@ public class Color {
 	 * @param Color c
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color mul(Color c) {
 		r *= c.r;
@@ -459,7 +459,7 @@ public class Color {
 	 * @param Color c
 	 * @return Color
 	 * @author Blackoutburst
-	 * @since 1.0
+	 * @since 0.1
 	 */
 	public Color div(Color c) {
 		if (c.r != 0) r /= c.r;
