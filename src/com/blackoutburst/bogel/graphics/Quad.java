@@ -38,6 +38,19 @@ public class Quad {
 	protected boolean smoothTexture;
 	protected boolean textureless;
 	
+	
+	private void initQuad() {
+		this.smoothTexture = true;
+		this.vertexShader = Shader.defaultVert;
+		this.fragmentShader = Shader.defaultFrag;
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, this.fragmentShader.id);
+		glLinkProgram(this.shaderProgram);
+		this.shader = new Shader();
+		this.shader.setShaderProgram(this.shaderProgram);
+	}
+	
 	/**
 	 * <p>
 	 * Create a new Quad
@@ -50,20 +63,12 @@ public class Quad {
 	public Quad(Texture texture) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -80,20 +85,12 @@ public class Quad {
 	public Quad(Texture texture, float x, float y) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -109,20 +106,12 @@ public class Quad {
 	public Quad(Texture texture, Vector2f position) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -139,20 +128,12 @@ public class Quad {
 	public Quad(Texture texture, Vector2f position, Vector2f size) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -170,20 +151,12 @@ public class Quad {
 	public Quad(Texture texture, Vector2f position, Vector2f size, Color color) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = color;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -201,20 +174,12 @@ public class Quad {
 	public Quad(Texture texture, Vector2f position, Vector2f size, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -233,20 +198,12 @@ public class Quad {
 	public Quad(Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = color;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -265,7 +222,6 @@ public class Quad {
 	public Quad(Texture texture, float x, float y, float w, float h) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
@@ -273,14 +229,7 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 
 	/**
@@ -300,20 +249,12 @@ public class Quad {
 	public Quad(Texture texture, float x, float y, float w, float h, Color color) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = 0;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -333,7 +274,6 @@ public class Quad {
 	public Quad(Texture texture, float x, float y, float w, float h, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
@@ -341,14 +281,7 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 
 	/**
@@ -369,20 +302,12 @@ public class Quad {
 	public Quad(Texture texture, float x, float y, float w, float h, Color color, float rotation) {
 		this.textureless = false;
 		this.texture = texture;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = rotation;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -395,20 +320,12 @@ public class Quad {
 	 */
 	public Quad() {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -423,20 +340,12 @@ public class Quad {
 	 */
 	public Quad(float x, float y) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -450,20 +359,12 @@ public class Quad {
 	 */
 	public Quad(Vector2f position) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f();
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -478,20 +379,12 @@ public class Quad {
 	 */
 	public Quad(Vector2f position, Vector2f size) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -507,20 +400,12 @@ public class Quad {
 	 */
 	public Quad(Vector2f position, Vector2f size, Color color) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = 0;
 		this.color = color;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -536,20 +421,12 @@ public class Quad {
 	 */
 	public Quad(Vector2f position, Vector2f size, float rotation) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -566,20 +443,12 @@ public class Quad {
 	 */
 	public Quad(Vector2f position, Vector2f size, Color color, float rotation) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.color = color;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -596,7 +465,6 @@ public class Quad {
 	 */
 	public Quad(float x, float y, float w, float h) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
@@ -604,14 +472,7 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = 0;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -629,20 +490,12 @@ public class Quad {
 	 */
 	public Quad(float x, float y, float w, float h, Color color) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = 0;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 	
 	/**
@@ -660,7 +513,6 @@ public class Quad {
 	 */
 	public Quad(float x, float y, float w, float h, float rotation) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
@@ -668,14 +520,7 @@ public class Quad {
 		this.size.y = h;
 		this.rotation = rotation;
 		this.color = Color.WHITE;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 
 	/**
@@ -694,20 +539,12 @@ public class Quad {
 	 */
 	public Quad(float x, float y, float w, float h, Color color, float rotation) {
 		this.textureless = true;
-		this.smoothTexture = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
 		this.size = new Vector2f(w, h);
 		this.color = color;
 		this.rotation = rotation;
-		this.vertexShader = Shader.defaultVertNoTexture;
-		this.fragmentShader = Shader.defaultFragNoTexture;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
+		initQuad();
 	}
 
 	/**
