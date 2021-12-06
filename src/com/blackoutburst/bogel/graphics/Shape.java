@@ -893,7 +893,7 @@ public class Shape {
 	 * Render the Shape on screen
 	 * </p>
 	 * 
-	 * @since 0.1
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
 	public void drawCircle() {
@@ -906,7 +906,7 @@ public class Shape {
 	 * Render the Shape on screen
 	 * </p>
 	 * 
-	 * @since 0.1
+	 * @since 0.2
 	 * @author Blackoutburst
 	 */
 	public void drawTriangle() {
