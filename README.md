@@ -12,7 +12,7 @@ Minimal code
 ```java
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.graphics.Color;
-import com.blackoutburst.bogel.graphics.Quad;
+import com.blackoutburst.bogel.graphics.Shape;
 import com.blackoutburst.bogel.maths.Vector2f;
 
 public class Main {
@@ -20,16 +20,16 @@ public class Main {
     public static void main(String[] args) {
         Display display = new Display().setSize(600, 600).create();
         
-        Quad quad = new Quad(new Vector2f(Display.getWidth()/2, Display.getHeight()/2), new Vector2f(400, 400), Color.ORANGE);
+        Shape shape = new Shape(new Vector2f(300), new Vector2f(400), Color.BOGEL);
         
         while (display.isOpen()) {
             display.clear();
-            quad.draw();
+            shape.drawQuad();
             display.update();
         }
     }
 }
 ```
 This code should provide the following output\
-![image](https://user-images.githubusercontent.com/30992311/143481297-0791b9e1-b9f4-4132-ac2b-893b588f414c.png)
+![image](https://user-images.githubusercontent.com/30992311/144860034-9cdd057c-7aaf-44ef-9328-68923d384167.png)
 
