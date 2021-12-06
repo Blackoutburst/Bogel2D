@@ -10,7 +10,7 @@ Link [Bogel2D](https://github.com/Blackoutburst/Bogel2D/releases) to your projec
 
 Minimal code
 ```java
-import com.blackoutburst.bogel.display.Display;
+import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Quad;
 import com.blackoutburst.bogel.maths.Vector2f;
