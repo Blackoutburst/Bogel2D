@@ -756,6 +756,8 @@ public class Quad {
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
 		glAttachShader(this.shaderProgram, shader.id);
 		glLinkProgram(this.shaderProgram);
+		glDetachShader(this.shaderProgram, this.vertexShader.id);
+        glDetachShader(this.shaderProgram, this.fragmentShader.id);
 		shader.setShaderProgram(this.shaderProgram);
 		customShader = true;
 		return (this);
