@@ -4,7 +4,6 @@ import static org.lwjgl.opengl.GL20.glAttachShader;
 import static org.lwjgl.opengl.GL20.glCreateProgram;
 import static org.lwjgl.opengl.GL20.glLinkProgram;
 import static org.lwjgl.opengl.GL20.glDetachShader;
-import static org.lwjgl.opengl.GL20.glDeleteShader;
 
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
@@ -43,16 +42,14 @@ public class Quad {
 	
 	private void initQuad() {
 		this.smoothTexture = true;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
+		this.vertexShader = Shader.defaultVertNoTexture;
+		this.fragmentShader = Shader.defaultFragNoTexture;
 		this.shaderProgram = glCreateProgram();
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
 		glAttachShader(this.shaderProgram, this.fragmentShader.id);
 		glLinkProgram(this.shaderProgram);
         glDetachShader(this.shaderProgram, this.vertexShader.id);
         glDetachShader(this.shaderProgram, this.fragmentShader.id);
-        glDeleteShader(this.vertexShader.id);
-        glDeleteShader(this.fragmentShader.id);
 		this.shader = new Shader();
 		this.shader.setShaderProgram(this.shaderProgram);
 	}

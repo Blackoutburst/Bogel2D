@@ -7,6 +7,7 @@ import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
 import static org.lwjgl.opengl.GL20.glCompileShader;
 import static org.lwjgl.opengl.GL20.glCreateShader;
 import static org.lwjgl.opengl.GL20.glShaderSource;
+import static org.lwjgl.opengl.GL20.glGetShaderInfoLog;
 import static org.lwjgl.opengl.GL41.glProgramUniform1f;
 import static org.lwjgl.opengl.GL41.glProgramUniform2f;
 import static org.lwjgl.opengl.GL41.glProgramUniform3f;
@@ -129,6 +130,7 @@ public class Shader {
 		}
 		glShaderSource(shader, shaderSource);
 		glCompileShader(shader);
+		if (glGetShaderInfoLog(shader).length() != 0) System.err.println("Error in: ["+filePath+"]\n"+glGetShaderInfoLog(shader));
 		return (new Shader(shader));
 	}
 
