@@ -52,8 +52,8 @@ public class Core {
 	 * @author Blackoutburst
 	 */
 	protected static void init(Display display) {
-		RenderManager.init();
 		Shader.init();
+		RenderManager.init();
 	}
 	
 	/**
