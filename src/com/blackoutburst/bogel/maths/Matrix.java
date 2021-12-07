@@ -4,7 +4,22 @@ import java.nio.FloatBuffer;
 
 public class Matrix {
 
-	public float m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33;
+	public float m00; 
+	public float m01; 
+	public float m02; 
+	public float m03; 
+	public float m10; 
+	public float m11; 
+	public float m12; 
+	public float m13; 
+	public float m20; 
+	public float m21; 
+	public float m22; 
+	public float m23; 
+	public float m30; 
+	public float m31; 
+	public float m32; 
+	public float m33;
 	
 	public Matrix() {
 		setIdentity(this);
@@ -169,35 +184,6 @@ public class Matrix {
 	}
 
 	/**
-	 * Load from a float buffer. The buffer stores the matrix in row major
-	 * (maths) order.
-	 *
-	 * @param buf A float buffer to read from
-	 * @return this
-	 */
-	public Matrix loadTranspose(FloatBuffer buf) {
-
-		m00 = buf.get();
-		m10 = buf.get();
-		m20 = buf.get();
-		m30 = buf.get();
-		m01 = buf.get();
-		m11 = buf.get();
-		m21 = buf.get();
-		m31 = buf.get();
-		m02 = buf.get();
-		m12 = buf.get();
-		m22 = buf.get();
-		m32 = buf.get();
-		m03 = buf.get();
-		m13 = buf.get();
-		m23 = buf.get();
-		m33 = buf.get();
-
-		return this;
-	}
-
-	/**
 	 * Store this matrix in a float buffer. The matrix is stored in column
 	 * major (openGL) order.
 	 * @param buf The buffer to store this matrix in
@@ -244,24 +230,6 @@ public class Matrix {
 		buf.put(m13);
 		buf.put(m23);
 		buf.put(m33);
-		return this;
-	}
-
-	/**
-	 * Store the rotation portion of this matrix in a float buffer. The matrix is stored in column
-	 * major (openGL) order.
-	 * @param buf The buffer to store this matrix in
-	 */
-	public Matrix store3f(FloatBuffer buf) {
-		buf.put(m00);
-		buf.put(m01);
-		buf.put(m02);
-		buf.put(m10);
-		buf.put(m11);
-		buf.put(m12);
-		buf.put(m20);
-		buf.put(m21);
-		buf.put(m22);
 		return this;
 	}
 
