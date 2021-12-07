@@ -58,6 +58,12 @@ public class Shader {
 	
 	/**Default fragment shader with no texture*/
 	public static Shader defaultFragNoTexture;
+	
+	/**Default fragment shader with light*/
+	public static Shader defaultFragLight;
+	
+	/**Default fragment shader with no texture and light*/
+	public static Shader defaultFragNoTextureLight;
 
 	/**
 	 * <p>
@@ -100,6 +106,8 @@ public class Shader {
 		defaultFrag = loadShader(FRAGMENT, "quad.frag");
 		defaultVertNoTexture = loadShader(VERTEX, "quadNoTexture.vert");
 		defaultFragNoTexture = loadShader(FRAGMENT, "quadNoTexture.frag");
+		defaultFragLight = loadShader(FRAGMENT, "quadLight.frag");
+		defaultFragNoTextureLight = loadShader(FRAGMENT, "quadNoTextureLight.frag");
 	}
 	
 	/**
@@ -124,9 +132,9 @@ public class Shader {
 				shaderSource.append(line).append("//\n");
 			}
 			reader.close();
-		}catch(IOException e){
-			e.printStackTrace();
-			System.exit(-1);
+		}catch(Exception e){
+			System.err.println("["+filePath+"] Doesn't exist loading default shader instead");
+			return (defaultFrag);
 		}
 		glShaderSource(shader, shaderSource);
 		glCompileShader(shader);
