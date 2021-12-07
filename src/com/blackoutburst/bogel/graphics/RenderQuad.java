@@ -192,6 +192,28 @@ public class RenderQuad {
 	
 	/**
 	 * <p>
+	 * Set default shader uniform
+	 * </p>
+	 * 
+	 * @param shape
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	private static void setLightUniform(Shape shape) {
+		shape.shader.setUniform2f("resolution", Display.getSizeF());
+		
+		for (int i = 0; i < 100; i++) {
+			if (i >= Lights.lights.size()) break;
+			
+			Light l = Lights.lights.get(i);
+			shape.shader.setUniform2f("lights["+i+"].position", l.getPosition());
+			shape.shader.setUniform3f("lights["+i+"].color", l.getColor());
+			shape.shader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
+		}
+	}
+	
+	/**
+	 * <p>
 	 * Render the shape on screen
 	 * </p>
 	 * 
@@ -201,6 +223,9 @@ public class RenderQuad {
 	 */
 	protected static void draw(Shape shape) {
 		if (outOfFrame(shape)) return;
+		
+		if (shape.reactToLight)
+			setLightUniform(shape);
 		
 		if (!shape.textureless)
 			glBindTexture(GL_TEXTURE_2D, shape.getTextureID());

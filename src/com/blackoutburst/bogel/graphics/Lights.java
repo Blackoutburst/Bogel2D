@@ -44,7 +44,8 @@ public class Lights {
 	
 	/**
 	 * <p>
-	 * Draw every lights on screen
+	 * Draw every lights on screen<br>
+	 * <b>CALL AFTER DRAWING EVERY ELEMENTS OTHERWISE THEY MIGHT TURN INVISIBLE</b>
 	 * </p>
 	 * 
 	 * @author Blackoutburst
@@ -54,15 +55,15 @@ public class Lights {
 		plane.setPosition(Display.getWidth() / 2, Display.getHeight() / 2);
 		plane.setSize(Display.getSizeF());
 		
-		Shader.lightsShader.setUniform2f("resolution", Display.getSizeF());
+		plane.shader.setUniform2f("resolution", Display.getSizeF());
 		
 		for (int i = 0; i < 100; i++) {
 			if (i >= lights.size()) break;
 			
 			Light l = lights.get(i);
-			Shader.lightsShader.setUniform2f("lights["+i+"].position", l.getPosition());
-			Shader.lightsShader.setUniform3f("lights["+i+"].color", l.getColor());
-			Shader.lightsShader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
+			plane.shader.setUniform2f("lights["+i+"].position", l.getPosition());
+			plane.shader.setUniform3f("lights["+i+"].color", l.getColor());
+			plane.shader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
 		}
 		
 		glBlendFunc(GL_ONE, GL_ONE);

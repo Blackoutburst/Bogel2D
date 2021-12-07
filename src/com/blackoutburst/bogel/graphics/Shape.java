@@ -763,15 +763,39 @@ public class Shape {
 	 * @author Blackoutburst
 	 */
 	public Shape setShader(Shader shader) {
-		this.shader = shader;
 		this.shaderProgram = glCreateProgram();
 		glAttachShader(this.shaderProgram, this.vertexShader.id);
 		glAttachShader(this.shaderProgram, shader.id);
 		glLinkProgram(this.shaderProgram);
-		glDetachShader(this.shaderProgram, this.vertexShader.id);
+        glDetachShader(this.shaderProgram, this.vertexShader.id);
         glDetachShader(this.shaderProgram, shader.id);
-		shader.setShaderProgram(this.shaderProgram);
+		this.shader = new Shader();
+		this.shader.setShaderProgram(this.shaderProgram);
+		
 		this.customShader = true;
+		return (this);
+	}
+	
+	/**
+	 * <p>
+	 * Set the Shape shader
+	 * </p>
+	 * 
+	 * @param Shader shader
+	 * @return Shape
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	private Shape setShaderInternal(Shader shader) {
+		this.shaderProgram = glCreateProgram();
+		glAttachShader(this.shaderProgram, this.vertexShader.id);
+		glAttachShader(this.shaderProgram, shader.id);
+		glLinkProgram(this.shaderProgram);
+        glDetachShader(this.shaderProgram, this.vertexShader.id);
+        glDetachShader(this.shaderProgram, shader.id);
+		this.shader = new Shader();
+		this.shader.setShaderProgram(this.shaderProgram);
+		
 		return (this);
 	}
 
@@ -945,7 +969,21 @@ public class Shape {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	public void setReactToLight(boolean reactToLight) {
+	public Shape setReactToLight(boolean reactToLight) {
 		this.reactToLight = reactToLight;
+		
+		if (this.reactToLight && this.textureless)
+			this.setShaderInternal(Shader.defaultFragNoTextureLight);
+		
+		if (this.reactToLight && !this.textureless)
+			this.setShaderInternal(Shader.defaultFragLight);
+		
+		if (!this.reactToLight && this.textureless)
+			this.setShaderInternal(Shader.defaultFragNoTexture);
+		
+		if (!this.reactToLight && !this.textureless)
+			this.setShaderInternal(Shader.defaultFrag);
+		
+		return (this);
 	}
 }
