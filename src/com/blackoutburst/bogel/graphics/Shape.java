@@ -40,9 +40,18 @@ public class Shape {
 	protected boolean customShader;
 	protected boolean smoothTexture;
 	protected boolean textureless;
+	protected boolean reactToLight;
 	
-	
+	/**
+	 * <p>
+	 * Initialize default shape values
+	 * </p>
+	 * 
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
 	private void initShape() {
+		this.reactToLight = false;
 		this.isCircle = false;
 		this.smoothTexture = true;
 		this.vertexShader = this.textureless ? Shader.defaultVertNoTexture : Shader.defaultVert;
@@ -912,5 +921,31 @@ public class Shape {
 	public void drawTriangle() {
 		this.isCircle = false;
 		RenderTriangle.draw(this);
+	}
+
+	/**
+	 * <p>
+	 * Check if the shape react to light
+	 * </p>
+	 * 
+	 * @return reactToLight
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public boolean isReactToLight() {
+		return reactToLight;
+	}
+	
+	/**
+	 * <p>
+	 * Set if the shape react to light
+	 * </p>
+	 * 
+	 * @param reactToLight
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
+	public void setReactToLight(boolean reactToLight) {
+		this.reactToLight = reactToLight;
 	}
 }
