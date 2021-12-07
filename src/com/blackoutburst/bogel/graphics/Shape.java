@@ -122,7 +122,7 @@ public class Shape {
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
-		this.position = new Vector2f();
+		this.position = position;
 		this.size = new Vector2f(100, 100);
 		this.rotation = 0;
 		this.color = Color.WHITE;
