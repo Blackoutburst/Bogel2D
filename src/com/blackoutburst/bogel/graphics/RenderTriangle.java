@@ -182,6 +182,7 @@ public class RenderTriangle {
 	 */
 	private static void setLightUniform(Shape shape) {
 		shape.shader.setUniform2f("resolution", Display.getSizeF());
+		shape.shader.setUniform3f("ambiant", Lights.ambiant);
 		
 		for (int i = 0; i < 100; i++) {
 			if (i >= Lights.lights.size()) break;

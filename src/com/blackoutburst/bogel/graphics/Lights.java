@@ -26,6 +26,8 @@ public class Lights {
 	/** The list of lights used limited to 100 */
 	protected static List<Light> lights = new ArrayList<Light>();
 	
+	public static Color ambiant = Color.WHITE;
+	
 	/** The plane used to draw lights*/
 	private static Shape plane;
 	

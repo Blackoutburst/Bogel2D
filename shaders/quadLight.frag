@@ -7,6 +7,7 @@ in vec2 vertPos;
 
 uniform vec2 resolution;
 uniform vec4 color;
+uniform vec3 ambiant;
 uniform sampler2D text;
 uniform float radius;
 
@@ -22,7 +23,7 @@ uniform LightSource lights[100];
 
 void main() {
 	vec2 p = (gl_FragCoord.xy) / min(resolution.x, resolution.y);
-	vec3 lightColor = vec3(0.0);
+	vec3 lightColor = ambiant;
 
 
 	for (int i = 0; i < 100; i++) {
