@@ -63,6 +63,9 @@ public class Shader {
 	
 	/**Default fragment shader with no texture and light*/
 	public static Shader defaultFragNoTextureLight;
+	
+	/**Default fragment shader for lights*/
+	public static Shader lightsShader;
 
 	/**
 	 * <p>
@@ -107,6 +110,7 @@ public class Shader {
 		defaultFragNoTexture = loadShader(FRAGMENT, "quadNoTexture.frag");
 		defaultFragLight = loadShader(FRAGMENT, "quadLight.frag");
 		defaultFragNoTextureLight = loadShader(FRAGMENT, "quadNoTextureLight.frag");
+		lightsShader = loadShader(FRAGMENT, "lights.frag");
 	}
 	
 	/**
