@@ -15,7 +15,6 @@ import static org.lwjgl.opengl.GL41.glProgramUniform4f;
 import static org.lwjgl.opengl.GL41.glProgramUniformMatrix4fv;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.blackoutburst.bogel.graphics.Color;
