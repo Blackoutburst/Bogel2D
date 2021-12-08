@@ -1049,6 +1049,16 @@ public class Shape {
 		}
 	}
 	
+	/**
+	 * <p>
+	 * Check collision between two shapes^
+	 * </p>
+	 * 
+	 * @param shape
+	 * @return boolean
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
 	public boolean collideWith(Shape shape) {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -1080,6 +1090,56 @@ public class Shape {
 	    	}
 	    }
 	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
+	    glClear(GL_COLOR_BUFFER_BIT);
+	    
+	    return (collide);
+	}
+	
+	/**
+	 * <p>
+	 * Check collision between two shapes^
+	 * </p>
+	 * 
+	 * @param shape
+	 * @return boolean
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
+	public boolean collideWithTexture(Shape shape) {
+		glClearColor(1, 1, 1, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		Shape s1 = new Shape(this.type);
+		if (!this.textureless) s1.setTexture(this.texture);
+		s1.setPosition(this.getPosition());
+		s1.setSize(this.getSize());
+		s1.setRotation(this.getRotation());
+		s1.setColor(new Color(0, 0, 0, 0.5f));
+		s1.setReactToLight(false);
+		
+		Shape s2 = new Shape(shape.type);
+		if (!shape.textureless) s2.setTexture(shape.texture);
+		s2.setPosition(shape.getPosition());
+		s2.setSize(shape.getSize());
+		s2.setRotation(shape.getRotation());
+		s2.setColor(new Color(0, 0, 0, 0.5f));
+		s2.setReactToLight(false);
+		
+		s1.draw();
+		s2.draw();
+		
+	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2) * 4));
+
+	    boolean collide = false;
+	    
+	    glReadPixels((int)(s1.position.x - s1.size.x / 2), (int)(s1.position.y - s1.size.y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    for (int i = 0; i < pixels.capacity(); i++) {
+	    	if ((pixels.get(i) & 0xFF) == 64)  {
+	    		collide = true;
+	    		break;
+	    	}
+	    }
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
 	    
