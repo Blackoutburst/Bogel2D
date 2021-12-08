@@ -24,6 +24,17 @@ import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
+import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
+import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowMonitor;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback;
+import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;
+import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
+import static org.lwjgl.glfw.GLFW.glfwSetScrollCallback;
+import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowSize;
+import static org.lwjgl.glfw.GLFW.glfwGetWindowSize;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowIcon;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
@@ -33,7 +44,6 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -110,19 +120,19 @@ public class Display {
 	 * @author Blackoutburst
 	 */
 	private void setFullScreen() {
-		long monitor = GLFW.glfwGetPrimaryMonitor();
-		GLFWVidMode videoMode = GLFW.glfwGetVideoMode(monitor);
+		long monitor = glfwGetPrimaryMonitor();
+		GLFWVidMode videoMode = glfwGetVideoMode(monitor);
 		Vector2i center = new Vector2i(videoMode.width() / 2 - width / 2, videoMode.height() / 2 - height / 2);
 
 		switch(fullScreen) {
 			case BORDERLESS:
-				GLFW.glfwSetWindowMonitor(window, NULL, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
+				glfwSetWindowMonitor(window, NULL, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
 			break;
 			case FULL:
-				GLFW.glfwSetWindowMonitor(window, monitor, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
+				glfwSetWindowMonitor(window, monitor, 0, 0, videoMode.width(), videoMode.height(), videoMode.refreshRate());	
 			break;
 			case NONE:
-				GLFW.glfwSetWindowMonitor(window, NULL, center.x, center.y, width, height, videoMode.refreshRate());	
+				glfwSetWindowMonitor(window, NULL, center.x, center.y, width, height, videoMode.refreshRate());	
 			break;
 		}
 	}
@@ -158,10 +168,10 @@ public class Display {
 		
 		setFullScreen();
 		
-		GLFW.glfwSetWindowSizeCallback(window, new WindowCallBack());
-		GLFW.glfwSetCursorPosCallback(window, new MousePositionCallBack());
-		GLFW.glfwSetMouseButtonCallback(window, new MouseButtonCallBack());
-		GLFW.glfwSetScrollCallback(window, new MouseScrollCallBack());
+		glfwSetWindowSizeCallback(window, new WindowCallBack());
+		glfwSetCursorPosCallback(window, new MousePositionCallBack());
+		glfwSetMouseButtonCallback(window, new MouseButtonCallBack());
+		glfwSetScrollCallback(window, new MouseScrollCallBack());
 		
 		Core.init(this);
 		
@@ -227,7 +237,7 @@ public class Display {
 	 * @author Blackoutburst
 	 */
 	public boolean isOpen() {
-		return (!GLFW.glfwWindowShouldClose(window));
+		return (!glfwWindowShouldClose(window));
 	}
 	
 	/**
@@ -243,6 +253,19 @@ public class Display {
 	public Display setClearColor(Color c) {
 		clearColor = c;
 		return (this);
+	}
+	
+	/**
+	 * <p>
+	 * Get the clear color<br>
+	 * </p>
+	 * 
+	 * @return clearColor
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
+	public Color getClearColor() {
+		return (this.clearColor);
 	}
 	
 	/**
@@ -330,7 +353,7 @@ public class Display {
 		height = h;
 		
 		if (window != NULL)
-			GLFW.glfwSetWindowSize(window, width, height);
+			glfwSetWindowSize(window, width, height);
 		
 		return (this);
 	}
@@ -350,14 +373,12 @@ public class Display {
 		height = size.y;
 		
 		if (window != NULL)
-			GLFW.glfwSetWindowSize(window, width, height);
+			glfwSetWindowSize(window, width, height);
 		
 		return (this);
 	}
 	
 	/**
-	 * <h1>THIS IS USED FOR INTERNAL FUNCTIONEMENT DO NOT USE</h1>
-	 * 
 	 * <p>
 	 * Set the window size
 	 * </p>
@@ -368,12 +389,12 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static void callBackSetSize(int w, int h) {
+	protected static void callBackSetSize(int w, int h) {
 		width = w;
 		height = h;
 		
 		if (window != NULL)
-			GLFW.glfwSetWindowSize(window, width, height);
+			glfwSetWindowSize(window, width, height);
 	}
 	
 	/**
@@ -482,7 +503,7 @@ public class Display {
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer width = stack.mallocInt(1);
 			IntBuffer height = stack.mallocInt(1);
-			GLFW.glfwGetWindowSize(window, width, height);
+			glfwGetWindowSize(window, width, height);
 			w = width.get();
 		} catch (Exception e) {
 			System.err.println("Error while getting display width: "+e.toString());
@@ -505,7 +526,7 @@ public class Display {
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer width = stack.mallocInt(1);
 			IntBuffer height = stack.mallocInt(1);
-			GLFW.glfwGetWindowSize(window, width, height);
+			glfwGetWindowSize(window, width, height);
 			h = height.get();
 		} catch (Exception e) {
 			System.err.println("Error while getting display height: "+e.toString());
@@ -529,7 +550,7 @@ public class Display {
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer width = stack.mallocInt(1);
 			IntBuffer height = stack.mallocInt(1);
-			GLFW.glfwGetWindowSize(window, width, height);
+			glfwGetWindowSize(window, width, height);
 			size.set(width.get(), height.get());
 		} catch (Exception e) {
 			System.err.println("Error while getting display size: "+e.toString());
@@ -552,7 +573,7 @@ public class Display {
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer width = stack.mallocInt(1);
 			IntBuffer height = stack.mallocInt(1);
-			GLFW.glfwGetWindowSize(window, width, height);
+			glfwGetWindowSize(window, width, height);
 			size.set(width.get(), height.get());
 		} catch (Exception e) {
 			System.err.println("Error while getting display size: "+e.toString());
@@ -582,7 +603,7 @@ public class Display {
 			e.printStackTrace();
 		}
 		imagebf.put(0, image);
-		GLFW.glfwSetWindowIcon(window, imagebf);
+		glfwSetWindowIcon(window, imagebf);
 		return (this);
 	}
 	
