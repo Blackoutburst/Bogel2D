@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
+import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 
 /**
  * 
@@ -40,7 +41,7 @@ public class Lights {
 	 * @since 0.2
 	 */
 	protected static void init() {
-		plane = new Shape();
+		plane = new Shape(ShapeType.QUAD);
 		plane.setShader(Shader.lightsShader);
 	}
 	
@@ -69,7 +70,7 @@ public class Lights {
 		}
 		
 		glBlendFunc(GL_ONE, GL_ONE);
-		plane.drawQuad();
+		plane.draw();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 }

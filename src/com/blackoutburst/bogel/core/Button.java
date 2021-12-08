@@ -6,6 +6,7 @@ import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Shape;
+import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 
 import static org.lwjgl.opengl.GL11.glReadPixels;
 import static org.lwjgl.opengl.GL11.glClearColor;
@@ -25,23 +26,8 @@ import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
  */
 public class Button {
 	
-	/**
-	 * <p>
-	 * Define the shape of the button
-	 * </p>
-	 * 
-	 * @author Blackoutburst
-	 * @since 0.3
-	 *
-	 */
-	public static enum ButtonShape {
-		QUAD,
-		TRIANGLE,
-		CIRCLE
-	}
-	
 	protected Shape shape;
-	protected ButtonShape bshape;
+	protected ShapeType type;
 	
 	/**
 	 * <p>
@@ -56,9 +42,9 @@ public class Button {
 	 * @since 0.3
 	 * @author Blackoutburst
 	 */
-	public Button(Shape shape, ButtonShape bshape) {
+	public Button(Shape shape, ShapeType type) {
 		this.shape = shape;
-		this.bshape = bshape;
+		this.type = type;
 	}
 
 	/**
@@ -89,21 +75,15 @@ public class Button {
 
 	
 	private boolean onButton() {
-		glClearColor(0, 0, 0, 0);
+		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape tmp = new Shape();
+		Shape tmp = new Shape(type);
 		tmp.setPosition(this.shape.getPosition());
 		tmp.setSize(this.shape.getSize());
 		tmp.setRotation(this.shape.getRotation());
-		tmp.setColor(Color.RED);
-		
-		switch (this.bshape) {
-			case CIRCLE: tmp.drawCircle(); break;
-			case QUAD: tmp.drawQuad(); break;
-			case TRIANGLE: tmp.drawTriangle(); break;
-			default: tmp.drawQuad(); break;
-		}
+		tmp.setColor(new Color(0 ,0 ,0 ,0.5f));
+		tmp.draw();
 		
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
@@ -113,7 +93,7 @@ public class Button {
 	    
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
-	    return (px == 255);
+	    return (px == 128);
 	}
 	
 	/**
@@ -176,8 +156,8 @@ public class Button {
 	 * @since 0.3
 	 * @author Blackoutburst 
 	 */
-	public ButtonShape getBshape() {
-		return bshape;
+	public ShapeType getBshape() {
+		return type;
 	}
 
 	/**
@@ -185,12 +165,12 @@ public class Button {
 	 * Set the button shape
 	 * </p>
 	 * 
-	 * @param bshape
+	 * @param type
 	 * @since 0.3
 	 * @author Blackoutburst 
 	 */
-	public void setBshape(ButtonShape bshape) {
-		this.bshape = bshape;
+	public void setBshape(ShapeType type) {
+		this.type = type;
 	}
 
 	/**
@@ -202,11 +182,6 @@ public class Button {
 	 * @author Blackoutburst 
 	 */
 	public void draw() {
-		switch (this.bshape) {
-			case CIRCLE: this.shape.drawCircle(); break;
-			case QUAD: this.shape.drawQuad(); break;
-			case TRIANGLE: this.shape.drawTriangle(); break;
-			default: this.shape.drawQuad(); break;
-		}
+		this.shape.draw();
 	}
 }

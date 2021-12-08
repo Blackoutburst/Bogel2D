@@ -15,6 +15,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
+import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector2i;
 
@@ -73,7 +74,7 @@ public class Texture {
 			}
 		}
 		if (data != null) {
-			this.shape = new Shape(this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
+			this.shape = new Shape(ShapeType.QUAD, this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
 			STBImage.stbi_image_free(data);
 			this.missing = false;
 		}
@@ -107,7 +108,7 @@ public class Texture {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(0), this.height.get(0), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
-		this.shape = new Shape(this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
+		this.shape = new Shape(ShapeType.QUAD, this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
 		STBImage.stbi_image_free(data);
 		this.missing = true;
 	}

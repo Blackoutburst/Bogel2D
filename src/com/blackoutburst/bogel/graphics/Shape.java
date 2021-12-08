@@ -1,10 +1,21 @@
 package com.blackoutburst.bogel.graphics;
 
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_RGBA;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.opengl.GL11.glReadPixels;
 import static org.lwjgl.opengl.GL20.glAttachShader;
 import static org.lwjgl.opengl.GL20.glCreateProgram;
 import static org.lwjgl.opengl.GL20.glDetachShader;
 import static org.lwjgl.opengl.GL20.glLinkProgram;
 
+import java.nio.ByteBuffer;
+
+import org.lwjgl.BufferUtils;
+
+import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
 
@@ -19,6 +30,23 @@ import com.blackoutburst.bogel.maths.Vector2f;
  * @author Blackoutburst
  */
 public class Shape {
+	
+	/**
+	 * <p>
+	 * Define the shape of the shape ?
+	 * </p>
+	 * 
+	 * @author Blackoutburst
+	 * @since 0.4
+	 *
+	 */
+	public static enum ShapeType {
+		QUAD,
+		TRIANGLE,
+		CIRCLE
+	}
+	
+	protected ShapeType type;
 	
 	protected boolean isCircle;
 	
@@ -75,7 +103,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture) {
+	public Shape(ShapeType type, Texture texture) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -97,7 +126,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, float x, float y) {
+	public Shape(ShapeType type, Texture texture, float x, float y) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -118,7 +148,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, Vector2f position) {
+	public Shape(ShapeType type, Texture texture, Vector2f position) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -140,7 +171,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, Vector2f position, Vector2f size) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -163,7 +195,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, Vector2f position, Vector2f size, Color color) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, Color color) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -186,7 +219,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, Vector2f position, Vector2f size, float rotation) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -210,7 +244,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -234,7 +269,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, float x, float y, float w, float h) {
+	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -261,7 +297,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, float x, float y, float w, float h, Color color) {
+	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, Color color) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -286,7 +323,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, float x, float y, float w, float h, float rotation) {
+	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, float rotation) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -314,7 +352,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Texture texture, float x, float y, float w, float h, Color color, float rotation) {
+	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, Color color, float rotation) {
+		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
 		this.customShader = false;
@@ -333,7 +372,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape() {
+	public Shape(ShapeType type) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f();
@@ -353,7 +393,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(float x, float y) {
+	public Shape(ShapeType type, float x, float y) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -372,7 +413,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Vector2f position) {
+	public Shape(ShapeType type, Vector2f position) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
@@ -392,7 +434,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Vector2f position, Vector2f size) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
@@ -413,7 +456,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Vector2f position, Vector2f size, Color color) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, Color color) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
@@ -434,7 +478,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Vector2f position, Vector2f size, float rotation) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
@@ -456,7 +501,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(Vector2f position, Vector2f size, Color color, float rotation) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, Color color, float rotation) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
@@ -478,7 +524,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(float x, float y, float w, float h) {
+	public Shape(ShapeType type, float x, float y, float w, float h) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -503,7 +550,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(float x, float y, float w, float h, Color color) {
+	public Shape(ShapeType type, float x, float y, float w, float h, Color color) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -526,7 +574,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(float x, float y, float w, float h, float rotation) {
+	public Shape(ShapeType type, float x, float y, float w, float h, float rotation) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -552,7 +601,8 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(float x, float y, float w, float h, Color color, float rotation) {
+	public Shape(ShapeType type, float x, float y, float w, float h, Color color, float rotation) {
+		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = new Vector2f(x, y);
@@ -915,6 +965,7 @@ public class Shape {
 	 * 
 	 * @since 0.1
 	 * @author Blackoutburst
+	 * @deprecated
 	 */
 	public void drawQuad() {
 		this.isCircle = false;
@@ -928,6 +979,7 @@ public class Shape {
 	 * 
 	 * @since 0.2
 	 * @author Blackoutburst
+	 * @deprecated
 	 */
 	public void drawCircle() {
 		this.isCircle = true;
@@ -941,6 +993,7 @@ public class Shape {
 	 * 
 	 * @since 0.2
 	 * @author Blackoutburst
+	 * @deprecated
 	 */
 	public void drawTriangle() {
 		this.isCircle = false;
@@ -985,5 +1038,48 @@ public class Shape {
 			this.setShaderInternal(Shader.defaultFrag);
 		
 		return (this);
+	}
+	
+	public void draw() {
+		switch (this.type) {
+			case CIRCLE: this.isCircle = true; RenderQuad.draw(this); break;
+			case QUAD: this.isCircle = false; RenderQuad.draw(this); break;
+			case TRIANGLE: RenderTriangle.draw(this); break;
+			default: this.isCircle = false; RenderQuad.draw(this); break;
+		}
+	}
+	
+	public boolean collideWith(Shape shape) {
+		glClearColor(1, 1, 1, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		Shape s1 = new Shape(this.type);
+		s1.setPosition(this.getPosition());
+		s1.setSize(this.getSize());
+		s1.setRotation(this.getRotation());
+		s1.setColor(new Color(0, 0, 0, 0.5f));
+		
+		Shape s2 = new Shape(shape.type);
+		s2.setPosition(shape.getPosition());
+		s2.setSize(shape.getSize());
+		s2.setRotation(shape.getRotation());
+		s2.setColor(new Color(0, 0, 0, 0.5f));
+		
+		s1.draw();
+		s2.draw();
+		
+	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2) * 4));
+
+	    boolean collide = false;
+	    
+	    glReadPixels((int)(s1.position.x - s1.size.x / 2), (int)(s1.position.y - s1.size.y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    for (int i = 0; i < pixels.capacity(); i++) {
+	    	if ((pixels.get(i) & 0xFF) == 64) collide = true;
+	    }
+	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
+	    glClear(GL_COLOR_BUFFER_BIT);
+	    
+	    return (collide);
 	}
 }
