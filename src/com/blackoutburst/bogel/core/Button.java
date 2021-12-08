@@ -136,7 +136,14 @@ public class Button {
 		tmp.setSize(this.shape.getSize());
 		tmp.setRotation(this.shape.getRotation());
 		tmp.setColor(Color.RED);
-		tmp.drawQuad();
+		
+		switch (this.bshape) {
+			case CIRCLE: tmp.drawCircle(); break;
+			case QUAD: tmp.drawQuad(); break;
+			case TRIANGLE: tmp.drawTriangle(); break;
+			default: tmp.drawQuad(); break;
+		}
+		
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
@@ -166,7 +173,14 @@ public class Button {
 		tmp.setSize(this.shape.getSize());
 		tmp.setRotation(this.shape.getRotation());
 		tmp.setColor(Color.RED);
-		tmp.drawQuad();
+		
+		switch (this.bshape) {
+			case CIRCLE: tmp.drawCircle(); break;
+			case QUAD: tmp.drawQuad(); break;
+			case TRIANGLE: tmp.drawTriangle(); break;
+			default: tmp.drawQuad(); break;
+		}
+		
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
@@ -196,7 +210,14 @@ public class Button {
 		tmp.setSize(this.shape.getSize());
 		tmp.setRotation(this.shape.getRotation());
 		tmp.setColor(Color.RED);
-		tmp.drawQuad();
+		
+		switch (this.bshape) {
+			case CIRCLE: tmp.drawCircle(); break;
+			case QUAD: tmp.drawQuad(); break;
+			case TRIANGLE: tmp.drawTriangle(); break;
+			default: tmp.drawQuad(); break;
+		}
+		
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
@@ -207,7 +228,32 @@ public class Button {
 		
 		return (px == 255 && Mouse.getLeftButton().isReleased());
 	}
-	
+	/**
+	 * <p>
+	 * Get the button shape
+	 * </p>
+	 * 
+	 * @return bshape
+	 * @since 0.3
+	 * @author Blackoutburst 
+	 */
+	public ButtonShape getBshape() {
+		return bshape;
+	}
+
+	/**
+	 * <p>
+	 * Set the button shape
+	 * </p>
+	 * 
+	 * @param bshape
+	 * @since 0.3
+	 * @author Blackoutburst 
+	 */
+	public void setBshape(ButtonShape bshape) {
+		this.bshape = bshape;
+	}
+
 	/**
 	 * <p>
 	 * Draw the button on screen
