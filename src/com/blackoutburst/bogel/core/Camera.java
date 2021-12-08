@@ -255,5 +255,4 @@ public class Camera {
 		Matrix.translate(new Vector2f(-position.x, -position.y), matrix);
 		Matrix.scale(new Vector2f(position.z), matrix);
 	}
-	
 }

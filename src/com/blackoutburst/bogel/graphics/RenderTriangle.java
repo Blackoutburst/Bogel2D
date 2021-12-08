@@ -126,8 +126,8 @@ public class RenderTriangle {
 	private static void setTransformation(Shape shape) {
 		Matrix.setIdentity(model);
 		Matrix.translate(shape.position, model);
+		Matrix.rotate((float) Math.toRadians(shape.rotation), model);
 		Matrix.scale(shape.size, model);
-		Matrix.rotate(shape.rotation, model);
 	}
 	
 	/**
