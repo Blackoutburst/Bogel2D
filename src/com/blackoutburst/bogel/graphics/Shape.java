@@ -1074,7 +1074,10 @@ public class Shape {
 	    
 	    glReadPixels((int)(s1.position.x - s1.size.x / 2), (int)(s1.position.y - s1.size.y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    for (int i = 0; i < pixels.capacity(); i++) {
-	    	if ((pixels.get(i) & 0xFF) == 64) collide = true;
+	    	if ((pixels.get(i) & 0xFF) == 64)  {
+	    		collide = true;
+	    		break;
+	    	}
 	    }
 	    
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
