@@ -21,7 +21,7 @@ public class HelloWorld {
     public static void main(String[] args) {
         Display display = new Display().setSize(600, 600).create();
         
-        Shape shape = new Shape(ShapeType.QUAD, new Vector2f(300), new Vector2f(300), Color.BOGEL);
+        Shape shape = new Shape(ShapeType.QUAD, new Vector2f(300), new Vector2f(400), Color.BOGEL);
         
         while (display.isOpen()) {
             display.clear();
