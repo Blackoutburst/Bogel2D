@@ -87,16 +87,8 @@ public class Button {
 		this.shape = shape;
 	}
 
-	/**
-	 * <p>
-	 * Check if the button is pressed
-	 * </p>
-	 * 
-	 * @return pressed
-	 * @since 0.3
-	 * @author Blackoutburst
-	 */
-	public boolean isPressed() {
+	
+	private boolean onButton() {
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -120,9 +112,21 @@ public class Button {
 	    int px = (pixels.get(0) & 0xFF);
 	    
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);	
-		
-		return (px == 255 && Mouse.getLeftButton().isPressed());
+	    glClear(GL_COLOR_BUFFER_BIT);
+	    return (px == 255);
+	}
+	
+	/**
+	 * <p>
+	 * Check if the button is pressed
+	 * </p>
+	 * 
+	 * @return pressed
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	public boolean isPressed() {
+		return (onButton() && Mouse.getLeftButton().isPressed());
 	}
 
 	/**
@@ -135,32 +139,7 @@ public class Button {
 	 * @author Blackoutburst
 	 */
 	public boolean isHover() {
-		glClearColor(0, 0, 0, 0);
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		Shape tmp = new Shape();
-		tmp.setPosition(this.shape.getPosition());
-		tmp.setSize(this.shape.getSize());
-		tmp.setRotation(this.shape.getRotation());
-		tmp.setColor(Color.RED);
-		
-		switch (this.bshape) {
-			case CIRCLE: tmp.drawCircle(); break;
-			case QUAD: tmp.drawQuad(); break;
-			case TRIANGLE: tmp.drawTriangle(); break;
-			default: tmp.drawQuad(); break;
-		}
-		
-	    int size = 10;
-	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
-
-	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-	    int px = (pixels.get(0) & 0xFF);
-	    
-	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);	
-		
-		return (px == 255);
+		return (onButton());
 	}
 
 	/**
@@ -173,32 +152,7 @@ public class Button {
 	 * @author Blackoutburst
 	 */
 	public boolean isDown() {
-		glClearColor(0, 0, 0, 0);
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		Shape tmp = new Shape();
-		tmp.setPosition(this.shape.getPosition());
-		tmp.setSize(this.shape.getSize());
-		tmp.setRotation(this.shape.getRotation());
-		tmp.setColor(Color.RED);
-		
-		switch (this.bshape) {
-			case CIRCLE: tmp.drawCircle(); break;
-			case QUAD: tmp.drawQuad(); break;
-			case TRIANGLE: tmp.drawTriangle(); break;
-			default: tmp.drawQuad(); break;
-		}
-		
-	    int size = 10;
-	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
-
-	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-	    int px = (pixels.get(0) & 0xFF);
-	    
-	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);	
-		
-		return (px == 255 && Mouse.getLeftButton().isDown());
+		return (onButton() && Mouse.getLeftButton().isDown());
 	}
 
 	/**
@@ -211,32 +165,7 @@ public class Button {
 	 * @author Blackoutburst 
 	 */
 	public boolean isReleased() {
-		glClearColor(0, 0, 0, 0);
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		Shape tmp = new Shape();
-		tmp.setPosition(this.shape.getPosition());
-		tmp.setSize(this.shape.getSize());
-		tmp.setRotation(this.shape.getRotation());
-		tmp.setColor(Color.RED);
-		
-		switch (this.bshape) {
-			case CIRCLE: tmp.drawCircle(); break;
-			case QUAD: tmp.drawQuad(); break;
-			case TRIANGLE: tmp.drawTriangle(); break;
-			default: tmp.drawQuad(); break;
-		}
-		
-	    int size = 10;
-	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
-
-	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-	    int px = (pixels.get(0) & 0xFF);
-	    
-	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);	
-		
-		return (px == 255 && Mouse.getLeftButton().isReleased());
+		return (onButton() && Mouse.getLeftButton().isReleased());
 	}
 	/**
 	 * <p>
@@ -274,10 +203,10 @@ public class Button {
 	 */
 	public void draw() {
 		switch (this.bshape) {
-		case CIRCLE: this.shape.drawCircle(); break;
-		case QUAD: this.shape.drawQuad(); break;
-		case TRIANGLE: this.shape.drawTriangle(); break;
-		default: this.shape.drawQuad(); break;
-	}
+			case CIRCLE: this.shape.drawCircle(); break;
+			case QUAD: this.shape.drawQuad(); break;
+			case TRIANGLE: this.shape.drawTriangle(); break;
+			default: this.shape.drawQuad(); break;
+		}
 	}
 }
