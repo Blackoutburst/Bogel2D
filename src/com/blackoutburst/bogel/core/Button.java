@@ -3,10 +3,16 @@ package com.blackoutburst.bogel.core;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Shape;
+
+import static org.lwjgl.opengl.GL11.glReadPixels;
+import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_RGBA;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 
 /**
  * <p>
@@ -91,8 +97,8 @@ public class Button {
 	 * @author Blackoutburst
 	 */
 	public boolean isPressed() {
-		GL11.glClearColor(0, 0, 0, 0);
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT);
 		
 		Shape tmp = new Shape();
 		tmp.setPosition(this.shape.getPosition());
@@ -110,10 +116,10 @@ public class Button {
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
-	    GL11.glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
-	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);	
+	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isPressed());
 	}
@@ -128,8 +134,8 @@ public class Button {
 	 * @author Blackoutburst
 	 */
 	public boolean isHover() {
-		GL11.glClearColor(0, 0, 0, 0);
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT);
 		
 		Shape tmp = new Shape();
 		tmp.setPosition(this.shape.getPosition());
@@ -147,10 +153,10 @@ public class Button {
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
-	    GL11.glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
-	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);	
+	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255);
 	}
@@ -165,8 +171,8 @@ public class Button {
 	 * @author Blackoutburst
 	 */
 	public boolean isDown() {
-		GL11.glClearColor(0, 0, 0, 0);
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT);
 		
 		Shape tmp = new Shape();
 		tmp.setPosition(this.shape.getPosition());
@@ -184,10 +190,10 @@ public class Button {
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
-	    GL11.glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
-	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);	
+	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isDown());
 	}
@@ -202,8 +208,8 @@ public class Button {
 	 * @author Blackoutburst 
 	 */
 	public boolean isReleased() {
-		GL11.glClearColor(0, 0, 0, 0);
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT);
 		
 		Shape tmp = new Shape();
 		tmp.setPosition(this.shape.getPosition());
@@ -221,10 +227,10 @@ public class Button {
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
-	    GL11.glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
-	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);	
+	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isReleased());
 	}
