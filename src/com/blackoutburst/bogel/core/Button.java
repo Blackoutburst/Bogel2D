@@ -119,6 +119,7 @@ public class Button {
 	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isPressed());
@@ -156,6 +157,7 @@ public class Button {
 	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255);
@@ -193,6 +195,7 @@ public class Button {
 	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isDown());
@@ -230,6 +233,7 @@ public class Button {
 	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    int px = (pixels.get(0) & 0xFF);
 	    
+	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);	
 		
 		return (px == 255 && Mouse.getLeftButton().isReleased());

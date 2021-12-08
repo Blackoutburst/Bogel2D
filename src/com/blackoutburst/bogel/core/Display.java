@@ -91,7 +91,7 @@ public class Display {
 	
 	protected String title = "Bogel2D Window";
 	
-	protected Color clearColor = new Color(0.1f);
+	protected static Color clearColor = new Color(0.1f);
 	
 	protected FullScreenMode fullScreen = FullScreenMode.NONE;
 	
@@ -264,8 +264,8 @@ public class Display {
 	 * @since 0.4
 	 * @author Blackoutburst
 	 */
-	public Color getClearColor() {
-		return (this.clearColor);
+	public static Color getClearColor() {
+		return (clearColor);
 	}
 	
 	/**
