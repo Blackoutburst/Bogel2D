@@ -966,6 +966,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 * @deprecated
+	 * @see com.blackoutburst.bogel.graphics.Shape#draw()
 	 */
 	public void drawQuad() {
 		this.isCircle = false;
@@ -980,6 +981,7 @@ public class Shape {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 * @deprecated
+	 * @see com.blackoutburst.bogel.graphics.Shape#draw()
 	 */
 	public void drawCircle() {
 		this.isCircle = true;
@@ -994,6 +996,7 @@ public class Shape {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 * @deprecated
+	 * @see com.blackoutburst.bogel.graphics.Shape#draw()
 	 */
 	public void drawTriangle() {
 		this.isCircle = false;
@@ -1040,6 +1043,14 @@ public class Shape {
 		return (this);
 	}
 	
+	/**
+	 * <p>
+	 * Render the shape on screen
+	 * </p>
+	 * 
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
 	public void draw() {
 		switch (this.type) {
 			case CIRCLE: this.isCircle = true; RenderQuad.draw(this); break;
