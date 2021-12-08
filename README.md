@@ -13,21 +13,22 @@ Minimal code
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Shape;
+import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 import com.blackoutburst.bogel.maths.Vector2f;
 
-public class Main {
-    
-    public static void main(String[] args) {
-        Display display = new Display().setSize(600, 600).create();
-        
-        Shape shape = new Shape(new Vector2f(300), new Vector2f(400), Color.BOGEL);
-        
-        while (display.isOpen()) {
-            display.clear();
-            shape.drawQuad();
-            display.update();
-        }
-    }
+public class HelloWorld {
+	
+	public static void main(String[] args) {
+		Display display = new Display().setSize(600, 600).create();
+		
+		Shape shape = new Shape(ShapeType.QUAD, new Vector2f(300), new Vector2f(400), Color.BOGEL);
+		
+		while (display.isOpen()) {
+			display.clear();
+			shape.draw();
+			display.update();
+		}
+	}
 }
 ```
 This code should provide the following output\
