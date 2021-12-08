@@ -18,7 +18,24 @@ import com.blackoutburst.bogel.graphics.Shape;
  *
  */
 public class Button {
+	
+	/**
+	 * <p>
+	 * Define the shape of the button
+	 * </p>
+	 * 
+	 * @author Blackoutburst
+	 * @since 0.3
+	 *
+	 */
+	public static enum ButtonShape {
+		QUAD,
+		TRIANGLE,
+		CIRCLE
+	}
+	
 	protected Shape shape;
+	protected ButtonShape bshape;
 	
 	/**
 	 * <p>
@@ -33,8 +50,9 @@ public class Button {
 	 * @since 0.3
 	 * @author Blackoutburst
 	 */
-	public Button(Shape shape) {
+	public Button(Shape shape, ButtonShape bshape) {
 		this.shape = shape;
+		this.bshape = bshape;
 	}
 
 	/**
@@ -81,7 +99,14 @@ public class Button {
 		tmp.setSize(this.shape.getSize());
 		tmp.setRotation(this.shape.getRotation());
 		tmp.setColor(Color.RED);
-		tmp.drawQuad();
+		
+		switch (this.bshape) {
+			case CIRCLE: tmp.drawCircle(); break;
+			case QUAD: tmp.drawQuad(); break;
+			case TRIANGLE: tmp.drawTriangle(); break;
+			default: tmp.drawQuad(); break;
+		}
+		
 	    int size = 10;
 	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
 
@@ -192,6 +217,11 @@ public class Button {
 	 * @author Blackoutburst 
 	 */
 	public void draw() {
-		this.shape.drawQuad();
+		switch (this.bshape) {
+		case CIRCLE: this.shape.drawCircle(); break;
+		case QUAD: this.shape.drawQuad(); break;
+		case TRIANGLE: this.shape.drawTriangle(); break;
+		default: this.shape.drawQuad(); break;
+	}
 	}
 }
