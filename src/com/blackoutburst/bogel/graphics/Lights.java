@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.glBlendFunc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.graphics.Shape.ShapeType;
@@ -64,7 +65,7 @@ public class Lights {
 			if (i >= lights.size()) break;
 			
 			Light l = lights.get(i);
-			plane.shader.setUniform2f("lights["+i+"].position", l.getPosition());
+			plane.shader.setUniform2f("lights["+i+"].position", l.getPosition().x - Camera.getPosition().x, l.getPosition().y - Camera.getPosition().y);
 			plane.shader.setUniform3f("lights["+i+"].color", l.getColor());
 			plane.shader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
 		}
