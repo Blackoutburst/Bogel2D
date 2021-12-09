@@ -1,7 +1,7 @@
 package com.blackoutburst.bogel.graphics;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
+import static org.lwjgl.opengl.GL11.GL_RED;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
@@ -1095,7 +1095,7 @@ public class Shape {
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL11.GL_RED, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
 	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
     		if ((pixels.get(i) & 0xFF) == 64)  {
@@ -1146,7 +1146,7 @@ public class Shape {
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL11.GL_RED, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
 	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
     		if ((pixels.get(i) & 0xFF) == 64)  {
