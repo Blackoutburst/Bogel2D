@@ -14,6 +14,7 @@ import static org.lwjgl.opengl.GL20.glLinkProgram;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
@@ -1090,18 +1091,18 @@ public class Shape {
 		s1.draw();
 		s2.draw();
 		
-	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2) * 4));
+	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL11.GL_RED, GL_UNSIGNED_BYTE, pixels);
+	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
-	    	if ((pixels.get(i) & 0xFF) == 64)  {
+    		if ((pixels.get(i) & 0xFF) == 64)  {
 	    		collide = true;
 	    		break;
 	    	}
 	    }
-	    
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
 	    
@@ -1141,13 +1142,14 @@ public class Shape {
 		s1.draw();
 		s2.draw();
 		
-	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2) * 4));
+	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL11.GL_RED, GL_UNSIGNED_BYTE, pixels);
+	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
-	    	if ((pixels.get(i) & 0xFF) == 64)  {
+    		if ((pixels.get(i) & 0xFF) == 64)  {
 	    		collide = true;
 	    		break;
 	    	}
