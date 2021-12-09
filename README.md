@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/github/license/Blackoutburst/Bogel2D.svg)](LICENSE)
 [![Release](https://img.shields.io/github/release/Blackoutburst/Bogel2D.svg)](https://github.com/Blackoutburst/Bogel2D/releases)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/37239b44052b4e448a2e75de9b3684f4)](https://www.codacy.com/gh/Blackoutburst/Bogel2D/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Blackoutburst/Bogel2D&amp;utm_campaign=Badge_Grade)
+![Size](https://github-size-badge.herokuapp.com/Blackoutburst/Bogel2D.svg)
 
 # Bogel2D
 I really simple abstraction of LWJGL 3, used to create small 2D game and other fast 2D prototype
