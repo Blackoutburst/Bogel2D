@@ -72,22 +72,22 @@ public class Matrix {
 		float ty = -(top + bottom) / (top - bottom);
 		float tz = -(far + near) / (far - near);
 
-        m.m00 = x_orth;
-        m.m10 = 0;
-        m.m20 = 0;
-        m.m30 = tx;
-        m.m01 = 0;
-        m.m11 = y_orth;
-        m.m21 = 0;
-        m.m31 = ty;
-        m.m02 = 0;
-        m.m12 = 0;
-        m.m22 = z_orth;
-        m.m32 = tz;
-        m.m03 = 0;
-        m.m13 = 0;
-        m.m23 = 0;
-        m.m33 = 1;
+		m.m00 = x_orth;
+		m.m10 = 0;
+		m.m20 = 0;
+		m.m30 = tx;
+		m.m01 = 0;
+		m.m11 = y_orth;
+		m.m21 = 0;
+		m.m31 = ty;
+		m.m02 = 0;
+		m.m12 = 0;
+		m.m22 = z_orth;
+		m.m32 = tz;
+		m.m03 = 0;
+		m.m13 = 0;
+		m.m23 = 0;
+		m.m33 = 1;
 	}
 	
 	/**
@@ -544,12 +544,12 @@ public class Matrix {
 	 */
 
 	private static float determinant3x3(float t00, float t01, float t02,
-				     float t10, float t11, float t12,
-				     float t20, float t21, float t22)
+					 float t10, float t11, float t12,
+					 float t20, float t21, float t22)
 	{
 		return   t00 * (t11 * t22 - t12 * t21)
-		       + t01 * (t12 * t20 - t10 * t22)
-		       + t02 * (t10 * t21 - t11 * t20);
+			   + t01 * (t12 * t20 - t10 * t22)
+			   + t02 * (t10 * t21 - t11 * t20);
 	}
 
 	/**
