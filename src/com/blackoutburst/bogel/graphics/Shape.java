@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
 
+import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
@@ -1093,7 +1094,7 @@ public class Shape {
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - s1.size.x / 2), (int)(s1.position.y - s1.size.y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    for (int i = 0; i < pixels.capacity(); i++) {
 	    	if ((pixels.get(i) & 0xFF) == 64)  {
 	    		collide = true;
@@ -1144,7 +1145,7 @@ public class Shape {
 
 	    boolean collide = false;
 	    
-	    glReadPixels((int)(s1.position.x - s1.size.x / 2), (int)(s1.position.y - s1.size.y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x * 2, (int)s1.size.y * 2, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 	    for (int i = 0; i < pixels.capacity(); i++) {
 	    	if ((pixels.get(i) & 0xFF) == 64)  {
 	    		collide = true;
