@@ -56,7 +56,7 @@ public class Lights {
 	 * @since 0.2 
 	 */
 	public static void draw() {
-		plane.setPosition(Display.getWidth() / 2, Display.getHeight() / 2);
+		plane.setPosition((Display.getWidth() / 2) + Camera.getPosition().x, (Display.getHeight() / 2) + Camera.getPosition().y);
 		plane.setSize(Display.getSizeF());
 		
 		plane.shader.setUniform2f("resolution", Display.getSizeF());
