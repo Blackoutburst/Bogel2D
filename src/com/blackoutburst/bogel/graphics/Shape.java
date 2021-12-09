@@ -14,7 +14,6 @@ import static org.lwjgl.opengl.GL20.glLinkProgram;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
@@ -1064,7 +1063,7 @@ public class Shape {
 	
 	/**
 	 * <p>
-	 * Check collision between two shapes^
+	 * Check collision between two shapes
 	 * </p>
 	 * 
 	 * @param shape
@@ -1111,7 +1110,7 @@ public class Shape {
 	
 	/**
 	 * <p>
-	 * Check collision between two shapes^
+	 * Check collision between two shapes
 	 * </p>
 	 * 
 	 * @param shape
