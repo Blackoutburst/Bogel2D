@@ -9,6 +9,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.glCullFace;
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import static org.lwjgl.opengl.GL11.GL_BACK;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.glPolygonMode;
 
 import org.lwjgl.opengl.GL11;
@@ -48,6 +49,7 @@ public class RenderManager {
 	public static void init() {
 		setOrtho(Display.getWidth(), Display.getHeight());
 		glEnable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		Lights.init();
@@ -93,6 +95,30 @@ public class RenderManager {
 	 */
 	public static void disableCulling() {
 		glDisable(GL_CULL_FACE); 
+	}
+	
+	/**
+	 * <p>
+	 * Enabledepth test
+	 * </p>
+	 * 
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
+	public static void enableDepth() {
+		glEnable(GL_DEPTH_TEST); 
+	}
+	
+	/**
+	 * <p>
+	 * Disable depth test
+	 * </p>
+	 * 
+	 * @since 0.4
+	 * @author Blackoutburst
+	 */
+	public static void disableDepth() {
+		glDisable(GL_DEPTH_TEST); 
 	}
 	
 	/**
