@@ -82,7 +82,6 @@ public class RenderManager {
 	public static void enableCulling() {
 		glEnable(GL_CULL_FACE); 
 		glCullFace(GL_BACK); 
-		glDisable(GL_CULL_FACE); 
 	}
 	
 	/**
