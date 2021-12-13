@@ -506,6 +506,9 @@ public class Display {
 			IntBuffer height = stack.mallocInt(1);
 			glfwGetWindowSize(window, width, height);
 			w = width.get();
+			
+			width.clear();
+			height.clear();
 		} catch (Exception e) {
 			System.err.println("Error while getting display width: "+e.toString());
 		}
@@ -529,6 +532,8 @@ public class Display {
 			IntBuffer height = stack.mallocInt(1);
 			glfwGetWindowSize(window, width, height);
 			h = height.get();
+			width.clear();
+			height.clear();
 		} catch (Exception e) {
 			System.err.println("Error while getting display height: "+e.toString());
 		}
@@ -553,6 +558,8 @@ public class Display {
 			IntBuffer height = stack.mallocInt(1);
 			glfwGetWindowSize(window, width, height);
 			size.set(width.get(), height.get());
+			width.clear();
+			height.clear();
 		} catch (Exception e) {
 			System.err.println("Error while getting display size: "+e.toString());
 		}
@@ -576,6 +583,8 @@ public class Display {
 			IntBuffer height = stack.mallocInt(1);
 			glfwGetWindowSize(window, width, height);
 			size.set(width.get(), height.get());
+			width.clear();
+			height.clear();
 		} catch (Exception e) {
 			System.err.println("Error while getting display size: "+e.toString());
 		}
@@ -626,9 +635,13 @@ public class Display {
 			IntBuffer comp = stack.mallocInt(1);
 			IntBuffer w = stack.mallocInt(1);
 			IntBuffer h = stack.mallocInt(1);
-
+			
 			image = STBImage.stbi_load_from_memory(IOUtils.ioResourceToByteBuffer(path, 1024), w, h, comp, 4);
 			imageSize.set(w.get(), h.get());
+			
+			comp.clear();
+			w.clear();
+			h.clear();
 			if (image == null) {
 				throw new Exception("Failed to load icons");
 			}

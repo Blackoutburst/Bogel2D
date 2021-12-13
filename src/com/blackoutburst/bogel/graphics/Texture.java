@@ -67,7 +67,7 @@ public class Texture {
 			} catch (Exception e) {}
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(0), this.height.get(0), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
-			
+			comp.clear();
 			if (data == null) {
 				System.err.println("Couldn't load ["+filePath+"] using default texture instead");
 				loadMissing();
@@ -107,6 +107,7 @@ public class Texture {
 			
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(0), this.height.get(0), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
+			comp.clear();
 		}
 		this.shape = new Shape(ShapeType.QUAD, this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
 		STBImage.stbi_image_free(data);
