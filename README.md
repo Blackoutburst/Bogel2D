@@ -29,6 +29,8 @@ public class HelloWorld {
             shape.draw();
             display.update();
         }
+        shape.clean();
+        display.destroy();
     }
 }
 ```
