@@ -3,10 +3,6 @@ package com.blackoutburst.bogel.core;
 import com.blackoutburst.bogel.graphics.RenderManager;
 import com.blackoutburst.bogel.graphics.RenderQuad;
 import com.blackoutburst.bogel.graphics.RenderTriangle;
-import com.blackoutburst.bogel.graphics.Shape;
-import org.lwjgl.opengl.GL20;
-
-import java.util.Map;
 
 /**
  * <h1>Core</h1>

@@ -22,11 +22,6 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * <h1>RenderManager</h1>
  * 
