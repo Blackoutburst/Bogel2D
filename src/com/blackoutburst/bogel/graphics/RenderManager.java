@@ -22,6 +22,11 @@ import static org.lwjgl.opengl.GL11.GL_ONE;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * <h1>RenderManager</h1>
  * 
@@ -36,7 +41,7 @@ public class RenderManager {
 	
 	/**Projection matrix*/
 	public static Matrix projection = new Matrix();
-	
+
 	/**
 	 * <h1>This is automatically called when creating the window</h1>
 	 * <p>

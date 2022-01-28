@@ -2,6 +2,11 @@ package com.blackoutburst.bogel.core;
 
 import com.blackoutburst.bogel.graphics.RenderManager;
 import com.blackoutburst.bogel.graphics.RenderQuad;
+import com.blackoutburst.bogel.graphics.RenderTriangle;
+import com.blackoutburst.bogel.graphics.Shape;
+import org.lwjgl.opengl.GL20;
+
+import java.util.Map;
 
 /**
  * <h1>Core</h1>
@@ -51,7 +56,7 @@ public class Core {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	protected static void init(Display display) {
+	protected static void init() {
 		Shader.init();
 		RenderManager.init();
 	}
@@ -82,5 +87,6 @@ public class Core {
 	 */
 	protected static void clear() {
 		RenderQuad.clear();
+		RenderTriangle.clear();
 	}
 }

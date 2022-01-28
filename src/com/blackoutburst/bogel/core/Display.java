@@ -175,7 +175,7 @@ public class Display {
 		glfwSetMouseButtonCallback(window, new MouseButtonCallBack());
 		glfwSetScrollCallback(window, new MouseScrollCallBack());
 		
-		Core.init(this);
+		Core.init();
 		
 		return (this);
 	}

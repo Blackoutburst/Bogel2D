@@ -19,6 +19,7 @@ import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
+import org.lwjgl.opengl.GL20;
 
 /**
  * <h1>Shape</h1>
@@ -94,7 +95,11 @@ public class Shape {
 		this.shader = new Shader();
 		this.shader.setShaderProgram(this.shaderProgram);
 	}
-	
+
+	public void clean() {
+		GL20.glDeleteProgram(this.shaderProgram);
+	}
+
 	/**
 	 * <p>
 	 * Create a new Shape
@@ -781,7 +786,7 @@ public class Shape {
 		this.color.b = b;
 		return (this);
 	}
-	
+
 	/**
 	 * <p>
 	 * Set the Shape color (r, g, b, a)
