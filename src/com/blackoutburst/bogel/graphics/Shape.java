@@ -1109,7 +1109,10 @@ public class Shape {
 	    }
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
-	    
+
+		pixels.clear();
+		s1.clean();
+		s2.clean();
 	    return (collide);
 	}
 	
@@ -1160,7 +1163,9 @@ public class Shape {
 	    }
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
-	    
+		pixels.clear();
+		s1.clean();
+		s2.clean();
 	    return (collide);
 	}
 }
