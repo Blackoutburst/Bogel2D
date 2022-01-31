@@ -46,6 +46,8 @@ public class Shape {
 	
 	protected ShapeType type;
 
+	protected ByteBuffer pixels;
+
 	protected Texture texture;
 
 	protected Vector2f position;
@@ -89,7 +91,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation, Boolean... buffer) {
 		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
@@ -97,6 +99,7 @@ public class Shape {
 		this.size = size;
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.TEXTURE;
+		if (buffer.length == 0) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
 		initShape();
 	}
 
@@ -111,13 +114,14 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, Boolean... buffer) {
 		this.type = type;
 		this.textureless = true;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.COLOR;
+		if (buffer.length == 0) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
 		initShape();
 	}
 
@@ -521,22 +525,19 @@ public class Shape {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape s1 = new Shape(this.type, this.position, this.size, this.rotation);
-		s1.setColor(new Color(0, 0, 0, 0.5f));
+		Shape s1 = new Shape(this.type, this.position, this.size, this.rotation, false)
+				.setColor(new Color(0, 0, 0, 0.5f));
 		
-		Shape s2 = new Shape(shape.type, shape.position, shape.size, shape.rotation);
-		s2.setPosition(shape.getPosition());
-		s2.setSize(shape.getSize());
-		s2.setRotation(shape.getRotation());
-		s2.setColor(new Color(0, 0, 0, 0.5f));
-		
+		Shape s2 = new Shape(shape.type, shape.position, shape.size, shape.rotation, false)
+				.setColor(new Color(0, 0, 0, 0.5f));
+
 		s1.draw();
 		s2.draw();
-		
-	    final ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
+
 
 	    boolean collide = false;
-	    
+
+		pixels.clear();
 	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
 	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
@@ -566,24 +567,15 @@ public class Shape {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape s1 = new Shape(this.type, this.texture, this.position, this.size, this.rotation);
-		s1.setPosition(this.getPosition());
-		s1.setSize(this.getSize());
-		s1.setRotation(this.getRotation());
-		s1.setColor(new Color(0, 0, 0, 0.5f));
-		s1.setReactToLight(false);
-		
-		Shape s2 = new Shape(shape.type, shape.texture, shape.position, shape.size, shape.rotation);
-		s2.setColor(new Color(0, 0, 0, 0.5f));
-		s2.setReactToLight(false);
-		
+		Shape s1 = new Shape(this.type, this.texture, this.position, this.size, this.rotation, false).setColor(new Color(0, 0, 0, 0.5f));
+		Shape s2 = new Shape(shape.type, shape.texture, shape.position, shape.size, shape.rotation, false).setColor(new Color(0, 0, 0, 0.5f));
+
 		s1.draw();
 		s2.draw();
 		
-	    final ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
-
 	    boolean collide = false;
-	    
+
+		pixels.clear();
 	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
 	    
 	    for (int i = 0; i < pixels.capacity(); i++) {
