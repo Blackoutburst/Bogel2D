@@ -44,7 +44,7 @@ public class Vector4i {
 	 * Create a new vector (size, size, size, size)
 	 * </p>
 	 *
-	 * @param int size
+	 * @param size the vector size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -60,10 +60,10 @@ public class Vector4i {
 	 * Create a new vector (x, y, z, w)
 	 * </p>
 	 *
-	 * @param int x
-	 * @param int y
-	 * @param int z
-	 * @param int w
+	 * @param x the vector x
+	 * @param y the vector y
+	 * @param z the vector z
+	 * @param w the vector w
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -79,10 +79,10 @@ public class Vector4i {
 	 * Set vector values (x, y, z, w)
 	 * </p>
 	 *
-	 * @param int x
-	 * @param int y
-	 * @param int z
-	 * @param int w
+	 * @param x the vector x
+	 * @param y the vector y
+	 * @param z the vector z
+	 * @param w the vector w
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -111,7 +111,7 @@ public class Vector4i {
 	 * Set vector X value
 	 * </p>
 	 *
-	 * @param int x
+	 * @param x the vector x
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -137,7 +137,7 @@ public class Vector4i {
 	 * Set vector Y value
 	 * </p>
 	 *
-	 * @param int y
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -163,7 +163,7 @@ public class Vector4i {
 	 * Set vector Z value
 	 * </p>
 	 *
-	 * @param int z
+	 * @param z the vector z
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -189,7 +189,7 @@ public class Vector4i {
 	 * Set vector W value
 	 * </p>
 	 *
-	 * @param int w
+	 * @param w the vector w
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -223,7 +223,7 @@ public class Vector4i {
 	 * Multiply two vector
 	 * </p>
 	 *
-	 * @param float v
+	 * @param v the vector scale
 	 * @return Vector4i
 	 * @since 0.1
 	 * @author Blackoutburst

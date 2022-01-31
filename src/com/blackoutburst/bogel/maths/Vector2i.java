@@ -36,7 +36,7 @@ public class Vector2i {
 	 * Create a new vector (size, size)
 	 * </p>
 	 *
-	 * @param int size
+	 * @param size the vector size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -50,8 +50,8 @@ public class Vector2i {
 	 * Create a new vector (x, y)
 	 * </p>
 	 *
-	 * @param int x
-	 * @param int y
+	 * @param x the vector x
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -65,8 +65,8 @@ public class Vector2i {
 	 * Set vector values (x, y)
 	 * </p>
 	 *
-	 * @param int x
-	 * @param int y
+	 * @param x the vector x
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -93,7 +93,7 @@ public class Vector2i {
 	 * Set vector X value
 	 * </p>
 	 *
-	 * @param int x
+	 * @param x the vector x
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -119,7 +119,7 @@ public class Vector2i {
 	 * Set vector Y value
 	 * </p>
 	 *
-	 * @param int y
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -151,7 +151,7 @@ public class Vector2i {
 	 * Multiply two vector
 	 * </p>
 	 *
-	 * @param float v
+	 * @param v the vector scale
 	 * @return Vector2i
 	 * @since 0.1
 	 * @author Blackoutburst

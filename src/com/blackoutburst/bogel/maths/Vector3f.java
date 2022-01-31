@@ -40,7 +40,7 @@ public class Vector3f {
 	 * Create a new vector (size, size, size)
 	 * </p>
 	 *
-	 * @param float size
+	 * @param size the vector size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -55,9 +55,9 @@ public class Vector3f {
 	 * Create a new vector (x, y, z)
 	 * </p>
 	 *
-	 * @param float x
-	 * @param float y
-	 * @param float z
+	 * @param x the vector x
+	 * @param y the vector y
+	 * @param z the vector z
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -72,9 +72,9 @@ public class Vector3f {
 	 * Set vector values (x, y, z)
 	 * </p>
 	 *
-	 * @param float x
-	 * @param float y
-	 * @param float z
+	 * @param x the vector x
+	 * @param y the vector y
+	 * @param z the vector z
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -102,7 +102,7 @@ public class Vector3f {
 	 * Set vector X value
 	 * </p>
 	 *
-	 * @param float x
+	 * @param x the vector x
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -128,7 +128,7 @@ public class Vector3f {
 	 * Set vector Y value
 	 * </p>
 	 *
-	 * @param float xy
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -154,7 +154,7 @@ public class Vector3f {
 	 * Set vector Z value
 	 * </p>
 	 *
-	 * @param float z
+	 * @param z the vector z
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -187,7 +187,7 @@ public class Vector3f {
 	 * Multiply two vector
 	 * </p>
 	 *
-	 * @param float v
+	 * @param v the vector scale
 	 * @return Vector3f
 	 * @since 0.1
 	 * @author Blackoutburst

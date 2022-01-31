@@ -36,7 +36,7 @@ public class Vector2f {
 	 * Create a new vector (size, size)
 	 * </p>
 	 *
-	 * @param float size
+	 * @param size the vector size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -50,8 +50,8 @@ public class Vector2f {
 	 * Create a new vector (x, y)
 	 * </p>
 	 *
-	 * @param float x
-	 * @param float y
+	 * @param x the vector x
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -65,8 +65,8 @@ public class Vector2f {
 	 * Set vector values (x, y)
 	 * </p>
 	 *
-	 * @param float x
-	 * @param float y
+	 * @param x the vector x
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -93,7 +93,7 @@ public class Vector2f {
 	 * Set vector X value
 	 * </p>
 	 *
-	 * @param float x
+	 * @param x the vector x
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -119,7 +119,7 @@ public class Vector2f {
 	 * Set vector Y value
 	 * </p>
 	 *
-	 * @param float y
+	 * @param y the vector y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -151,7 +151,7 @@ public class Vector2f {
 	 * Multiply two vector
 	 * </p>
 	 *
-	 * @param float v
+	 * @param v the vector scale
 	 * @return Vector2f
 	 * @since 0.1
 	 * @author Blackoutburst
