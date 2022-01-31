@@ -513,6 +513,33 @@ public class Shape {
 
 	/**
 	 * <p>
+	 * Check pixel collision
+	 * </p>
+	 *
+	 * @param s1 the shape used for the buffer
+	 * @return boolean
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	private boolean pixelCollide(@NotNull Shape s1) {
+		boolean collide = false;
+
+		glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
+
+		for (int i = 0; i < pixels.capacity(); i++) {
+			if ((pixels.get(i) & 0xFF) == 64)  {
+				collide = true;
+				break;
+			}
+		}
+		glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
+		glClear(GL_COLOR_BUFFER_BIT);
+		pixels.clear();
+		return (collide);
+	}
+
+	/**
+	 * <p>
 	 * Check collision between two shapes
 	 * </p>
 	 * 
@@ -527,30 +554,12 @@ public class Shape {
 		
 		Shape s1 = new Shape(this.type, this.position, this.size, this.rotation, false)
 				.setColor(new Color(0, 0, 0, 0.5f));
-		
 		Shape s2 = new Shape(shape.type, shape.position, shape.size, shape.rotation, false)
 				.setColor(new Color(0, 0, 0, 0.5f));
 
 		s1.draw();
 		s2.draw();
-
-
-	    boolean collide = false;
-
-		pixels.clear();
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
-	    
-	    for (int i = 0; i < pixels.capacity(); i++) {
-    		if ((pixels.get(i) & 0xFF) == 64)  {
-	    		collide = true;
-	    		break;
-	    	}
-	    }
-	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);
-
-		pixels.clear();
-	    return (collide);
+	    return (pixelCollide(s1));
 	}
 	
 	/**
@@ -567,26 +576,13 @@ public class Shape {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape s1 = new Shape(this.type, this.texture, this.position, this.size, this.rotation, false).setColor(new Color(0, 0, 0, 0.5f));
-		Shape s2 = new Shape(shape.type, shape.texture, shape.position, shape.size, shape.rotation, false).setColor(new Color(0, 0, 0, 0.5f));
+		Shape s1 = new Shape(this.type, this.texture, this.position, this.size, this.rotation, false)
+				.setColor(new Color(0, 0, 0, 0.5f));
+		Shape s2 = new Shape(shape.type, shape.texture, shape.position, shape.size, shape.rotation, false)
+				.setColor(new Color(0, 0, 0, 0.5f));
 
 		s1.draw();
 		s2.draw();
-		
-	    boolean collide = false;
-
-		pixels.clear();
-	    glReadPixels((int)(s1.position.x - (s1.size.x / 2) - Camera.getPosition().x), (int)(s1.position.y - (s1.size.y / 2) - Camera.getPosition().y), (int)s1.size.x, (int)s1.size.y, GL_RED, GL_UNSIGNED_BYTE, pixels);
-	    
-	    for (int i = 0; i < pixels.capacity(); i++) {
-    		if ((pixels.get(i) & 0xFF) == 64)  {
-	    		collide = true;
-	    		break;
-	    	}
-	    }
-	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
-	    glClear(GL_COLOR_BUFFER_BIT);
-		pixels.clear();
-	    return (collide);
+	    return (pixelCollide(s1));
 	}
 }
