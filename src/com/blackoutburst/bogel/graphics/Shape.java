@@ -1065,7 +1065,25 @@ public class Shape {
 			default: this.isCircle = false; RenderQuad.draw(this); break;
 		}
 	}
-	
+
+
+	/**
+	 * <p>
+	 * Check collision between two shapes
+	 * </p>
+	 *
+	 * @param shape
+	 * @return boolean
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public boolean AABB(Shape shape) {
+		return (this.getPosition().x + this.getSize().x / 2 >= shape.getPosition().x - shape.getSize().x / 2 &&
+				this.getPosition().x - this.getSize().x / 2 <= shape.getPosition().x + shape.getSize().x / 2 &&
+				this.getPosition().y + this.getSize().y / 2 >= shape.getPosition().y - shape.getSize().y / 2 &&
+				this.getPosition().y - this.getSize().y / 2 <= shape.getPosition().y + shape.getSize().y / 2);
+	}
+
 	/**
 	 * <p>
 	 * Check collision between two shapes
