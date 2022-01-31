@@ -16,6 +16,17 @@ import static org.lwjgl.opengl.GL41.glProgramUniform2f;
 import static org.lwjgl.opengl.GL41.glProgramUniform3f;
 import static org.lwjgl.opengl.GL41.glProgramUniformMatrix4fv;
 
+
+/**
+ * <h1>ShaderProgram</h1>
+ *
+ * <p>
+ * Create and manager shader programs
+ * </p>
+ *
+ * @since 0.5
+ * @author Blackoutburst
+ */
 public class ShaderProgram {
 
     protected int id;
@@ -35,12 +46,30 @@ public class ShaderProgram {
     /** Basic program for shape with texture and light effect */
     public static ShaderProgram TEXTURE_LIGHT = new ShaderProgram(Shader.VERTEX_TEXTURE, Shader.FRAGMENT_TEXTURE_LIGHT);
 
+    /**
+     * <p>
+     * Create a new shader program
+     * </p>
+     *
+     * @param vertex the vertex shader
+     * @param fragment the fragment shader
+     * @since 0.5
+     * @author Blackoutburst
+     */
     public ShaderProgram(Shader vertex, Shader fragment) {
         this.vertex = vertex;
         this.fragment = fragment;
         createProgram();
     }
 
+    /**
+     * <p>
+     * Create a new shader program
+     * </p>
+     *
+     * @since 0.5
+     * @author Blackoutburst
+     */
     private void createProgram() {
         id = glCreateProgram();
         glAttachShader(id, vertex.id);
@@ -50,18 +79,53 @@ public class ShaderProgram {
         glDetachShader(id, fragment.id);
     }
 
+    /**
+     * <p>
+     * Delete the program
+     * </p>
+     *
+     * @since 0.5
+     * @author Blackoutburst
+     */
     public void clean() {
         glDeleteProgram(id);
     }
 
+    /**
+     * <p>
+     * Get the program id
+     * </p>
+     *
+     * @return int
+     * @since 0.5
+     * @author Blackoutburst
+     */
     public int getID() {
         return (id);
     }
 
+    /**
+     * <p>
+     * Get the vertex shader
+     * </p>
+     *
+     * @return Shader
+     * @since 0.5
+     * @author Blackoutburst
+     */
     public Shader getVertex() {
         return (vertex);
     }
 
+    /**
+     * <p>
+     * Get the fragment shader
+     * </p>
+     *
+     * @return Shader
+     * @since 0.5
+     * @author Blackoutburst
+     */
     public Shader getFragment() {
         return (fragment);
     }
