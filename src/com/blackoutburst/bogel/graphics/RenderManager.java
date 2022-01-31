@@ -1,16 +1,11 @@
 package com.blackoutburst.bogel.graphics;
 
 import com.blackoutburst.bogel.core.Camera;
-import org.lwjgl.opengl.GL11;
-
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
+import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_NEAREST;
-import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glUseProgram;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 /**
  * <h1>RenderManager</h1>
