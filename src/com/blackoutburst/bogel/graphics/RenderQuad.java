@@ -69,18 +69,18 @@ public class RenderQuad {
 	 */
 	protected static void initRenderer() {
 		vaoID = glGenVertexArrays();
-		int vbo = glGenBuffers();
-		int ebo = glGenBuffers();
+		final int vbo = glGenBuffers();
+		final int ebo = glGenBuffers();
 		
 		glBindVertexArray(vaoID);
-		
-		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
+
+		final FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
 		((Buffer) verticesBuffer.put(vertices)).flip();
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
-		
-		IntBuffer indicesBuffer = BufferUtils.createIntBuffer(indices.length);
+
+		final IntBuffer indicesBuffer = BufferUtils.createIntBuffer(indices.length);
 		((Buffer) indicesBuffer.put(indices)).flip();
 		
 		
@@ -168,17 +168,11 @@ public class RenderQuad {
 		setTransformation(shape);
 		setMatricesUniform(shape);
 
-		if (!shape.customShader)
-			setDefaultUniform(shape);
-
 		glUseProgram(shape.shaderProgram.getID());
 		glBindVertexArray(vaoID);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 		glUseProgram(0);
 		glBindTexture(GL_TEXTURE_2D, 0);
-		glDisableVertexAttribArray(0);
-		glBindVertexArray(0);
-		glUseProgram(0);
 	}
 }

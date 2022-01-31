@@ -48,11 +48,11 @@ public class RenderTriangle {
 	 */
 	protected static void initRenderer() {
 		vaoID = glGenVertexArrays();
-		int vbo = glGenBuffers();
+		final int vbo = glGenBuffers();
 		
 		glBindVertexArray(vaoID);
-		
-		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
+
+		final FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
 		((Buffer) verticesBuffer.put(vertices)).flip();
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -136,9 +136,6 @@ public class RenderTriangle {
 		
 		setTransformation(shape);
 		setMatricesUniform(shape);
-		
-		if (!shape.customShader)
-			setDefaultUniform(shape);
 		
 		glUseProgram(shape.shaderProgram.getID());
 		glBindVertexArray(vaoID);

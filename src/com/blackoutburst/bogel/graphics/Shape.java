@@ -72,7 +72,7 @@ public class Shape {
 	private void initShape() {
 		color = Color.WHITE;
 		reactToLight = false;
-		isCircle = false;
+		isCircle = type == ShapeType.CIRCLE;
 		smoothTexture = true;
 	}
 

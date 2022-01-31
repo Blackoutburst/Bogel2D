@@ -14,7 +14,7 @@ public class Color {
 	
 	/**
 	 * White color RGBA(1, 1, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(255, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -22,7 +22,7 @@ public class Color {
 	
 	/**
 	 * Black color RGBA(0, 0, 0, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(0, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -30,7 +30,7 @@ public class Color {
 	
 	/**
 	 * Gray color RGBA(0.5, 0.5, 0.5, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(127, 127, 127);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(127, 127, 127);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -38,7 +38,7 @@ public class Color {
 	
 	/**
 	 * Light Gray color RGBA(0.75, 0.75, 0.75, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(191, 191, 191);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(191, 191, 191);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -46,7 +46,7 @@ public class Color {
 	
 	/**
 	 * Dark Gray color RGBA(0.25, 0.25, 0.25, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(63, 63, 63);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(63, 63, 63);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -54,7 +54,7 @@ public class Color {
 	
 	/**
 	 * Red color RGBA(1, 0, 0, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(255, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -62,7 +62,7 @@ public class Color {
 	
 	/**
 	 * Green color RGBA(0, 1, 0, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(0, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -70,7 +70,7 @@ public class Color {
 	
 	/**
 	 * Blue color RGBA(0, 0, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(0, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -78,7 +78,7 @@ public class Color {
 	
 	/**
 	 * Yellow color RGBA(1, 1, 0, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(255, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -86,7 +86,7 @@ public class Color {
 	
 	/**
 	 * Magenta color RGBA(1, 0, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(255, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -94,7 +94,7 @@ public class Color {
 	
 	/**
 	 * Cyan color RGBA(0, 1, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(0, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -102,7 +102,7 @@ public class Color {
 	
 	/**
 	 * Orange color RGBA(1, 0.5, 0, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(255, 127, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(255, 127, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -110,7 +110,7 @@ public class Color {
 	
 	/**
 	 * Light Blue color RGBA(0, 0.5, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(0, 127, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(0, 127, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -118,7 +118,7 @@ public class Color {
 	
 	/**
 	 * Transparent color RGBA(0, 0, 0, 0)
-	 * <div = style="border:2px solid white;width:30px;height:30px;border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="border:2px solid white;width:30px;height:30px;border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.1
 	 */
@@ -126,7 +126,7 @@ public class Color {
 	
 	/**
 	 * Purple color RGBA(0.5, 0, 1, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(127, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(127, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.2
 	 */
@@ -134,7 +134,7 @@ public class Color {
 	
 	/**
 	 * Bogel color RGBA(0.25, 0, 0.27, 1)
-	 * <div = style="width:30px;height:30px;background-color:rgb(64, 0, 71);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
+	 * <div style="width:30px;height:30px;background-color:rgb(64, 0, 71);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
 	 * @since 0.2
 	 */

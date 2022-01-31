@@ -35,16 +35,16 @@ public class ShaderProgram {
     protected Shader fragment;
 
     /** Basic program for shape with simple color */
-    public static ShaderProgram COLOR = new ShaderProgram(Shader.DEFAULT_VERTEX, Shader.DEFAULT_FRAGMENT);
+    public static final ShaderProgram COLOR = new ShaderProgram(Shader.DEFAULT_VERTEX, Shader.DEFAULT_FRAGMENT);
 
     /** Basic program for shape with simple texture */
-    public static ShaderProgram TEXTURE = new ShaderProgram(Shader.VERTEX_TEXTURE, Shader.FRAGMENT_TEXTURE);
+    public static final ShaderProgram TEXTURE = new ShaderProgram(Shader.VERTEX_TEXTURE, Shader.FRAGMENT_TEXTURE);
 
     /** Basic program for shape with color and light effect */
-    public static ShaderProgram COLOR_LIGHT = new ShaderProgram(Shader.DEFAULT_VERTEX, Shader.FRAGMENT_LIGHT);
+    public static final ShaderProgram COLOR_LIGHT = new ShaderProgram(Shader.DEFAULT_VERTEX, Shader.FRAGMENT_LIGHT);
 
     /** Basic program for shape with texture and light effect */
-    public static ShaderProgram TEXTURE_LIGHT = new ShaderProgram(Shader.VERTEX_TEXTURE, Shader.FRAGMENT_TEXTURE_LIGHT);
+    public static final ShaderProgram TEXTURE_LIGHT = new ShaderProgram(Shader.VERTEX_TEXTURE, Shader.FRAGMENT_TEXTURE_LIGHT);
 
     /**
      * <p>
