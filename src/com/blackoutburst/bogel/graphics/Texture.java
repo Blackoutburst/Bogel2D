@@ -75,7 +75,7 @@ public class Texture {
 			}
 		}
 		if (data != null) {
-			this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0);
+			this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0, false);
 			STBImage.stbi_image_free(data);
 			this.missing = false;
 		}
@@ -110,7 +110,7 @@ public class Texture {
 			glGenerateMipmap(GL_TEXTURE_2D);
 			((Buffer)comp).clear();
 		}
-		this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0);
+		this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0, false);
 		STBImage.stbi_image_free(data);
 		this.missing = true;
 	}

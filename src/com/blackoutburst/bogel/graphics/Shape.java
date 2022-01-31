@@ -91,7 +91,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation, Boolean... buffer) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer) {
 		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
@@ -99,7 +99,7 @@ public class Shape {
 		this.size = size;
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.TEXTURE;
-		if (buffer.length == 0) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
+		if (allocateBuffer) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
 		initShape();
 	}
 
@@ -114,14 +114,14 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, Boolean... buffer) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer) {
 		this.type = type;
 		this.textureless = true;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.COLOR;
-		if (buffer.length == 0) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
+		if (allocateBuffer) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
 		initShape();
 	}
 

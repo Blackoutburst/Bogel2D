@@ -43,7 +43,7 @@ public class Lights {
 	 * @since 0.2
 	 */
 	protected static void init() {
-		plane = new Shape(ShapeType.QUAD, new Vector2f(), new Vector2f(), 0).setShaderProgram(ShaderProgram.COLOR_LIGHT);
+		plane = new Shape(ShapeType.QUAD, new Vector2f(), new Vector2f(), 0, false).setShaderProgram(ShaderProgram.COLOR_LIGHT);
 	}
 	
 	/**
