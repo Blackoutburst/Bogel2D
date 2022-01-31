@@ -44,21 +44,19 @@ public class Shape {
 	}
 	
 	protected ShapeType type;
-	
-	protected boolean isCircle;
-	
+
 	protected Texture texture;
-	
+
 	protected Vector2f position;
 	protected Vector2f size;
-	
+
 	protected float rotation;
-	
+
 	protected Color color;
-	
+
 	protected ShaderProgram shaderProgram;
 
-	protected boolean customShader;
+	protected boolean isCircle;
 	protected boolean smoothTexture;
 	protected boolean textureless;
 	protected boolean reactToLight;
@@ -82,20 +80,20 @@ public class Shape {
 		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
-		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
+		this.shaderProgram = ShaderProgram.TEXTURE;
 		initShape();
 	}
 
 	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation) {
 		this.type = type;
 		this.textureless = true;
-		this.customShader = false;
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
+		this.shaderProgram = ShaderProgram.COLOR;
 		initShape();
 	}
 

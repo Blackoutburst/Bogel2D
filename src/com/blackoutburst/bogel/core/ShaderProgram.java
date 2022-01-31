@@ -59,7 +59,7 @@ public class ShaderProgram {
     public ShaderProgram(Shader vertex, Shader fragment) {
         this.vertex = vertex;
         this.fragment = fragment;
-        createProgram();
+        this.createProgram();
     }
 
     /**
