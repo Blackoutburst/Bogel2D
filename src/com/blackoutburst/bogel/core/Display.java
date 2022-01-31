@@ -79,7 +79,7 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static enum FullScreenMode{
+	public enum FullScreenMode{
 		NONE,
 		FULL,
 		BORDERLESS
@@ -213,15 +213,15 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param FullScreenMode full
+	 * @param mode fullscreen mode
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Display setFullscreenMode(FullScreenMode full) {
-		if (full != FullScreenMode.NONE)
+	public Display setFullscreenMode(FullScreenMode mode) {
+		if (mode != FullScreenMode.NONE)
 			this.setDecoration(false);
 		
-		fullScreen = full;
+		fullScreen = mode;
 		
 		if (window != NULL)
 			setFullScreen();
@@ -248,7 +248,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param Color c
+	 * @param c the new background color
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -284,11 +284,12 @@ public class Display {
 		glfwDestroyWindow(window);
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
+		System.exit(0);
 	}
 	
 	/**
 	 * <p>
-	 * Return the window parrameter<br>
+	 * Return the window parameter<br>
 	 * </p>
 	 * 
 	 * @return long window
@@ -306,7 +307,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param String title
+	 * @param title the new window title
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -326,7 +327,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param boolean enabled
+	 * @param enabled if the vsync should be used or not
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -345,8 +346,8 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param int w
-	 * @param int h
+	 * @param w the window width
+	 * @param h the window height
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -366,7 +367,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param Vector2i size
+	 * @param size the window size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -385,9 +386,8 @@ public class Display {
 	 * Set the window size
 	 * </p>
 	 * 
-	 * @return Display
-	 * @param int w
-	 * @param int h
+	 * @param w the window width
+	 * @param h the window height
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -406,7 +406,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param booelan resizeable
+	 * @param resizable allow the window to be resized
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -426,7 +426,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param booelan transparent
+	 * @param transparent allow the framebuffer to be transparent (this doesn't work on some graphic devices)
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -446,7 +446,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param booelan decorated
+	 * @param decorated allow the window decoration (default system buttons)
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -465,7 +465,7 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param Vector2i position
+	 * @param position the new window position
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
@@ -480,8 +480,8 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param int x
-	 * @param int y
+	 * @param x the x position
+	 * @param y the y position
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
@@ -508,10 +508,10 @@ public class Display {
 			glfwGetWindowSize(window, width, height);
 			w = width.get();
 			
-			((Buffer) width).clear();
+			((Buffer)width).clear();
 			((Buffer)height).clear();
 		} catch (Exception e) {
-			System.err.println("Error while getting display width: "+e.toString());
+			System.err.println("Error while getting display width: "+e);
 		}
 		return (w);
 	}
@@ -536,7 +536,7 @@ public class Display {
 			((Buffer)width).clear();
 			((Buffer)height).clear();
 		} catch (Exception e) {
-			System.err.println("Error while getting display height: "+e.toString());
+			System.err.println("Error while getting display height: "+e);
 		}
 		return (h);
 	}
@@ -562,7 +562,7 @@ public class Display {
 			((Buffer)width).clear();
 			((Buffer)height).clear();
 		} catch (Exception e) {
-			System.err.println("Error while getting display size: "+e.toString());
+			System.err.println("Error while getting display size: "+e);
 		}
 		return (size);
 	}
@@ -577,19 +577,9 @@ public class Display {
 	 * @author Blackoutburst
 	 */
 	public static Vector2f getSizeF() {
-		Vector2f size = new Vector2f();
-		
-		try (MemoryStack stack = MemoryStack.stackPush()) {
-			IntBuffer width = stack.mallocInt(1);
-			IntBuffer height = stack.mallocInt(1);
-			glfwGetWindowSize(window, width, height);
-			size.set(width.get(), height.get());
-			((Buffer)width).clear();
-			((Buffer)height).clear();
-		} catch (Exception e) {
-			System.err.println("Error while getting display size: "+e.toString());
-		}
-		return (size);
+		Vector2i tmp = getSize();
+
+		return (new Vector2f(tmp.x, tmp.y));
 	}
 	
 	/**
@@ -598,13 +588,13 @@ public class Display {
 	 * </p>
 	 * 
 	 * @return Display
-	 * @param String filePath
+	 * @param filePath the icon path
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
 	public Display setIcons(String filePath) {
 		GLFWImage image = GLFWImage.malloc(); 
-		GLFWImage.Buffer imagebf = GLFWImage.malloc(1);
+		GLFWImage.Buffer imageBuffer = GLFWImage.malloc(1);
 		try {
 			Vector2i imageSize = new Vector2i();
 			ByteBuffer byteBuffer = loadIcons(filePath, imageSize);
@@ -613,8 +603,8 @@ public class Display {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		imagebf.put(0, image);
-		glfwSetWindowIcon(window, imagebf);
+		imageBuffer.put(0, image);
+		glfwSetWindowIcon(window, imageBuffer);
 		return (this);
 	}
 	
@@ -623,10 +613,10 @@ public class Display {
 	 * Load the window icon<br>
 	 * </p>
 	 * 
-	 * @throws Exception
+	 * @throws Exception Do you really want the program to crash because the icon is missing ?
 	 * @return ByteBuffer
-	 * @param String path
-	 * @param Vector2i imageSize
+	 * @param path the icon path
+	 * @param imageSize the icon size
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */

@@ -43,7 +43,7 @@ public class Camera {
 	 * </p>
 	 * 
 	 * @deprecated
-	 * @param Vector3f position
+	 * @param p the position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -59,9 +59,9 @@ public class Camera {
 	 * </p>
 	 * 
 	 * @deprecated
-	 * @param float x
-	 * @param float y
-	 * @param float z
+	 * @param x the x position
+	 * @param y the y position
+	 * @param z the z position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -76,7 +76,7 @@ public class Camera {
 	 * Create a new Camera object placed at position <b>(x, y, 1)</b>
 	 * </p>
 	 * 
-	 * @param Vector2f position
+	 * @param p the position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -91,8 +91,8 @@ public class Camera {
 	 * Create a new Camera object placed at position <b>(x, y, 1)</b>
 	 * </p>
 	 * 
-	 * @param float x
-	 * @param float y
+	 * @param x the x position
+	 * @param y the y position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -122,7 +122,7 @@ public class Camera {
 	 * </p>
 	 * 
 	 * @deprecated
-	 * @param Vector3f position
+	 * @param p the new position
  	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -137,9 +137,9 @@ public class Camera {
 	 * </p>
 	 * 
 	 * @deprecated
-	 * @param float x
-	 * @param float y
-	 * @param float z
+	 * @param x the x position
+	 * @param y the y position
+	 * @param z the z position
   	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -155,7 +155,7 @@ public class Camera {
 	 * Set the camera position <b>(x, y)</b>
 	 * </p>
 	 * 
-	 * @param Vector2f position
+	 * @param p the new position
  	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -170,8 +170,8 @@ public class Camera {
 	 * Set the camera position <b>(x, y)</b>
 	 * </p>
 	 * 
-	 * @param float x
-	 * @param float y
+	 * @param x the x position
+	 * @param y the y position
   	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -186,7 +186,7 @@ public class Camera {
 	 * Set the camera X position
 	 * </p>
 	 * 
-	 * @param float x
+	 * @param x the x position
   	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -200,7 +200,7 @@ public class Camera {
 	 * Set the camera Y position
 	 * </p>
 	 * 
-	 * @param float y
+	 * @param y the y position
   	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -215,7 +215,7 @@ public class Camera {
 	 * </p>
 	 * 
 	 * @deprecated
-	 * @param float z
+	 * @param z the z position
   	 * @since 0.1
 	 * @author Blackoutburst
 	 */

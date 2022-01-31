@@ -15,7 +15,7 @@ import org.lwjgl.glfw.GLFWScrollCallbackI;
 public class MouseScrollCallBack implements GLFWScrollCallbackI {
 
 	@Override
-	public void invoke(long window, double xoffset, double yoffset) {
-		Mouse.setScroll((float) (Mouse.getScroll() + yoffset));
+	public void invoke(long window, double xOffset, double yOffset) {
+		Mouse.setScroll((float) (Mouse.getScroll() + yOffset));
 	}
 }

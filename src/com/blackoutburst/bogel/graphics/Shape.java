@@ -105,7 +105,6 @@ public class Shape {
 	 * Create a new Shape
 	 * </p>
 	 * 
-	 * @param Texture texture
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -126,9 +125,9 @@ public class Shape {
 	 * Create a new Shape
 	 * </p>
 	 * 
-	 * @param Texture texture
-	 * @param float x
-	 * @param float y
+	 * @param texture
+	 * @param x
+	 * @param y
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */

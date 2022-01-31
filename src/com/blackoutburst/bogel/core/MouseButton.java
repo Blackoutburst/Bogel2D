@@ -20,10 +20,10 @@ public class MouseButton {
 	
 	/**
 	 * <p>
-	 * Create a new MouseButon
+	 * Create a new MouseButton
 	 * </p>
 	 * 
-	 * @param int id
+	 * @param id the button id
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -62,7 +62,7 @@ public class MouseButton {
 	 * Set if the button is pressed
 	 * </p>
 	 * 
-	 * @param boolean pressed
+	 * @param press tell if a mouse button is pressed
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -88,7 +88,7 @@ public class MouseButton {
 	 * Set if the button is released
 	 * </p>
 	 * 
-	 * @param boolean released
+	 * @param release tell if a mouse button is released
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -114,7 +114,7 @@ public class MouseButton {
 	 * Set if the button is down
 	 * </p>
 	 * 
-	 * @param boolean down
+	 * @param down tell if a mouse button is down
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */

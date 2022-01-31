@@ -63,7 +63,7 @@ public class Time {
 	 */
 	protected static void updateDelta() {
 	    long time = System.nanoTime();
-	    deltaTime = ((time - lastTime) / 1000000);
+	    deltaTime = ((time - lastTime) / 1000000.0f);
 	    lastTime = time;
 	}
 	

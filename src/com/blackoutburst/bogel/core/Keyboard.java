@@ -149,7 +149,7 @@ public class Keyboard {
 	 * Tell the user if a key is pressed or not
 	 * </p>
 	 * 
-	 * @param int key
+	 * @param key the key pressed
 	 * @return boolean key is down
 	 * @since 0.1
 	 * @author Blackoutburst

@@ -85,12 +85,11 @@ public class Shader {
 	 * Create a new empty shader with a specific id
 	 * </p>
 	 * 
-	 * @deprecated
-	 * @param int id
+	 * @param id the shader id
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shader(int id) {
+	private Shader(int id) {
 		this.id = id;
 		this.shaderProgram = 0; 
 	}
@@ -118,8 +117,8 @@ public class Shader {
 	 * Create a new shader from a file
 	 * </p>
 	 * 
-	 * @param int shaderType
-	 * @param String filePath
+	 * @param shaderType the type of shader used
+	 * @param filePath the path to the shader
 	 * @return Shader shader
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -150,7 +149,7 @@ public class Shader {
 	 * Set the shader program
 	 * </p>
 	 * 
-	 * @param int shaderProgram
+	 * @param shaderProgram set the new shader program
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -163,8 +162,8 @@ public class Shader {
 	 * Set a <b>float</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param float x
+	 * @param varName the variable name
+	 * @param x the x value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -178,9 +177,9 @@ public class Shader {
 	 * Set a <b>vec2</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param float x
-	 * @param float y
+	 * @param varName the variable name
+	 * @param x the x value
+	 * @param y the y value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -194,8 +193,8 @@ public class Shader {
 	 * Set a <b>vec2</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Vector2f vec
+	 * @param varName the variable name
+	 * @param vec the vector value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -209,10 +208,10 @@ public class Shader {
 	 * Set a <b>vec3</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param float x
-	 * @param float y
-	 * @param float z
+	 * @param varName the variable name
+	 * @param x the x value
+	 * @param y the y value
+	 * @param z the z value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -226,8 +225,8 @@ public class Shader {
 	 * Set a <b>vec3</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Vector3f vec
+	 * @param varName the variable name
+	 * @param vec the vector value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -241,8 +240,8 @@ public class Shader {
 	 * Set a <b>vec3</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Color color
+	 * @param varName the variable name
+	 * @param color the color value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -256,11 +255,11 @@ public class Shader {
 	 * Set a <b>vec4</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param float x
-	 * @param float y
-	 * @param float z
-	 * @param float w
+	 * @param varName the variable name
+	 * @param x the x value
+	 * @param y the y value
+	 * @param z the z value
+	 * @param w the w value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -274,8 +273,8 @@ public class Shader {
 	 * Set a <b>vec4</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Vector4f vec
+	 * @param varName the variable name
+	 * @param vec the vector value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -289,8 +288,8 @@ public class Shader {
 	 * Set a <b>vec4</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Color color
+	 * @param varName the variable name
+	 * @param color the color value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -304,8 +303,8 @@ public class Shader {
 	 * Set a <b>mat4</b> uniform variable
 	 * </p>
 	 * 
-	 * @param String varName
-	 * @param Matrix mat
+	 * @param varName the variable name
+	 * @param mat the matrix value
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */

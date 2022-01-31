@@ -3,3 +3,5 @@ bin/
 .project
 .settings/
 src/test/
+.idea/
+Bogel2D.iml

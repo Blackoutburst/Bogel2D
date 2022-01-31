@@ -21,9 +21,9 @@ public class Mouse {
 	
 	private static Vector2f position = new Vector2f();
 	
-	private static MouseButton leftButton = new MouseButton(0);
-	private static MouseButton rightButton = new MouseButton(1);
-	private static MouseButton middleButton = new MouseButton(2);
+	private static final MouseButton leftButton = new MouseButton(0);
+	private static final MouseButton rightButton = new MouseButton(1);
+	private static final MouseButton middleButton = new MouseButton(2);
 	
 	/**
 	 * <p>
@@ -43,7 +43,7 @@ public class Mouse {
 	 * Set the mouse X position
 	 * </p>
 	 * 
-	 * @param float x
+	 * @param x the x position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -69,7 +69,7 @@ public class Mouse {
 	 * Set the mouse Y position
 	 * </p>
 	 * 
-	 * @param float y
+	 * @param y the y position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -95,7 +95,7 @@ public class Mouse {
 	 * Set the mouse position
 	 * </p>
 	 * 
-	 * @param Vector2f y
+	 * @param position the mouse position
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -160,7 +160,7 @@ public class Mouse {
 	 * Set the mouse scroll
 	 * </p>
 	 * 
-	 * @param float scroll
+	 * @param scroll the scroll amount
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */

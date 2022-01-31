@@ -34,11 +34,8 @@ public class Button {
 	 * Create a new button
 	 * </p>
 	 * 
-	 * @param button
-	 * @param pressed
-	 * @param hover
-	 * @param down
-	 * @param released
+	 * @param shape the button shape
+	 * @param type the button shape type
 	 * @since 0.3
 	 * @author Blackoutburst
 	 */
@@ -65,7 +62,7 @@ public class Button {
 	 * Set the button shape
 	 * </p>
 	 * 
-	 * @param shape
+	 * @param shape the button shape
 	 * @since 0.3
 	 * @author Blackoutburst
 	 */
@@ -152,11 +149,11 @@ public class Button {
 	 * Get the button shape
 	 * </p>
 	 * 
-	 * @return bshape
+	 * @return buttonShape
 	 * @since 0.3
 	 * @author Blackoutburst 
 	 */
-	public ShapeType getBshape() {
+	public ShapeType getButtonShape() {
 		return type;
 	}
 
@@ -165,11 +162,11 @@ public class Button {
 	 * Set the button shape
 	 * </p>
 	 * 
-	 * @param type
+	 * @param type the shape type
 	 * @since 0.3
 	 * @author Blackoutburst 
 	 */
-	public void setBshape(ShapeType type) {
+	public void setButtonShape(ShapeType type) {
 		this.type = type;
 	}
 

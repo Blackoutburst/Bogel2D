@@ -48,7 +48,6 @@ public class Core {
 	 * Initialize important values<br>
 	 * </p>
 	 * 
-	 * @param Display display
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
