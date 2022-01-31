@@ -71,7 +71,15 @@ public class Button {
 		this.shape = shape;
 	}
 
-	
+	/**
+	 * <p>
+	 * Check if the mouse is on the button
+	 * </p>
+	 *
+	 * @return boolean
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
 	private boolean onButton() {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);

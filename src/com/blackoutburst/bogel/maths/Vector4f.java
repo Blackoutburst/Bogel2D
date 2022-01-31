@@ -268,4 +268,9 @@ public class Vector4f {
 		
 		return (newVector);
 	}
+
+	@Override
+	public String toString() {
+		return "["+x+", "+y+", "+z+", "+w+"]";
+	}
 }

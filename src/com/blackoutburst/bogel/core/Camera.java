@@ -3,6 +3,7 @@ package com.blackoutburst.bogel.core;
 import com.blackoutburst.bogel.maths.Matrix;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector3f;
+import com.sun.istack.internal.NotNull;
 
 /**
  * <h1>Camera</h1>
@@ -82,7 +83,7 @@ public class Camera {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Camera(Vector2f p) {
+	public Camera(@NotNull Vector2f p) {
 		position = new Vector3f(p.x, p.y, 1);
 		matrix = new Matrix();
 		update();
@@ -161,7 +162,7 @@ public class Camera {
  	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void setPosition(Vector2f p) {
+	public void setPosition(@NotNull Vector2f p) {
 		position.x = p.x;
 		position.y = p.y;
 		update();

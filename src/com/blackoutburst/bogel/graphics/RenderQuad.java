@@ -12,7 +12,6 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL15.glBindBuffer;
 import static org.lwjgl.opengl.GL15.glBufferData;
 import static org.lwjgl.opengl.GL15.glGenBuffers;
-import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
@@ -23,6 +22,7 @@ import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import com.sun.istack.internal.NotNull;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;
@@ -108,7 +108,7 @@ public class RenderQuad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	private static void setDefaultUniform(Shape shape) {
+	private static void setDefaultUniform(@NotNull Shape shape) {
 		shape.shaderProgram.setUniform4f("color", shape.color);
 		shape.shaderProgram.setUniform1f("radius", shape.isCircle ? 0.5f : 1.0f);
 	}
@@ -122,7 +122,7 @@ public class RenderQuad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	private static void setMatricesUniform(Shape shape) {
+	private static void setMatricesUniform(@NotNull Shape shape) {
 		shape.shaderProgram.setUniformMat4("projection", RenderManager.projection);
 		shape.shaderProgram.setUniformMat4("model", model);
 		shape.shaderProgram.setUniformMat4("view", Camera.getMatrix());
@@ -137,7 +137,7 @@ public class RenderQuad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	private static void setTransformation(Shape shape) {
+	private static void setTransformation(@NotNull Shape shape) {
 		Matrix.setIdentity(model);
 		Matrix.translate(shape.position, model);
 		Matrix.rotate((float) Math.toRadians(shape.rotation), model);
@@ -153,7 +153,7 @@ public class RenderQuad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	protected static void draw(Shape shape) {
+	protected static void draw(@NotNull Shape shape) {
 		if (RenderManager.outOfFrame(shape)) return;
 
 		if (shape.reactToLight)
@@ -167,6 +167,7 @@ public class RenderQuad {
 
 		setTransformation(shape);
 		setMatricesUniform(shape);
+		setDefaultUniform(shape);
 
 		glUseProgram(shape.shaderProgram.getID());
 		glBindVertexArray(vaoID);

@@ -10,13 +10,14 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import com.sun.istack.internal.NotNull;
 import org.lwjgl.BufferUtils;
 
 /**
  * @author Kai Burjack
  */
 public class IOUtils {
-    private static ByteBuffer resizeBuffer(ByteBuffer buffer, int newCapacity) {
+    private static @NotNull ByteBuffer resizeBuffer(ByteBuffer buffer, int newCapacity) {
         ByteBuffer newBuffer = BufferUtils.createByteBuffer(newCapacity);
         ((Buffer) buffer).flip();
         newBuffer.put(buffer);

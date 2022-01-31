@@ -45,6 +45,7 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import com.sun.istack.internal.NotNull;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -369,7 +370,7 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Display setSize(Vector2i size) {
+	public Display setSize(@NotNull Vector2i size) {
 		width = size.x;
 		height = size.y;
 		
@@ -467,7 +468,7 @@ public class Display {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	public Display setPosition(Vector2i position) {
+	public Display setPosition(@NotNull Vector2i position) {
 		glfwSetWindowPos(window, position.x, position.y);
 		return (this);
 	}
@@ -549,7 +550,7 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static Vector2i getSize() {
+	public static @NotNull Vector2i getSize() {
 		Vector2i size = new Vector2i();
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -574,7 +575,7 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public static Vector2f getSizeF() {
+	public static @NotNull Vector2f getSizeF() {
 		Vector2i tmp = getSize();
 
 		return (new Vector2f(tmp.x, tmp.y));
@@ -618,7 +619,7 @@ public class Display {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	private ByteBuffer loadIcons(String path, Vector2i imageSize) throws Exception {
+	private ByteBuffer loadIcons(String path, @NotNull Vector2i imageSize) throws Exception {
 		ByteBuffer image;
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer comp = stack.mallocInt(1);

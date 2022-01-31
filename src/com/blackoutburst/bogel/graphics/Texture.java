@@ -193,14 +193,15 @@ public class Texture {
 		return position;
 	}
 
-
+	/**
+	 * <p>
+	 * Draw the texture on screen
+	 * </p>
+	 *
+	 * @since 0.2
+	 * @author Blackoutburst
+	 */
 	public void draw() {
-		this.shape.isCircle = false;
-		RenderQuad.draw(this.shape);
-	}
-	
-	public void drawCircle() {
-		this.shape.isCircle = true;
-		RenderQuad.draw(this.shape);
+		this.shape.draw();
 	}
 }

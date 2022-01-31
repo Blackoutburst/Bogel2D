@@ -3,6 +3,7 @@ package com.blackoutburst.bogel.graphics;
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
+import com.sun.istack.internal.NotNull;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -161,7 +162,7 @@ public class RenderManager {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	protected static void setLightUniform(Shape shape) {
+	protected static void setLightUniform(@NotNull Shape shape) {
 		shape.shaderProgram.setUniform2f("resolution", Display.getSizeF());
 		shape.shaderProgram.setUniform3f("ambient", Lights.ambient);
 
@@ -184,7 +185,7 @@ public class RenderManager {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	protected static void setTextureParameter(Shape shape) {
+	protected static void setTextureParameter(@NotNull Shape shape) {
 		if (shape.texture.missing) {
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -203,7 +204,7 @@ public class RenderManager {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	protected static boolean outOfFrame(Shape shape) {
+	protected static boolean outOfFrame(@NotNull Shape shape) {
 		if (shape.position.x + shape.size.x / 2 < Camera.getPosition().x)
 			return (true);
 		if (shape.position.x - shape.size.x / 2 > Display.getWidth() + Camera.getPosition().x)

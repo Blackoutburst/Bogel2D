@@ -10,6 +10,7 @@ import static org.lwjgl.opengl.GL11.glReadPixels;
 import java.nio.ByteBuffer;
 
 import com.blackoutburst.bogel.core.ShaderProgram;
+import com.sun.istack.internal.NotNull;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;
@@ -76,6 +77,18 @@ public class Shape {
 		smoothTexture = true;
 	}
 
+	/**
+	 * <p>
+	 * Create a new shape with a texture
+	 * </p>
+	 * @param type the type of shape
+	 * @param texture the texture used
+	 * @param position the shape position
+	 * @param size the shape size
+	 * @param rotation the shape rotation
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation) {
 		this.type = type;
 		this.textureless = false;
@@ -87,6 +100,17 @@ public class Shape {
 		initShape();
 	}
 
+	/**
+	 * <p>
+	 * Create a new shape with a texture
+	 * </p>
+	 * @param type the type of shape
+	 * @param position the shape position
+	 * @param size the shape size
+	 * @param rotation the shape rotation
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
 	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation) {
 		this.type = type;
 		this.textureless = true;
@@ -476,7 +500,7 @@ public class Shape {
 	 * @since 0.5
 	 * @author Blackoutburst
 	 */
-	public boolean AABB(Shape shape) {
+	public boolean AABB(@NotNull Shape shape) {
 		return (this.getPosition().x + this.getSize().x / 2 >= shape.getPosition().x - shape.getSize().x / 2 &&
 				this.getPosition().x - this.getSize().x / 2 <= shape.getPosition().x + shape.getSize().x / 2 &&
 				this.getPosition().y + this.getSize().y / 2 >= shape.getPosition().y - shape.getSize().y / 2 &&
@@ -493,7 +517,7 @@ public class Shape {
 	 * @since 0.4
 	 * @author Blackoutburst
 	 */
-	public boolean collideWith(Shape shape) {
+	public boolean collideWith(@NotNull Shape shape) {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -538,7 +562,7 @@ public class Shape {
 	 * @since 0.4
 	 * @author Blackoutburst
 	 */
-	public boolean collideWithTexture(Shape shape) {
+	public boolean collideWithTexture(@NotNull Shape shape) {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		

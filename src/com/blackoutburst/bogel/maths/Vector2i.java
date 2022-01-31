@@ -192,4 +192,9 @@ public class Vector2i {
 		
 		return (newVector);
 	}
+
+	@Override
+	public String toString() {
+		return "["+x+", "+y+"]";
+	}
 }

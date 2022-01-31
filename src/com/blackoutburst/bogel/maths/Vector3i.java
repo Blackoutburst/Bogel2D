@@ -231,4 +231,9 @@ public class Vector3i {
 		
 		return (newVector);
 	}
+
+	@Override
+	public String toString() {
+		return "["+x+", "+y+", "+z+"]";
+	}
 }

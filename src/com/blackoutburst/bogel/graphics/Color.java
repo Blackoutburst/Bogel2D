@@ -1,5 +1,7 @@
 package com.blackoutburst.bogel.graphics;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * <h1>Color</h1>
  * 
@@ -376,7 +378,7 @@ public class Color {
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
-	public Color add(Color c) {
+	public Color add(@NotNull Color c) {
 		r += c.r;
 		g += c.g;
 		b += c.b;
@@ -398,7 +400,7 @@ public class Color {
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
-	public Color sub(Color c) {
+	public Color sub(@NotNull Color c) {
 		r -= c.r;
 		g -= c.g;
 		b -= c.b;
@@ -420,7 +422,7 @@ public class Color {
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
-	public Color mul(Color c) {
+	public Color mul(@NotNull Color c) {
 		r *= c.r;
 		g *= c.g;
 		b *= c.b;
@@ -445,7 +447,7 @@ public class Color {
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
-	public Color div(Color c) {
+	public Color div(@NotNull Color c) {
 		if (c.r != 0) r /= c.r;
 		if (c.g != 0) g /= c.g;
 		if (c.b != 0) b /= c.b;
