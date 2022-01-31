@@ -6,20 +6,15 @@ import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glReadPixels;
-import static org.lwjgl.opengl.GL20.glAttachShader;
-import static org.lwjgl.opengl.GL20.glCreateProgram;
-import static org.lwjgl.opengl.GL20.glDetachShader;
-import static org.lwjgl.opengl.GL20.glLinkProgram;
 
 import java.nio.ByteBuffer;
 
+import com.blackoutburst.bogel.core.ShaderProgram;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
-import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.maths.Vector2f;
-import org.lwjgl.opengl.GL20;
 
 /**
  * <h1>Shape</h1>
@@ -61,12 +56,8 @@ public class Shape {
 	
 	protected Color color;
 	
-	protected Shader vertexShader;
-	protected Shader fragmentShader;
-	protected Shader shader;
-	
-	protected int shaderProgram;
-	
+	protected ShaderProgram shaderProgram;
+
 	protected boolean customShader;
 	protected boolean smoothTexture;
 	protected boolean textureless;
@@ -81,23 +72,10 @@ public class Shape {
 	 * @author Blackoutburst
 	 */
 	private void initShape() {
-		this.reactToLight = false;
-		this.isCircle = false;
-		this.smoothTexture = true;
-		this.vertexShader = this.textureless ? Shader.defaultVertNoTexture : Shader.defaultVert;
-		this.fragmentShader = this.textureless ? Shader.defaultFragNoTexture : Shader.defaultFrag;
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, this.fragmentShader.id);
-		glLinkProgram(this.shaderProgram);
-        glDetachShader(this.shaderProgram, this.vertexShader.id);
-        glDetachShader(this.shaderProgram, this.fragmentShader.id);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
-	}
-
-	public void clean() {
-		GL20.glDeleteProgram(this.shaderProgram);
+		color = Color.WHITE;
+		reactToLight = false;
+		isCircle = false;
+		smoothTexture = true;
 	}
 
 	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation) {
@@ -278,51 +256,19 @@ public class Shape {
 		this.color.a = a;
 		return (this);
 	}
-	
+
 	/**
 	 * <p>
-	 * Set the Shape shader
+	 * Set the Shape shader program
 	 * </p>
-	 * 
-	 * @param shader shape shader
+	 *
 	 * @return Shape
-	 * @since 0.1
+	 * @param program the new shader program
+	 * @since 0.5
 	 * @author Blackoutburst
 	 */
-	public Shape setShader(Shader shader) {
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, shader.id);
-		glLinkProgram(this.shaderProgram);
-        glDetachShader(this.shaderProgram, this.vertexShader.id);
-        glDetachShader(this.shaderProgram, shader.id);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
-		
-		this.customShader = true;
-		return (this);
-	}
-	
-	/**
-	 * <p>
-	 * Set the Shape shader
-	 * </p>
-	 * 
-	 * @param shader shape shader
-	 * @return Shape
-	 * @since 0.2
-	 * @author Blackoutburst
-	 */
-	private Shape setShaderInternal(Shader shader) {
-		this.shaderProgram = glCreateProgram();
-		glAttachShader(this.shaderProgram, this.vertexShader.id);
-		glAttachShader(this.shaderProgram, shader.id);
-		glLinkProgram(this.shaderProgram);
-        glDetachShader(this.shaderProgram, this.vertexShader.id);
-        glDetachShader(this.shaderProgram, shader.id);
-		this.shader = new Shader();
-		this.shader.setShaderProgram(this.shaderProgram);
-		
+	public Shape setShaderProgram(ShaderProgram program) {
+		this.shaderProgram = program;
 		return (this);
 	}
 
@@ -331,11 +277,11 @@ public class Shape {
 	 * Get the Shape shader program
 	 * </p>
 	 * 
-	 * @return int
-	 * @since 0.1
+	 * @return ShaderProgram
+	 * @since 0.5
 	 * @author Blackoutburst
 	 */
-	public int getShaderProgram() {
+	public ShaderProgram getShaderProgram() {
 		return shaderProgram;
 	}
 
@@ -491,16 +437,16 @@ public class Shape {
 		this.reactToLight = reactToLight;
 
 		if (this.reactToLight && this.textureless)
-			this.setShaderInternal(Shader.defaultFragNoTextureLight);
+			this.setShaderProgram(ShaderProgram.COLOR_LIGHT);
 
 		if (this.reactToLight && !this.textureless)
-			this.setShaderInternal(Shader.defaultFragLight);
+			this.setShaderProgram(ShaderProgram.TEXTURE_LIGHT);
 
 		if (!this.reactToLight && this.textureless)
-			this.setShaderInternal(Shader.defaultFragNoTexture);
+			this.setShaderProgram(ShaderProgram.COLOR);
 
 		if (!this.reactToLight && !this.textureless)
-			this.setShaderInternal(Shader.defaultFrag);
+			this.setShaderProgram(ShaderProgram.TEXTURE);
 
 		return (this);
 	}
@@ -581,8 +527,6 @@ public class Shape {
 	    glClear(GL_COLOR_BUFFER_BIT);
 
 		pixels.clear();
-		s1.clean();
-		s2.clean();
 	    return (collide);
 	}
 	
@@ -629,8 +573,6 @@ public class Shape {
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
 		pixels.clear();
-		s1.clean();
-		s2.clean();
 	    return (collide);
 	}
 }

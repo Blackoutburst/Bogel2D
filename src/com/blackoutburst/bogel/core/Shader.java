@@ -1,27 +1,14 @@
 package com.blackoutburst.bogel.core;
 
-import static org.lwjgl.opengl.ARBProgramInterfaceQuery.GL_UNIFORM;
-import static org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocation;
 import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
 import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
 import static org.lwjgl.opengl.GL20.glCompileShader;
 import static org.lwjgl.opengl.GL20.glCreateShader;
 import static org.lwjgl.opengl.GL20.glShaderSource;
 import static org.lwjgl.opengl.GL20.glGetShaderInfoLog;
-import static org.lwjgl.opengl.GL41.glProgramUniform1f;
-import static org.lwjgl.opengl.GL41.glProgramUniform2f;
-import static org.lwjgl.opengl.GL41.glProgramUniform3f;
-import static org.lwjgl.opengl.GL41.glProgramUniform4f;
-import static org.lwjgl.opengl.GL41.glProgramUniformMatrix4fv;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import com.blackoutburst.bogel.graphics.Color;
-import com.blackoutburst.bogel.maths.Matrix;
-import com.blackoutburst.bogel.maths.Vector2f;
-import com.blackoutburst.bogel.maths.Vector3f;
-import com.blackoutburst.bogel.maths.Vector4f;
 
 /**
  * <h1>Shader</h1>
@@ -35,51 +22,36 @@ import com.blackoutburst.bogel.maths.Vector4f;
  */
 public class Shader {
 	
-	protected int shaderProgram;
+	/** The shader id*/
+	protected int id;
 	
-	/**The shader id*/
-	public int id;
-	
-	/**Vertex shader type*/
+	/** Vertex shader type */
 	public static final int VERTEX = GL_VERTEX_SHADER;
 	
-	/**Fragment shader type*/
+	/** Fragment shader type */
 	public static final int FRAGMENT = GL_FRAGMENT_SHADER;
-	
-	/**Default vertex shader*/
-	public static Shader defaultVert;
-	
-	/**Default fragment shader*/
-	public static Shader defaultFrag;
-	
-	/**Default vertex shader with no texture*/
-	public static Shader defaultVertNoTexture;
-	
-	/**Default fragment shader with no texture*/
-	public static Shader defaultFragNoTexture;
-	
-	/**Default fragment shader with light*/
-	public static Shader defaultFragLight;
-	
-	/**Default fragment shader with no texture and light*/
-	public static Shader defaultFragNoTextureLight;
-	
-	/**Default fragment shader for lights*/
-	public static Shader lightsShader;
 
-	/**
-	 * <p>
-	 * Create a new empty shader
-	 * </p>
-	 * 
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shader() {
-		this.id = 0;
-		this.shaderProgram = 0; 
-	}
+	/** Default vertex shader with no texture */
+	public static final Shader DEFAULT_VERTEX = loadShader(VERTEX, "quadNoTexture.vert");
+
+	/** Default fragment shader with no texture */
+	public static final Shader DEFAULT_FRAGMENT = loadShader(FRAGMENT, "quadNoTexture.frag");
+
+	/** Default vertex shader */
+	public static final Shader VERTEX_TEXTURE = loadShader(VERTEX, "quad.vert");
+
+	/** Default fragment shader */
+	public static final Shader FRAGMENT_TEXTURE = loadShader(FRAGMENT, "quad.frag");
+
+	/** Default fragment shader with light */
+	public static final Shader FRAGMENT_TEXTURE_LIGHT = loadShader(FRAGMENT, "quadLight.frag");
 	
+	/** Default fragment shader with no texture and light */
+	public static final Shader FRAGMENT_LIGHT = loadShader(FRAGMENT, "quadNoTextureLight.frag");
+	
+	/** Default fragment shader for lights */
+	public static final Shader LIGHT = loadShader(FRAGMENT, "lights.frag");
+
 	/**
 	 * <p>
 	 * Create a new empty shader with a specific id
@@ -91,25 +63,6 @@ public class Shader {
 	 */
 	private Shader(int id) {
 		this.id = id;
-		this.shaderProgram = 0; 
-	}
-	
-	/**
-	 * <p>
-	 * Load default shaders into memory
-	 * </p>
-	 * 
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	protected static void init() {
-		defaultVert = loadShader(VERTEX, "quad.vert");
-		defaultFrag = loadShader(FRAGMENT, "quad.frag");
-		defaultVertNoTexture = loadShader(VERTEX, "quadNoTexture.vert");
-		defaultFragNoTexture = loadShader(FRAGMENT, "quadNoTexture.frag");
-		defaultFragLight = loadShader(FRAGMENT, "quadLight.frag");
-		defaultFragNoTextureLight = loadShader(FRAGMENT, "quadNoTextureLight.frag");
-		lightsShader = loadShader(FRAGMENT, "lights.frag");
 	}
 	
 	/**
@@ -136,180 +89,11 @@ public class Shader {
 			reader.close();
 		}catch(Exception e){
 			System.err.println("["+filePath+"] Doesn't exist loading default shader instead");
-			return (defaultFrag);
+			return (DEFAULT_FRAGMENT);
 		}
 		glShaderSource(shader, shaderSource);
 		glCompileShader(shader);
 		if (glGetShaderInfoLog(shader).length() != 0) System.err.println("Error in: ["+filePath+"]\n"+glGetShaderInfoLog(shader));
 		return (new Shader(shader));
-	}
-
-	/**
-	 * <p>
-	 * Set the shader program
-	 * </p>
-	 * 
-	 * @param shaderProgram set the new shader program
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setShaderProgram(int shaderProgram) {
-		this.shaderProgram = shaderProgram;
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>float</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param x the x value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform1f(String varName, float x) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform1f(shaderProgram, loc, x);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec2</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param x the x value
-	 * @param y the y value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform2f(String varName, float x, float y) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform2f(shaderProgram, loc, x, y);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec2</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param vec the vector value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform2f(String varName, Vector2f vec) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform2f(shaderProgram, loc, vec.x, vec.y);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec3</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param x the x value
-	 * @param y the y value
-	 * @param z the z value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform3f(String varName, float x, float y, float z) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform3f(shaderProgram, loc, x, y, z);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec3</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param vec the vector value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform3f(String varName, Vector3f vec) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform3f(shaderProgram, loc, vec.x, vec.y, vec.z);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec3</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param color the color value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform3f(String varName, Color color) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform3f(shaderProgram, loc, color.r, color.g, color.b);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec4</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param x the x value
-	 * @param y the y value
-	 * @param z the z value
-	 * @param w the w value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform4f(String varName, float x, float y, float z, float w) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform4f(shaderProgram, loc, x, y, z, w);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec4</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param vec the vector value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform4f(String varName, Vector4f vec) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform4f(shaderProgram, loc, vec.x, vec.y, vec.z, vec.w);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>vec4</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param color the color value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniform4f(String varName, Color color) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniform4f(shaderProgram, loc, color.r, color.g, color.b, color.a);
-	}
-	
-	/**
-	 * <p>
-	 * Set a <b>mat4</b> uniform variable
-	 * </p>
-	 * 
-	 * @param varName the variable name
-	 * @param mat the matrix value
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setUniformMat4(String varName, Matrix mat) {
-		int loc = glGetProgramResourceLocation(shaderProgram, GL_UNIFORM, varName);
-		glProgramUniformMatrix4fv(shaderProgram, loc, false, Matrix.getValues(mat));
 	}
 }

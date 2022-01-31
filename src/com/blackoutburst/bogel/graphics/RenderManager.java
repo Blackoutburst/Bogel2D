@@ -162,16 +162,16 @@ public class RenderManager {
 	 * @author Blackoutburst
 	 */
 	protected static void setLightUniform(Shape shape) {
-		shape.shader.setUniform2f("resolution", Display.getSizeF());
-		shape.shader.setUniform3f("ambient", Lights.ambient);
+		shape.shaderProgram.setUniform2f("resolution", Display.getSizeF());
+		shape.shaderProgram.setUniform3f("ambient", Lights.ambient);
 
 		for (int i = 0; i < 100; i++) {
 			if (i >= Lights.lights.size()) break;
 
 			Light l = Lights.lights.get(i);
-			shape.shader.setUniform2f("lights["+i+"].position", l.getPosition());
-			shape.shader.setUniform3f("lights["+i+"].color", l.getColor());
-			shape.shader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
+			shape.shaderProgram.setUniform2f("lights["+i+"].position", l.getPosition());
+			shape.shaderProgram.setUniform3f("lights["+i+"].color", l.getColor());
+			shape.shaderProgram.setUniform1f("lights["+i+"].intensity", l.getIntensity());
 		}
 	}
 

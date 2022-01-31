@@ -109,8 +109,8 @@ public class RenderQuad {
 	 * @author Blackoutburst
 	 */
 	private static void setDefaultUniform(Shape shape) {
-		shape.shader.setUniform4f("color", shape.color);
-		shape.shader.setUniform1f("radius", shape.isCircle ? 0.5f : 1.0f);
+		shape.shaderProgram.setUniform4f("color", shape.color);
+		shape.shaderProgram.setUniform1f("radius", shape.isCircle ? 0.5f : 1.0f);
 	}
 	
 	/**
@@ -123,9 +123,9 @@ public class RenderQuad {
 	 * @author Blackoutburst
 	 */
 	private static void setMatricesUniform(Shape shape) {
-		shape.shader.setUniformMat4("projection", RenderManager.projection);
-		shape.shader.setUniformMat4("model", model);
-		shape.shader.setUniformMat4("view", Camera.getMatrix());
+		shape.shaderProgram.setUniformMat4("projection", RenderManager.projection);
+		shape.shaderProgram.setUniformMat4("model", model);
+		shape.shaderProgram.setUniformMat4("view", Camera.getMatrix());
 	}
 	
 	/**
@@ -171,7 +171,7 @@ public class RenderQuad {
 		if (!shape.customShader)
 			setDefaultUniform(shape);
 
-		glUseProgram(shape.shaderProgram);
+		glUseProgram(shape.shaderProgram.getID());
 		glBindVertexArray(vaoID);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);

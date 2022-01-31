@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
-import com.blackoutburst.bogel.core.Shader;
+import com.blackoutburst.bogel.core.ShaderProgram;
 import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 import com.blackoutburst.bogel.maths.Vector2f;
 
@@ -43,8 +43,7 @@ public class Lights {
 	 * @since 0.2
 	 */
 	protected static void init() {
-		plane = new Shape(ShapeType.QUAD, new Vector2f(), new Vector2f(), 0);
-		plane.setShader(Shader.lightsShader);
+		plane = new Shape(ShapeType.QUAD, new Vector2f(), new Vector2f(), 0).setShaderProgram(ShaderProgram.COLOR_LIGHT);
 	}
 	
 	/**
@@ -60,15 +59,15 @@ public class Lights {
 		plane.setPosition((Display.getWidth() / 2.0f) + Camera.getPosition().x, (Display.getHeight() / 2.0f) + Camera.getPosition().y);
 		plane.setSize(Display.getSizeF());
 		
-		plane.shader.setUniform2f("resolution", Display.getSizeF());
+		plane.shaderProgram.setUniform2f("resolution", Display.getSizeF());
 		
 		for (int i = 0; i < 100; i++) {
 			if (i >= lights.size()) break;
 			
 			Light l = lights.get(i);
-			plane.shader.setUniform2f("lights["+i+"].position", l.getPosition().x - Camera.getPosition().x, l.getPosition().y - Camera.getPosition().y);
-			plane.shader.setUniform3f("lights["+i+"].color", l.getColor());
-			plane.shader.setUniform1f("lights["+i+"].intensity", l.getIntensity());
+			plane.shaderProgram.setUniform2f("lights["+i+"].position", l.getPosition().x - Camera.getPosition().x, l.getPosition().y - Camera.getPosition().y);
+			plane.shaderProgram.setUniform3f("lights["+i+"].color", l.getColor());
+			plane.shaderProgram.setUniform1f("lights["+i+"].intensity", l.getIntensity());
 		}
 		
 		glBlendFunc(GL_ONE, GL_ONE);
