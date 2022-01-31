@@ -16,7 +16,6 @@ public class Color {
 	 * White color RGBA(1, 1, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color WHITE = new Color(1.0f);
@@ -25,7 +24,6 @@ public class Color {
 	 * Black color RGBA(0, 0, 0, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color BLACK = new Color(0.0f);
@@ -34,7 +32,6 @@ public class Color {
 	 * Gray color RGBA(0.5, 0.5, 0.5, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(127, 127, 127);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color GRAY = new Color(0.5f);
@@ -43,7 +40,6 @@ public class Color {
 	 * Light Gray color RGBA(0.75, 0.75, 0.75, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(191, 191, 191);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color LIGHT_GRAY = new Color(0.75f);
@@ -52,7 +48,6 @@ public class Color {
 	 * Dark Gray color RGBA(0.25, 0.25, 0.25, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(63, 63, 63);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color DARK_GRAY = new Color(0.25f);
@@ -61,7 +56,6 @@ public class Color {
 	 * Red color RGBA(1, 0, 0, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color RED = new Color(1.0f, 0.0f, 0.0f);
@@ -70,7 +64,6 @@ public class Color {
 	 * Green color RGBA(0, 1, 0, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color GREEN = new Color(0.0f, 1.0f, 0.0f);
@@ -79,7 +72,6 @@ public class Color {
 	 * Blue color RGBA(0, 0, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color BLUE = new Color(0.0f, 0.0f, 1.0f);
@@ -88,7 +80,6 @@ public class Color {
 	 * Yellow color RGBA(1, 1, 0, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 255, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color YELLOW = new Color(1.0f, 1.0f, 0.0f);
@@ -97,7 +88,6 @@ public class Color {
 	 * Magenta color RGBA(1, 0, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color MAGENTA = new Color(1.0f, 0.0f, 1.0f);
@@ -106,7 +96,6 @@ public class Color {
 	 * Cyan color RGBA(0, 1, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 255, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color CYAN = new Color(0.0f, 1.0f, 1.0f);
@@ -115,7 +104,6 @@ public class Color {
 	 * Orange color RGBA(1, 0.5, 0, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(255, 127, 0);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color ORANGE = new Color(1.0f, 0.5f, 0.0f);
@@ -124,7 +112,6 @@ public class Color {
 	 * Light Blue color RGBA(0, 0.5, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(0, 127, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color LIGHT_BLUE = new Color(0.0f, 0.5f, 1.0f);
@@ -133,7 +120,6 @@ public class Color {
 	 * Transparent color RGBA(0, 0, 0, 0)
 	 * <div = style="border:2px solid white;width:30px;height:30px;border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.1
 	 */
 	public static final Color TRANSPARENT = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -142,7 +128,6 @@ public class Color {
 	 * Purple color RGBA(0.5, 0, 1, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(127, 0, 255);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.2
 	 */
 	public static final Color PURPLE = new Color(0.5f, 0.0f, 1.0f, 1.0f);
@@ -151,7 +136,6 @@ public class Color {
 	 * Bogel color RGBA(0.25, 0, 0.27, 1)
 	 * <div = style="width:30px;height:30px;background-color:rgb(64, 0, 71);border-radius: 20px;float:right;margin: 0 10px 0 0"></div>
 	 *
-	 * @author Blackoutburst
 	 * @since 0.2
 	 */
 	public static final Color BOGEL = new Color(0.25f, 0.0f, 0.27f, 1.0f);
@@ -188,7 +172,7 @@ public class Color {
 	 * Create a new color RGBA(c, c, c, 1)
 	 * </p>
 	 * 
-	 * @param float c
+	 * @param c the color values
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -204,9 +188,9 @@ public class Color {
 	 * Create a new color RGBA(r, g, b, 1)
 	 * </p>
 	 * 
-	 * @param float r
-	 * @param float g
-	 * @param float b
+	 * @param r the red value
+	 * @param g the green value
+	 * @param b the blue value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -222,10 +206,10 @@ public class Color {
 	 * Create a new color RGBA(r, g, b, a)
 	 * </p>
 	 * 
-	 * @param float r
-	 * @param float g
-	 * @param float b
-	 * @param float a
+	 * @param r the red value
+	 * @param g the green value
+	 * @param b the blue value
+	 * @param a the alpha value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -254,7 +238,7 @@ public class Color {
 	 * Set the red value
 	 * </p>
 	 * 
-	 * @param float r
+	 * @param r the red value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -280,7 +264,7 @@ public class Color {
 	 * Set the green value
 	 * </p>
 	 * 
-	 * @param float g
+	 * @param g the green value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -306,7 +290,7 @@ public class Color {
 	 * Set the blue value
 	 * </p>
 	 * 
-	 * @param float b
+	 * @param b the blue value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -332,7 +316,7 @@ public class Color {
 	 * Set the alpha value
 	 * </p>
 	 * 
-	 * @param float a
+	 * @param a the alpha value
 	 * @author Blackoutburst
 	 * @since 0.1
 	 */
@@ -387,7 +371,7 @@ public class Color {
 	 * Add two color
 	 * </p>
 	 * 
-	 * @param Color c
+	 * @param c the value added to the color
 	 * @return Color
 	 * @author Blackoutburst
 	 * @since 0.1
@@ -406,10 +390,10 @@ public class Color {
 	
 	/**
 	 * <p>
-	 * Substract two color
+	 * Subtract two color
 	 * </p>
 	 * 
-	 * @param Color c
+	 * @param c the color used to subtract
 	 * @return Color
 	 * @author Blackoutburst
 	 * @since 0.1
@@ -431,7 +415,7 @@ public class Color {
 	 * Multiply two color
 	 * </p>
 	 * 
-	 * @param Color c
+	 * @param c the color used to multiply
 	 * @return Color
 	 * @author Blackoutburst
 	 * @since 0.1
@@ -456,7 +440,7 @@ public class Color {
 	 * Divide two color
 	 * </p>
 	 * 
-	 * @param Color c
+	 * @param c the color used to divide
 	 * @return Color
 	 * @author Blackoutburst
 	 * @since 0.1

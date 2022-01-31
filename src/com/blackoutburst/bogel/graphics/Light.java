@@ -20,9 +20,9 @@ public class Light {
 	 * Create a new light object and automatically add it to the lights list
 	 * </p>
 	 * 
-	 * @param position
-	 * @param color
-	 * @param intensity
+	 * @param position the light position
+	 * @param color the light color
+	 * @param intensity the light intensity
 	 * @author Blackoutburst
 	 * @since 0.2
 	 */
@@ -52,7 +52,7 @@ public class Light {
 	 * Set the light position
 	 * </p>
 	 * 
-	 * @param position
+	 * @param position the light position
 	 * @author Blackoutburst
 	 * @since 0.2
 	 */
@@ -78,7 +78,7 @@ public class Light {
 	 * Set the light color
 	 * </p>
 	 * 
-	 * @param color
+	 * @param color the light color
 	 * @author Blackoutburst
 	 * @since 0.2
 	 */
@@ -104,7 +104,7 @@ public class Light {
 	 * Set the light intensity
 	 * </p>
 	 * 
-	 * @param intensity
+	 * @param intensity the light intensity
 	 * @author Blackoutburst
 	 * @since 0.2
 	 */

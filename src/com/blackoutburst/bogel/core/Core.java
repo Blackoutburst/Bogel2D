@@ -1,8 +1,6 @@
 package com.blackoutburst.bogel.core;
 
 import com.blackoutburst.bogel.graphics.RenderManager;
-import com.blackoutburst.bogel.graphics.RenderQuad;
-import com.blackoutburst.bogel.graphics.RenderTriangle;
 
 /**
  * <h1>Core</h1>
@@ -20,6 +18,7 @@ public class Core {
 		
 	private static int renderPasses = 0;
 	private static int fps = 0;
+
 	private static double previousTime = Time.getRuntime();
 	
 	/**
@@ -70,18 +69,5 @@ public class Core {
 		Mouse.getRightButton().reset();
 		Mouse.getMiddleButton().reset();
 		Mouse.setScroll(0);
-	}
-	
-	/**
-	 * <p>
-	 * Clean important values<br>
-	 * </p>
-	 * 
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	protected static void clear() {
-		RenderQuad.clear();
-		RenderTriangle.clear();
 	}
 }

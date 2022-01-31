@@ -17,16 +17,15 @@ public class Time {
 	private static long init = System.nanoTime();
 	private static long lastTime = System.nanoTime();
 	
-	private static float deltaTime = 0;
-	
+	private static double deltaTime = 0;
+
+	/** The update time */
 	private static final double UPDATE = 1000000000.0 / 60.0;
 	
 	/**
-	 * <p>
-	 * A very important function used to fix the game update at a rate of 60 time per seconds<br>
-	 * Use this inside your main loop to prevent the game running at CPU speed
-	 * </p>
-	 * 
+	 * If possible use Delta Time
+	 *
+	 * This cap the game update at 60 times per seconds
 	 * <pre>
 	 * while (Display.isOpen()) {
 	 *   display.clear();
@@ -77,7 +76,7 @@ public class Time {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	public static float getDelta() {
+	public static double getDelta() {
 	    return (deltaTime);
 	}
 	

@@ -6,7 +6,7 @@ in vec2 vertPos;
 
 uniform vec2 resolution;
 uniform vec4 color;
-uniform vec3 ambiant;
+uniform vec3 ambient;
 uniform float radius;
 
 out vec4 FragColor;
@@ -21,7 +21,7 @@ uniform LightSource lights[100];
 
 void main() {
 	vec2 p = (gl_FragCoord.xy) / min(resolution.x, resolution.y);
-	vec3 lightColor = ambiant;
+	vec3 lightColor = ambient;
 
 	for (int i = 0; i < 100; i++) {
 		if (lights[i].color.r == 0.0 && lights[i].color.g == 0.0 && lights[i].color.b == 0.0)

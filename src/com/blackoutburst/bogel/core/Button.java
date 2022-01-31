@@ -27,6 +27,7 @@ import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 public class Button {
 	
 	protected Shape shape;
+
 	protected ShapeType type;
 	
 	/**

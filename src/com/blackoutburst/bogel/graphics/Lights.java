@@ -26,9 +26,9 @@ import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 public class Lights {
 	
 	/** The list of lights used limited to 100 */
-	protected static List<Light> lights = new ArrayList<Light>();
+	protected static List<Light> lights = new ArrayList<>();
 	
-	public static Color ambiant = Color.WHITE;
+	public static Color ambient = Color.WHITE;
 	
 	/** The plane used to draw lights*/
 	private static Shape plane;
@@ -56,7 +56,7 @@ public class Lights {
 	 * @since 0.2 
 	 */
 	public static void draw() {
-		plane.setPosition((Display.getWidth() / 2) + Camera.getPosition().x, (Display.getHeight() / 2) + Camera.getPosition().y);
+		plane.setPosition((Display.getWidth() / 2.0f) + Camera.getPosition().x, (Display.getHeight() / 2.0f) + Camera.getPosition().y);
 		plane.setSize(Display.getSizeF());
 		
 		plane.shader.setUniform2f("resolution", Display.getSizeF());

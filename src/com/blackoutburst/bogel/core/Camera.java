@@ -20,7 +20,9 @@ import com.blackoutburst.bogel.maths.Vector3f;
  *
  */
 public class Camera {
+
 	protected static Vector3f position = new Vector3f();
+
 	protected static Matrix matrix = new Matrix();
 	
 	/**

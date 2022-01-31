@@ -92,7 +92,6 @@ public class Display {
 	
 	protected String title = "Bogel2D Window";
 	
-	/** The color used to clear the framebuffer */
 	public static Color clearColor = new Color(0.1f);
 	
 	protected FullScreenMode fullScreen = FullScreenMode.NONE;
@@ -279,7 +278,6 @@ public class Display {
 	 * @author Blackoutburst
 	 */
 	public void destroy() {
-		Core.clear();
 		glfwFreeCallbacks(window);
 		glfwDestroyWindow(window);
 		glfwTerminate();

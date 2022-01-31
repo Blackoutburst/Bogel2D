@@ -20,9 +20,14 @@ public class Mouse {
 	private static float scroll;
 	
 	private static Vector2f position = new Vector2f();
-	
+
+	/** The mouse left button */
 	private static final MouseButton leftButton = new MouseButton(0);
+
+	/** The mouse right button */
 	private static final MouseButton rightButton = new MouseButton(1);
+
+	/** The mouse middle button */
 	private static final MouseButton middleButton = new MouseButton(2);
 	
 	/**
