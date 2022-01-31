@@ -48,7 +48,7 @@ public class Texture {
 	 * Create a texture from file
 	 * </p>
 	 * 
-	 * @param String filePath
+	 * @param filePath the path of the texture
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
@@ -65,7 +65,7 @@ public class Texture {
 
 			try {
 				data = STBImage.stbi_load_from_memory(IOUtils.ioResourceToByteBuffer(filePath, 1024), this.width, this.height, comp, 0);
-			} catch (Exception e) {}
+			} catch (Exception ignored) {}
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.width.get(0), this.height.get(0), 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 			((Buffer)comp).clear();
@@ -75,7 +75,7 @@ public class Texture {
 			}
 		}
 		if (data != null) {
-			this.shape = new Shape(ShapeType.QUAD, this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
+			this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0);
 			STBImage.stbi_image_free(data);
 			this.missing = false;
 		}
@@ -110,11 +110,23 @@ public class Texture {
 			glGenerateMipmap(GL_TEXTURE_2D);
 			((Buffer)comp).clear();
 		}
-		this.shape = new Shape(ShapeType.QUAD, this, 0, 0, this.width.get(0), this.height.get(0), Color.WHITE);
+		this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0);
 		STBImage.stbi_image_free(data);
 		this.missing = true;
 	}
-	
+
+	/**
+	 * <p>
+	 * Get texture shape
+	 * </p>
+	 *
+	 * @return int
+	 * @since 0.1
+	 * @author Blackoutburst
+	 */
+	public Shape getShape() {
+		return (this.shape);
+	}
 	
 	/**
 	 * <p>
@@ -170,54 +182,6 @@ public class Texture {
 	
 	/**
 	 * <p>
-	 * Set the Texture size
-	 * </p>
-	 * 
-	 * @param Vector2f size
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setSize(Vector2f size) {
-		this.shape.size = size;
-		return (this);
-	}
-	
-	/**
-	 * <p>
-	 * Set the Texture size (x, y)
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setSize(float x, float y) {
-		this.shape.size.x = x;
-		this.shape.size.y = y;
-		return (this);
-	}
-	
-	/**
-	 * <p>
-	 * Set the Texture size (size, size)
-	 * </p>
-	 * 
-	 * @param float size
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setSize(float size) {
-		this.shape.size.x = size;
-		this.shape.size.y = size;
-		return (this);
-	}
-
-	/**
-	 * <p>
 	 * Get the Texture position
 	 * </p>
 	 * 
@@ -229,54 +193,7 @@ public class Texture {
 		return position;
 	}
 
-	/**
-	 * <p>
-	 * Set the Texture position
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setPosition(Vector2f position) {
-		this.shape.position = position;
-		return (this);
-	}
-	
-	/**
-	 * <p>
-	 * Set the Texture position (x, y)
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setPosition(float x, float y) {
-		this.shape.position.x = x;
-		this.shape.position.y = y;
-		return (this);
-	}
-	
-	/**
-	 * <p>
-	 * Set the Texture position (pos, pos)
-	 * </p>
-	 * 
-	 * @param float pos
-	 * @return Texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Texture setPosition(float pos) {
-		this.shape.position.x = pos;
-		this.shape.position.y = pos;
-		return (this);
-	}
-	
+
 	public void draw() {
 		this.shape.isCircle = false;
 		RenderQuad.draw(this.shape);

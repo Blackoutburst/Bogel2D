@@ -12,6 +12,7 @@ import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.core.Shader;
 import com.blackoutburst.bogel.graphics.Shape.ShapeType;
+import com.blackoutburst.bogel.maths.Vector2f;
 
 /**
  * 
@@ -42,7 +43,7 @@ public class Lights {
 	 * @since 0.2
 	 */
 	protected static void init() {
-		plane = new Shape(ShapeType.QUAD);
+		plane = new Shape(ShapeType.QUAD, new Vector2f(), new Vector2f(), 0);
 		plane.setShader(Shader.lightsShader);
 	}
 	

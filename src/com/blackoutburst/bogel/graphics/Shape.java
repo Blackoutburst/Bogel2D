@@ -42,7 +42,7 @@ public class Shape {
 	 * @since 0.4
 	 *
 	 */
-	public static enum ShapeType {
+	public enum ShapeType {
 		QUAD,
 		TRIANGLE,
 		CIRCLE
@@ -100,130 +100,6 @@ public class Shape {
 		GL20.glDeleteProgram(this.shaderProgram);
 	}
 
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f();
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param texture
-	 * @param x
-	 * @param y
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, float x, float y) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param Vector2f position
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = position;
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param Color color
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, Color color) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = 0;
-		this.color = color;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
 	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation) {
 		this.type = type;
 		this.textureless = false;
@@ -232,387 +108,15 @@ public class Shape {
 		this.position = position;
 		this.size = size;
 		this.rotation = rotation;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param Color color
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, Color color, float rotation) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = rotation;
-		this.color = color;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.size.x = w;
-		this.size.y = h;
-		this.rotation = 0;
-		this.color = Color.WHITE;
 		initShape();
 	}
 
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param Color color
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, Color color) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.color = color;
-		this.rotation = 0;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, float rotation) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.size.x = w;
-		this.size.y = h;
-		this.rotation = rotation;
-		this.color = Color.WHITE;
-		initShape();
-	}
-
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param Color color
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Texture texture, float x, float y, float w, float h, Color color, float rotation) {
-		this.type = type;
-		this.textureless = false;
-		this.texture = texture;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.color = color;
-		this.rotation = rotation;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f();
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, float x, float y) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Vector2f position) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = position;
-		this.size = new Vector2f(100, 100);
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param Color color
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, Color color) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = 0;
-		this.color = color;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
 	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation) {
 		this.type = type;
 		this.textureless = true;
 		this.customShader = false;
 		this.position = position;
 		this.size = size;
-		this.rotation = rotation;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param Vector2f position
-	 * @param Vector2f size
-	 * @param Color color
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, Color color, float rotation) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = position;
-		this.size = size;
-		this.rotation = rotation;
-		this.color = color;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, float x, float y, float w, float h) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.size.x = w;
-		this.size.y = h;
-		this.rotation = 0;
-		this.color = Color.WHITE;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param Color color
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, float x, float y, float w, float h, Color color) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.color = color;
-		this.rotation = 0;
-		initShape();
-	}
-	
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, float x, float y, float w, float h, float rotation) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.size.x = w;
-		this.size.y = h;
-		this.rotation = rotation;
-		this.color = Color.WHITE;
-		initShape();
-	}
-
-	/**
-	 * <p>
-	 * Create a new Shape
-	 * </p>
-	 * 
-	 * @param float x
-	 * @param float y
-	 * @param float w
-	 * @param float h
-	 * @param Color color
-	 * @param float rotation
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape(ShapeType type, float x, float y, float w, float h, Color color, float rotation) {
-		this.type = type;
-		this.textureless = true;
-		this.customShader = false;
-		this.position = new Vector2f(x, y);
-		this.size = new Vector2f(w, h);
-		this.color = color;
 		this.rotation = rotation;
 		initShape();
 	}
@@ -635,7 +139,7 @@ public class Shape {
 	 * Set the Shape position
 	 * </p>
 	 * 
-	 * @param Vector2f position
+	 * @param position shape position
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -650,8 +154,8 @@ public class Shape {
 	 * Set the Shape position (x, y)
 	 * </p>
 	 * 
-	 * @param float x
-	 * @param float y
+	 * @param x shape x position
+	 * @param y shape y position
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -662,22 +166,6 @@ public class Shape {
 		return (this);
 	}
 	
-	/**
-	 * <p>
-	 * Set the Shape position (pos, pos)
-	 * </p>
-	 * 
-	 * @param float pos
-	 * @return Shape
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape setPosition(float pos) {
-		this.position.x = pos;
-		this.position.y = pos;
-		return (this);
-	}
-
 	/**
 	 * <p>
 	 * Get the Shape size
@@ -696,7 +184,7 @@ public class Shape {
 	 * Set the Shape size
 	 * </p>
 	 * 
-	 * @param Vector2f size
+	 * @param size shape size
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -711,34 +199,18 @@ public class Shape {
 	 * Set the Shape size (x, y)
 	 * </p>
 	 * 
-	 * @param float x
-	 * @param float y
+	 * @param width shape width
+	 * @param height shape height
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape setSize(float x, float y) {
-		this.size.x = x;
-		this.size.y = y;
+	public Shape setSize(float width, float height) {
+		this.size.x = width;
+		this.size.y = height;
 		return (this);
 	}
 	
-	/**
-	 * <p>
-	 * Set the Shape size (size, size)
-	 * </p>
-	 * 
-	 * @param float size
-	 * @return Shape
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public Shape setSize(float size) {
-		this.size.x = size;
-		this.size.y = size;
-		return (this);
-	}
-
 	/**
 	 * <p>
 	 * Get the Shape color
@@ -757,7 +229,7 @@ public class Shape {
 	 * Set the Shape color
 	 * </p>
 	 * 
-	 * @param Color color
+	 * @param color shape color
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -772,9 +244,9 @@ public class Shape {
 	 * Set the Shape color (r, g, b)
 	 * </p>
 	 * 
-	 * @param float r
-	 * @param float g
-	 * @param float b
+	 * @param r shape color red
+	 * @param g shape color green
+	 * @param b shape color blue
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -791,10 +263,10 @@ public class Shape {
 	 * Set the Shape color (r, g, b, a)
 	 * </p>
 	 * 
-	 * @param float r
-	 * @param float g
-	 * @param float b
-	 * @param float a
+	 * @param r shape color red
+	 * @param g shape color green
+	 * @param b shape color blue
+	 * @param a shape color alpha
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -812,7 +284,7 @@ public class Shape {
 	 * Set the Shape shader
 	 * </p>
 	 * 
-	 * @param Shader shader
+	 * @param shader shape shader
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -836,7 +308,7 @@ public class Shape {
 	 * Set the Shape shader
 	 * </p>
 	 * 
-	 * @param Shader shader
+	 * @param shader shape shader
 	 * @return Shape
 	 * @since 0.2
 	 * @author Blackoutburst
@@ -885,12 +357,13 @@ public class Shape {
 	 * Set the Shape rotation
 	 * </p>
 	 * 
-	 * @param float rotation
+	 * @param rotation shape rotation
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public void setRotation(float rotation) {
+	public Shape setRotation(float rotation) {
 		this.rotation = rotation;
+		return (this);
 	}
 
 	/**
@@ -908,10 +381,10 @@ public class Shape {
 
 	/**
 	 * <p>
-	 * Set the Shape texture smoothing parrameter
+	 * Set the Shape texture smoothing parameter
 	 * </p>
 	 * 
-	 * @param booelan smoothTexture
+	 * @param smoothTexture define if the texture must be smoothed when up/down scaled
 	 * @return Shape
 	 * @since 0.1
 	 * @author Blackoutburst
@@ -934,22 +407,6 @@ public class Shape {
 		return texture;
 	}
 
-	/**
-	 * <p>
-	 * Set the Shape texture
-	 * </p>
-	 * 
-	 * @param Texture texture
-	 * @since 0.1
-	 * @author Blackoutburst
-	 */
-	public void setTexture(Texture texture) {
-		this.textureless = false;
-		this.vertexShader = Shader.defaultVert;
-		this.fragmentShader = Shader.defaultFrag;
-		this.texture = texture;
-	}
-	
 	/**
 	 * <p>
 	 * Get the Shape texture id
@@ -1025,29 +482,29 @@ public class Shape {
 	 * <p>
 	 * Set if the shape react to light
 	 * </p>
-	 * 
-	 * @param reactToLight
+	 *
+	 * @param reactToLight make the shape react to light
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
 	public Shape setReactToLight(boolean reactToLight) {
 		this.reactToLight = reactToLight;
-		
+
 		if (this.reactToLight && this.textureless)
 			this.setShaderInternal(Shader.defaultFragNoTextureLight);
-		
+
 		if (this.reactToLight && !this.textureless)
 			this.setShaderInternal(Shader.defaultFragLight);
-		
+
 		if (!this.reactToLight && this.textureless)
 			this.setShaderInternal(Shader.defaultFragNoTexture);
-		
+
 		if (!this.reactToLight && !this.textureless)
 			this.setShaderInternal(Shader.defaultFrag);
-		
+
 		return (this);
 	}
-	
+
 	/**
 	 * <p>
 	 * Render the shape on screen
@@ -1059,7 +516,6 @@ public class Shape {
 	public void draw() {
 		switch (this.type) {
 			case CIRCLE: this.isCircle = true; RenderQuad.draw(this); break;
-			case QUAD: this.isCircle = false; RenderQuad.draw(this); break;
 			case TRIANGLE: RenderTriangle.draw(this); break;
 			default: this.isCircle = false; RenderQuad.draw(this); break;
 		}
@@ -1071,7 +527,7 @@ public class Shape {
 	 * Check collision between two shapes
 	 * </p>
 	 *
-	 * @param shape
+	 * @param shape the shape used for collision
 	 * @return boolean
 	 * @since 0.5
 	 * @author Blackoutburst
@@ -1088,7 +544,7 @@ public class Shape {
 	 * Check collision between two shapes
 	 * </p>
 	 * 
-	 * @param shape
+	 * @param shape the shape used for collision
 	 * @return boolean
 	 * @since 0.4
 	 * @author Blackoutburst
@@ -1097,13 +553,10 @@ public class Shape {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape s1 = new Shape(this.type);
-		s1.setPosition(this.getPosition());
-		s1.setSize(this.getSize());
-		s1.setRotation(this.getRotation());
+		Shape s1 = new Shape(this.type, this.position, this.size, this.rotation);
 		s1.setColor(new Color(0, 0, 0, 0.5f));
 		
-		Shape s2 = new Shape(shape.type);
+		Shape s2 = new Shape(shape.type, shape.position, shape.size, shape.rotation);
 		s2.setPosition(shape.getPosition());
 		s2.setSize(shape.getSize());
 		s2.setRotation(shape.getRotation());
@@ -1112,7 +565,7 @@ public class Shape {
 		s1.draw();
 		s2.draw();
 		
-	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
+	    final ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
 
 	    boolean collide = false;
 	    
@@ -1138,7 +591,7 @@ public class Shape {
 	 * Check collision between two shapes
 	 * </p>
 	 * 
-	 * @param shape
+	 * @param shape the shape used for collision
 	 * @return boolean
 	 * @since 0.4
 	 * @author Blackoutburst
@@ -1147,26 +600,21 @@ public class Shape {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape s1 = new Shape(this.type);
-		if (!this.textureless) s1.setTexture(this.texture);
+		Shape s1 = new Shape(this.type, this.texture, this.position, this.size, this.rotation);
 		s1.setPosition(this.getPosition());
 		s1.setSize(this.getSize());
 		s1.setRotation(this.getRotation());
 		s1.setColor(new Color(0, 0, 0, 0.5f));
 		s1.setReactToLight(false);
 		
-		Shape s2 = new Shape(shape.type);
-		if (!shape.textureless) s2.setTexture(shape.texture);
-		s2.setPosition(shape.getPosition());
-		s2.setSize(shape.getSize());
-		s2.setRotation(shape.getRotation());
+		Shape s2 = new Shape(shape.type, shape.texture, shape.position, shape.size, shape.rotation);
 		s2.setColor(new Color(0, 0, 0, 0.5f));
 		s2.setReactToLight(false);
 		
 		s1.draw();
 		s2.draw();
 		
-	    ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
+	    final ByteBuffer pixels = BufferUtils.createByteBuffer((int) ((s1.size.x * 2) * (s1.size.y * 2)));
 
 	    boolean collide = false;
 	    

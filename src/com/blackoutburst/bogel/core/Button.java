@@ -76,10 +76,7 @@ public class Button {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape tmp = new Shape(type);
-		tmp.setPosition(this.shape.getPosition());
-		tmp.setSize(this.shape.getSize());
-		tmp.setRotation(this.shape.getRotation());
+		Shape tmp = new Shape(type, shape.getPosition(), shape.getSize(), shape.getRotation());
 		tmp.setColor(new Color(0 ,0 ,0 ,0.5f));
 		tmp.draw();
 		
