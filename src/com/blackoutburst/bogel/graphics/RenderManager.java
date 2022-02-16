@@ -3,7 +3,7 @@ package com.blackoutburst.bogel.graphics;
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;

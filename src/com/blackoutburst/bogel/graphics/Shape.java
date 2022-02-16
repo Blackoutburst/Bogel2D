@@ -10,7 +10,7 @@ import static org.lwjgl.opengl.GL11.glReadPixels;
 import java.nio.ByteBuffer;
 
 import com.blackoutburst.bogel.core.ShaderProgram;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;

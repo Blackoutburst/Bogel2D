@@ -22,7 +22,7 @@ import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 
 import com.blackoutburst.bogel.core.Camera;

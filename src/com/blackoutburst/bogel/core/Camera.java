@@ -3,7 +3,7 @@ package com.blackoutburst.bogel.core;
 import com.blackoutburst.bogel.maths.Matrix;
 import com.blackoutburst.bogel.maths.Vector2f;
 import com.blackoutburst.bogel.maths.Vector3f;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <h1>Camera</h1>

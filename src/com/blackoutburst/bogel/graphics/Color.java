@@ -1,6 +1,7 @@
 package com.blackoutburst.bogel.graphics;
 
-import com.sun.istack.internal.NotNull;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <h1>Color</h1>
