@@ -40,19 +40,9 @@ import com.blackoutburst.bogel.maths.Matrix;
  */
 public class RenderQuad {
 
-	private static int vaoID;
-	
 	/**Model matrix*/
 	public static Matrix model;
-	
-	private static final float[] vertices =
-	{
-		0.5f, -0.5f, 1.0f, 1.0f, // Bottom right
-		0.5f, 0.5f, 1.0f, 0.0f, // Top right
-		-0.5f, 0.5f, 0.0f, 0.0f,  // Top left
-		-0.5f, -0.5f, 0.0f, 1.0f // Bottom left
-	};
-	 
+
 	private static final int[] indices =
 	{
 		0, 1, 3,
@@ -67,17 +57,25 @@ public class RenderQuad {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	protected static void initRenderer() {
-		vaoID = glGenVertexArrays();
-		final int vbo = glGenBuffers();
-		final int ebo = glGenBuffers();
+	protected static void initRenderer(Shape s) {
+		final float[] vertices =
+		{
+				0.5f, -0.5f, (1.0f + s.xo) / s.xdiv, (1.0f + s.yo) / s.ydiv, // Bottom right
+				0.5f, 0.5f, (1.0f + s.xo) / s.xdiv, (0.0f + s.yo) / s.ydiv, // Top right
+				-0.5f, 0.5f, (0.0f + s.xo) / s.xdiv, (0.0f + s.yo) / s.ydiv,  // Top left
+				-0.5f, -0.5f, (0.0f + s.xo) / s.xdiv, (1.0f + s.yo) / s.ydiv // Bottom left
+		};
+
+		s.vaoID = glGenVertexArrays();
+		s.vboID = glGenBuffers();
+		s.eboID = glGenBuffers();
 		
-		glBindVertexArray(vaoID);
+		glBindVertexArray(s.vaoID);
 
 		final FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
 		((Buffer) verticesBuffer.put(vertices)).flip();
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, s.vboID);
 		glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
 
 		final IntBuffer indicesBuffer = BufferUtils.createIntBuffer(indices.length);
@@ -91,7 +89,7 @@ public class RenderQuad {
 		glVertexAttribPointer(1, 2, GL_FLOAT, false, 16, 8);
 		glEnableVertexAttribArray(1);
 		
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s.eboID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesBuffer, GL_STATIC_DRAW); 
 		
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -170,7 +168,7 @@ public class RenderQuad {
 		setDefaultUniform(shape);
 
 		glUseProgram(shape.shaderProgram.getID());
-		glBindVertexArray(vaoID);
+		glBindVertexArray(shape.vaoID);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 		glUseProgram(0);

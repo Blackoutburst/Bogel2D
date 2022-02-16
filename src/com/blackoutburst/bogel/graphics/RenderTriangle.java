@@ -26,18 +26,8 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
  */
 public class RenderTriangle {
 
-	private static int vaoID;
-	
 	/**Model matrix*/
 	public static Matrix model;
-	
-	private static final float[] vertices =
-	{
-		-0.5f, -0.5f, 0.0f, 0.0f, // Left
-		0.5f, -0.5f, 1.0f, 0.0f, // Right
-		0.0f, 0.5f, 0.5f, 1.0f,  // Top
-	};
-	 
 	
 	/**
 	 * <p>
@@ -47,16 +37,23 @@ public class RenderTriangle {
 	 * @since 0.2
 	 * @author Blackoutburst
 	 */
-	protected static void initRenderer() {
-		vaoID = glGenVertexArrays();
-		final int vbo = glGenBuffers();
+	protected static void initRenderer(Shape s) {
+		final float[] vertices =
+		{
+				-0.5f, -0.5f, (0.0f + s.xo) / s.xdiv, (0.0f + s.yo) / s.ydiv, // Left
+				0.5f, -0.5f, (1.0f + s.xo) / s.xdiv, (0.0f + s.yo) / s.ydiv, // Right
+				0.0f, 0.5f, (0.5f + s.xo) / s.xdiv, (1.0f + s.yo) / s.ydiv  // Top
+		};
+
+		s.vaoID = glGenVertexArrays();
+		s.vboID = glGenBuffers();
 		
-		glBindVertexArray(vaoID);
+		glBindVertexArray(s.vaoID);
 
 		final FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
 		((Buffer) verticesBuffer.put(vertices)).flip();
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, s.vboID);
 		glBufferData(GL_ARRAY_BUFFER, verticesBuffer, GL_STATIC_DRAW);
 		
 		glVertexAttribPointer(0, 2, GL_FLOAT, false, 16, 0);
@@ -140,7 +137,7 @@ public class RenderTriangle {
 		setDefaultUniform(shape);
 		
 		glUseProgram(shape.shaderProgram.getID());
-		glBindVertexArray(vaoID);
+		glBindVertexArray(shape.vaoID);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);
 		glUseProgram(0);

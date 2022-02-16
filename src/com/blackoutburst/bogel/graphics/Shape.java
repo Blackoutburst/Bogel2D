@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glReadPixels;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.nio.ByteBuffer;
 
@@ -16,6 +17,7 @@ import org.lwjgl.BufferUtils;
 import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Vector2f;
+import org.lwjgl.opengl.GL20;
 
 /**
  * <h1>Shape</h1>
@@ -53,16 +55,24 @@ public class Shape {
 	protected Vector2f position;
 	protected Vector2f size;
 
-	protected float rotation;
-
 	protected Color color;
 
 	protected ShaderProgram shaderProgram;
+
+	protected int vaoID;
+	protected int vboID;
+	protected int eboID;
 
 	protected boolean isCircle;
 	protected boolean smoothTexture;
 	protected boolean textureless;
 	protected boolean reactToLight;
+
+	protected float rotation;
+	protected float xdiv;
+	protected float ydiv;
+	protected float xo;
+	protected float yo;
 	
 	/**
 	 * <p>
@@ -77,6 +87,12 @@ public class Shape {
 		reactToLight = false;
 		isCircle = type == ShapeType.CIRCLE;
 		smoothTexture = true;
+
+		if (type == ShapeType.QUAD || type == ShapeType.CIRCLE) {
+			RenderQuad.initRenderer(this);
+		} else {
+			RenderTriangle.initRenderer(this);
+		}
 	}
 
 	/**
@@ -91,7 +107,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer) {
+	public Shape(ShapeType type, Texture texture, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer, Float... sheet) {
 		this.type = type;
 		this.textureless = false;
 		this.texture = texture;
@@ -100,6 +116,10 @@ public class Shape {
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.TEXTURE;
 		if (allocateBuffer) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
+		this.xdiv = sheet.length > 0 ? sheet[0] : 1;
+		this.ydiv = sheet.length > 1 ? sheet[1] : 1;
+		this.xo = sheet.length > 2 ? sheet[2] : 0;
+		this.yo = sheet.length > 3 ? sheet[3] : 0;
 		initShape();
 	}
 
@@ -114,7 +134,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer, Float... sheet) {
 		this.type = type;
 		this.textureless = true;
 		this.position = position;
@@ -122,7 +142,22 @@ public class Shape {
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.COLOR;
 		if (allocateBuffer) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
+		this.xdiv = sheet.length > 0 ? sheet[0] : 1;
+		this.ydiv = sheet.length > 1 ? sheet[1] : 1;
+		this.xo = sheet.length > 2 ? sheet[2] : 0;
+		this.yo = sheet.length > 3 ? sheet[3] : 0;
 		initShape();
+	}
+
+	/**
+	 * <p>
+	 * Destroy openGL buffers
+	 * </p>
+	 */
+	public void clean() {
+		glDeleteBuffers(vaoID);
+		glDeleteBuffers(vboID);
+		glDeleteBuffers(eboID);
 	}
 
 	/**
