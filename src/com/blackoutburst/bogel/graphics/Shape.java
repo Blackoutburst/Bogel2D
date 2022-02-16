@@ -426,6 +426,60 @@ public class Shape {
 	public int getTextureID() {
 		return (this.texture.id);
 	}
+
+	/**
+	 * <p>
+	 * Set the shape texture X offset
+	 * </p>
+	 *
+	 * @return Shape
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public Shape setXo(float xo) {
+		this.xo = xo;
+		return (this);
+	}
+
+	/**
+	 * <p>
+	 * Get the shape texture X offset
+	 * </p>
+	 *
+	 * @return float
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public float getXo() {
+		return (this.xo);
+	}
+
+	/**
+	 * <p>
+	 * Set the shape texture Y offset
+	 * </p>
+	 *
+	 * @return Shape
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public Shape setYo(float yo) {
+		this.yo = yo;
+		return (this);
+	}
+
+	/**
+	 * <p>
+	 * Get the shape texture Y offset
+	 * </p>
+	 *
+	 * @return float
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public float getYo() {
+		return (this.yo);
+	}
 	
 	/**
 	 * <p>
