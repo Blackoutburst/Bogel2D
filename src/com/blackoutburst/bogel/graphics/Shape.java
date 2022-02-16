@@ -674,6 +674,8 @@ public class Shape {
 
 		s1.draw();
 		s2.draw();
+		s1.clean();
+		s2.clean();
 	    return (pixelCollide(s1));
 	}
 	
@@ -698,6 +700,8 @@ public class Shape {
 
 		s1.draw();
 		s2.draw();
+		s1.clean();
+		s2.clean();
 	    return (pixelCollide(s1));
 	}
 }

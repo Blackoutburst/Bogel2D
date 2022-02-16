@@ -83,10 +83,10 @@ public class Button {
 		Shape tmp = new Shape(shape.getType(), shape.getPosition(), shape.getSize(), shape.getRotation(), false);
 		tmp.setColor(new Color(0 ,0 ,0 ,0.5f));
 		tmp.draw();
-		
+		tmp.clean();
 	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), 10, 10, GL_RGBA, GL_UNSIGNED_BYTE, shape.getPixels());
 	    int px = (shape.getPixels().get(0) & 0xFF);
-	    
+
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
 	    return (px == 128);
