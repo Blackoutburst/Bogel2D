@@ -22,7 +22,7 @@ public class HelloWorld {
     public static void main(String[] args) {
         Display display = new Display().setSize(600, 600).create();
 
-        Shape shape = new Shape(Shape.ShapeType.QUAD, new Vector2f(300), new Vector2f(400), 0)
+        Shape shape = new Shape(Shape.ShapeType.QUAD, new Vector2f(300), new Vector2f(400), 0, false)
                 .setColor(Color.BOGEL);
         
         while (display.isOpen()) {
