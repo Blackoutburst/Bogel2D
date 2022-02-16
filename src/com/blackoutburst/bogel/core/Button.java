@@ -155,4 +155,72 @@ public class Button {
 	public void draw() {
 		this.shape.draw();
 	}
+
+	/**
+	 * <p>
+	 * Check if the mouse is on the button
+	 * </p>
+	 *
+	 * @return boolean
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	private boolean onButtonAABB() {
+		return (shape.getPosition().x + shape.getSize().x / 2 >= Mouse.getX() &&
+				shape.getPosition().x - shape.getSize().x / 2 <= Mouse.getX() &&
+				shape.getPosition().y + shape.getSize().y / 2 >= Mouse.getY() &&
+				shape.getPosition().y - shape.getSize().y / 2 <= Mouse.getY());
+	}
+
+	/**
+	 * <p>
+	 * Check if the button is pressed
+	 * </p>
+	 *
+	 * @return pressed
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	public boolean isPressedAABB() {
+		return (onButtonAABB() && Mouse.getLeftButton().isPressed());
+	}
+
+	/**
+	 * <p>
+	 * Check if the button is hover
+	 * </p>
+	 *
+	 * @return hover
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	public boolean isHoverAABB() {
+		return (onButtonAABB());
+	}
+
+	/**
+	 * <p>
+	 * Check if the button is down
+	 * </p>
+	 *
+	 * @return down
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	public boolean isDownAABB() {
+		return (onButtonAABB() && Mouse.getLeftButton().isDown());
+	}
+
+	/**
+	 * <p>
+	 * Check if the button is released
+	 * </p>
+	 *
+	 * @return released
+	 * @since 0.3
+	 * @author Blackoutburst
+	 */
+	public boolean isReleasedAABB() {
+		return (onButtonAABB() && Mouse.getLeftButton().isReleased());
+	}
 }
