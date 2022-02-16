@@ -134,7 +134,7 @@ public class Shape {
 	 * @since 0.1
 	 * @author Blackoutburst
 	 */
-	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer, Float... sheet) {
+	public Shape(ShapeType type, Vector2f position, Vector2f size, float rotation, boolean allocateBuffer) {
 		this.type = type;
 		this.textureless = true;
 		this.position = position;
@@ -142,10 +142,10 @@ public class Shape {
 		this.rotation = rotation;
 		this.shaderProgram = ShaderProgram.COLOR;
 		if (allocateBuffer) this.pixels = BufferUtils.createByteBuffer((int) ((size.x * 2) * (size.y * 2)));
-		this.xdiv = sheet.length > 0 ? sheet[0] : 1;
-		this.ydiv = sheet.length > 1 ? sheet[1] : 1;
-		this.xo = sheet.length > 2 ? sheet[2] : 0;
-		this.yo = sheet.length > 3 ? sheet[3] : 0;
+		this.xdiv = 1;
+		this.ydiv = 1;
+		this.xo = 0;
+		this.yo = 0;
 		initShape();
 	}
 
