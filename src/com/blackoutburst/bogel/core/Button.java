@@ -28,21 +28,17 @@ public class Button {
 	
 	protected Shape shape;
 
-	protected ShapeType type;
-	
 	/**
 	 * <p>
 	 * Create a new button
 	 * </p>
 	 * 
 	 * @param shape the button shape
-	 * @param type the button shape type
 	 * @since 0.3
 	 * @author Blackoutburst
 	 */
-	public Button(Shape shape, ShapeType type) {
+	public Button(Shape shape) {
 		this.shape = shape;
-		this.type = type;
 	}
 
 	/**
@@ -84,15 +80,12 @@ public class Button {
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		Shape tmp = new Shape(type, shape.getPosition(), shape.getSize(), shape.getRotation(), false);
+		Shape tmp = new Shape(shape.getType(), shape.getPosition(), shape.getSize(), shape.getRotation(), false);
 		tmp.setColor(new Color(0 ,0 ,0 ,0.5f));
 		tmp.draw();
 		
-	    int size = 10;
-	    ByteBuffer pixels = BufferUtils.createByteBuffer(Display.getWidth() * Display.getHeight() * 4);
-
-	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), size, size, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-	    int px = (pixels.get(0) & 0xFF);
+	    glReadPixels((int)Mouse.getX(), (int)Mouse.getY(), 10, 10, GL_RGBA, GL_UNSIGNED_BYTE, shape.getPixels());
+	    int px = (shape.getPixels().get(0) & 0xFF);
 	    
 	    glClearColor(Display.clearColor.r, Display.clearColor.g, Display.clearColor.b, Display.clearColor.a);
 	    glClear(GL_COLOR_BUFFER_BIT);
@@ -149,31 +142,6 @@ public class Button {
 	 */
 	public boolean isReleased() {
 		return (onButton() && Mouse.getLeftButton().isReleased());
-	}
-	/**
-	 * <p>
-	 * Get the button shape
-	 * </p>
-	 * 
-	 * @return buttonShape
-	 * @since 0.3
-	 * @author Blackoutburst 
-	 */
-	public ShapeType getButtonShape() {
-		return type;
-	}
-
-	/**
-	 * <p>
-	 * Set the button shape
-	 * </p>
-	 * 
-	 * @param type the shape type
-	 * @since 0.3
-	 * @author Blackoutburst 
-	 */
-	public void setButtonShape(ShapeType type) {
-		this.type = type;
 	}
 
 	/**

@@ -187,7 +187,21 @@ public class Shape {
 		this.position = position;
 		return (this);
 	}
-	
+
+
+	/**
+	 * <p>
+	 * Get the shape type
+	 * </p>
+	 *
+	 * @return ShapeType
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public ShapeType getType() {
+		return (this.type);
+	}
+
 	/**
 	 * <p>
 	 * Set the Shape position (x, y)
@@ -582,6 +596,18 @@ public class Shape {
 		}
 	}
 
+	/**
+	 * <p>
+	 * Get the shape buffer
+	 * </p>
+	 *
+	 * @return ByteBuffer
+	 * @since 0.5
+	 * @author Blackoutburst
+	 */
+	public ByteBuffer getPixels() {
+		return pixels;
+	}
 
 	/**
 	 * <p>
