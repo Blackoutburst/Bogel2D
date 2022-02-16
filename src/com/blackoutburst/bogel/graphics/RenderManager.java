@@ -4,7 +4,6 @@ import com.blackoutburst.bogel.core.Camera;
 import com.blackoutburst.bogel.core.Display;
 import com.blackoutburst.bogel.maths.Matrix;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_CLAMP_TO_BORDER;
@@ -51,7 +50,7 @@ public class RenderManager {
 	 * @author Blackoutburst
 	 */
 	public static void setOrtho(int width, int height) {
-		GL11.glViewport(0, 0, width, height);
+		glViewport(0, 0, width, height);
 		Matrix.ortho2D(projection, 0, width, 0, height, -1, 1);
 	}
 	
