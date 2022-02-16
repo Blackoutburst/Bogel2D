@@ -213,9 +213,6 @@ public class RenderManager {
 			return (true);
 		if (shape.position.y - shape.size.y / 2 > Display.getHeight() + Camera.getPosition().y)
 			return (true);
-		if (shape.position.y + shape.size.y / 2 < Camera.getPosition().y)
-			return (true);
-
-		return (false);
+		return shape.position.y + shape.size.y / 2 < Camera.getPosition().y;
 	}
 }

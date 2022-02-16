@@ -111,7 +111,8 @@ public class Texture {
 			((Buffer)comp).clear();
 		}
 		this.shape = new Shape(ShapeType.QUAD, this, new Vector2f(0), new Vector2f(this.width.get(0), this.height.get(0)), 0, false);
-		STBImage.stbi_image_free(data);
+		if (data != null)
+			STBImage.stbi_image_free(data);
 		this.missing = true;
 	}
 

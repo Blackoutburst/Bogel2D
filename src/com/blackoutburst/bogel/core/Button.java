@@ -1,19 +1,9 @@
 package com.blackoutburst.bogel.core;
 
-import java.nio.ByteBuffer;
-
-import org.lwjgl.BufferUtils;
-
 import com.blackoutburst.bogel.graphics.Color;
 import com.blackoutburst.bogel.graphics.Shape;
-import com.blackoutburst.bogel.graphics.Shape.ShapeType;
 
-import static org.lwjgl.opengl.GL11.glReadPixels;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * <p>
